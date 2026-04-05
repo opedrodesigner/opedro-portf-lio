@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spark Chat Redesign — opedro.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --void:#0E0E0E;--carbon:#1A1A1A;--dark3:#242424;--border:#2A2A2A;
+  --signal:#FF3C3C;--lime:#CAFF00;--cyan:#00E5FF;
+  --spark:#AAFF00;
+  --ash:#888888;--ash2:#555555;--white:#FFFFFF;
+  --display:'Bricolage Grotesque',sans-serif;--ui:'Syne',sans-serif;
+}
+body{background:var(--void);color:var(--white);font-family:var(--display);cursor:none;overflow-x:hidden}
+.cursor{position:fixed;width:12px;height:12px;background:var(--spark);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.cursor.hover{width:40px;height:40px;background:var(--spark);mix-blend-mode:difference}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:0.5px solid transparent;transition:border-color .3s,background .3s}
+nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-text{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-0.03em;color:var(--white)}
+.nav-logo-dot{color:var(--signal)}
+.nav-back{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 20px;border-radius:8px;background:var(--border);color:var(--white);text-decoration:none;transition:background .2s;display:flex;align-items:center;gap:8px}
+.nav-back:hover{background:var(--dark3)}
+
+/* HERO */
+.case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
+.case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(170,255,0,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--spark)}
+.hero-title{font-size:clamp(44px,6vw,84px);font-weight:800;letter-spacing:-0.04em;line-height:0.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-title span{color:var(--spark)}
+.hero-summary{max-width:600px;font-size:17px;line-height:1.7;color:var(--ash);opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-summary strong{color:var(--white);font-weight:400}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero-tag{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 14px;border-radius:20px;background:var(--carbon);border:0.5px solid var(--border);color:var(--ash)}
+.hero-tag.t-spark{background:rgba(170,255,0,0.08);border-color:rgba(170,255,0,0.25);color:var(--spark)}
+
+/* SEÇÕES */
+.case-section{padding:80px 48px}
+.case-section+.case-section{border-top:0.5px solid var(--border)}
+.section-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--spark)}
+.section-heading{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.03em;line-height:0.95;margin-bottom:32px}
+.section-heading span{color:var(--spark)}
+.section-text{font-size:16px;line-height:1.75;color:var(--ash);max-width:680px}
+.section-text strong{color:var(--white);font-weight:400}
+.section-text p+p{margin-top:16px}
+.screens-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--spark)}
+
+/* META */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.meta-card{background:var(--carbon);border:0.5px solid var(--border);padding:24px}
+.meta-card:first-child{border-radius:14px 0 0 14px}
+.meta-card:last-child{border-radius:0 14px 14px 0}
+.meta-card+.meta-card{border-left:none}
+.meta-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ash);margin-bottom:8px}
+.meta-value{font-size:15px;font-weight:800;letter-spacing:-0.01em;margin-bottom:4px}
+.meta-desc{font-size:13px;line-height:1.5;color:var(--ash)}
+
+/* PROBLEMAS */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+.problem-card{background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;padding:28px 24px;border-top:2px solid var(--signal)}
+.problem-card-num{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.2em;color:var(--ash2);margin-bottom:12px}
+.problem-card-title{font-size:16px;font-weight:800;letter-spacing:-0.01em;margin-bottom:8px}
+.problem-card-desc{font-size:14px;line-height:1.6;color:var(--ash)}
+
+/* HIPÓTESES */
+.hyp-card{background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;padding:28px 24px;border-top:2px solid var(--cyan)}
+
+/* SOLUÇÃO — antes/depois */
+.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+.solution-card{background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;padding:28px 24px;border-top:2px solid var(--spark)}
+.solution-card-num{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.2em;color:var(--ash2);margin-bottom:12px}
+.solution-card-title{font-size:16px;font-weight:800;letter-spacing:-0.01em;margin-bottom:8px}
+.solution-card-desc{font-size:14px;line-height:1.6;color:var(--ash)}
+
+/* ANTES DEPOIS VISUAL */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+.ba-card{border-radius:14px;overflow:hidden;border:0.5px solid var(--border)}
+.ba-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:10px 16px;background:var(--carbon);border-bottom:0.5px solid var(--border)}
+.ba-label.before{color:var(--signal)}
+.ba-label.after{color:var(--spark)}
+.ba-card img{width:100%;display:block}
+
+/* IMAGENS */
+.img-wrap{border-radius:16px;overflow:hidden;border:0.5px solid var(--border);width:fit-content;margin:0 auto}
+.img-wrap img{width:100%;max-width:1200px;display:block;margin:0 auto}
+
+/* APRENDIZADO */
+.learning-box{margin-top:40px;padding:28px 32px;background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;border-left:3px solid var(--spark)}
+.learning-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ash);margin-bottom:12px}
+.learning-text{font-size:16px;line-height:1.7;color:var(--ash)}
+.learning-text strong{color:var(--white);font-weight:400}
+
+footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;letter-spacing:-0.02em;color:var(--white)}
+.footer-logo span{color:var(--signal)}
+.footer-nav{display:flex;gap:24px}
+.footer-nav a{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--white)}
+.footer-dots{display:flex;gap:6px;align-items:center}
+.fd{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:block}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
+
+
+@media(max-width:960px){
+  .problem-grid,.solution-grid,.before-after{grid-template-columns:1fr}
+  .problem-card[style*="grid-column:span 2"]{grid-column:span 1 !important}
+}
+@media(max-width:768px){
+  body{cursor:auto}
+  .cursor{display:none}
+  nav{padding:16px 20px}
+  .nav-logo-text{font-size:17px}
+  nav svg{width:24px;height:auto}
+  .nav-back{font-size:12px;padding:8px 14px}
+  .case-hero{padding:100px 20px 56px}
+  .case-section{padding:56px 20px}
+  .meta-grid{grid-template-columns:1fr}
+  .meta-card{border-radius:0 !important;border-left:0.5px solid var(--border) !important}
+  .meta-card:first-child{border-radius:14px 14px 0 0 !important}
+  .meta-card:last-child{border-radius:0 0 14px 14px !important}
+  .problem-grid,.solution-grid,.before-after{grid-template-columns:1fr}
+  footer{padding:24px 20px;flex-direction:column;gap:16px;align-items:flex-start}
+  .footer-dots{align-self:flex-end}
+}
+
+/* CARROSSEL */
+.carousel-section{overflow:hidden;padding:32px 0;border-bottom:0.5px solid var(--border);background:var(--void)}
+.carousel-track{display:flex;gap:16px;width:max-content;animation:carousel-scroll 45s linear infinite}
+
+.carousel-item{flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;border:0.5px solid var(--border)}
+.carousel-item img{width:100%;display:block}
+@keyframes carousel-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="21" viewBox="0 0 483 321"><path fill-rule="evenodd" clip-rule="evenodd" d="M474.102 140.572C433.633 97.5857 331.771 0 241.043 0C150.314 0 48.4522 97.5857 7.98325 140.572C-2.66108 151.879 -2.66109 169.121 7.98325 180.428C48.4522 223.414 150.314 321 241.043 321C331.771 321 433.633 223.414 474.102 180.428C484.746 169.121 484.746 151.879 474.102 140.572ZM259.29 86.0203L262.518 97.3318C265.332 107.192 275.462 113.041 285.408 110.547L296.819 107.687C315.36 103.04 328.385 125.599 315.089 139.333L306.907 147.784C299.775 155.151 299.775 166.849 306.907 174.216L315.089 182.667C328.385 196.401 315.36 218.96 296.819 214.313L285.408 211.453C275.462 208.959 265.332 214.808 262.518 224.668L259.29 235.98C254.044 254.361 227.995 254.361 222.749 235.98L219.521 224.668C216.707 214.808 206.577 208.959 196.631 211.453L185.22 214.313C166.679 218.96 153.654 196.401 166.95 182.667L175.132 174.216C182.264 166.849 182.264 155.151 175.132 147.784L166.95 139.333C153.654 125.599 166.679 103.04 185.22 107.687L196.631 110.547C206.577 113.041 216.707 107.192 219.521 97.3318L222.749 86.0203C227.995 67.6392 254.044 67.6392 259.29 86.0203Z" fill="white"/></svg>
+    <span class="nav-logo-text">opedro<span class="nav-logo-dot">.</span></span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Portfólio
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="hero-eyebrow">Spark &#183; Product Design &#183; 2026</div>
+  <h1 class="hero-title">Chat<br><span>Redesign.</span></h1>
+  <p class="hero-summary">Estudo de caso autoral — redesenho da experiência de chat de uma rede social de monetização, explorando problemas de <strong>usabilidade, poluição visual e comportamentos fora do padrão mobile.</strong></p>
+  <div class="hero-tags">
+    <span class="hero-tag t-spark">Product Design</span>
+    <span class="hero-tag">UX/UI</span>
+    <span class="hero-tag">Spark</span>
+    <span class="hero-tag">2026</span>
+  </div>
+</section>
+
+<!-- CARROSSEL -->
+<div class="carousel-section">
+  <div class="carousel-track">
+    <div class="carousel-item"><img src="assets/carousel-01-chat.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-02-digitando.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-03-emojis.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-04-pesquisando-emoji.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-05-pesquisando-emoji-2.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-06-gifs.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-07-pesquisando-gifs.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-08-gif-anexado.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-09-mensagem-enviada.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-01-chat.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-02-digitando.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-03-emojis.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-04-pesquisando-emoji.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-05-pesquisando-emoji-2.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-06-gifs.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-07-pesquisando-gifs.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-08-gif-anexado.png" alt="Spark Chat UI"></div>
+<div class="carousel-item"><img src="assets/carousel-09-mensagem-enviada.png" alt="Spark Chat UI"></div>
+
+  </div>
+</div>
+
+<!-- CONTEXTO -->
+<section class="case-section" style="padding-top:56px;padding-bottom:56px">
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="meta-label">Meu papel</div>
+      <div class="meta-value">Product Designer</div>
+      <div class="meta-desc">Estudo autoral — identificação de problemas, análise e redesenho completo.</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Tipo</div>
+      <div class="meta-value">Estudo de Caso</div>
+      <div class="meta-desc">Projeto individual desenvolvido como exercício de análise e redesign.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE A SPARK -->
+<section class="case-section">
+    <h2 class="section-heading reveal reveal-d1">Sobre<br>a <span>Spark.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>A <strong>Spark</strong> é uma rede social de monetização de conteúdo exclusivo — plataforma escolhida como base para este estudo por ter um chat como ponto central da relação entre creator e fã, usado diariamente por ambos os lados da plataforma.</p>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="case-section">
+    <h2 class="section-heading reveal reveal-d1">Um chat que<br>pedia <span>redesign.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O chat existente tinha uma série de problemas que afetavam tanto creators quanto assinantes — desde decisões de layout que desperdiçavam espaço até comportamentos que destoavam do padrão esperado em apps mobile. Com mais de <strong>95% dos usuários acessando via mobile</strong>, qualquer desvio do comportamento esperado tinha impacto direto na experiência.</p>
+  </div>
+  <div class="problem-grid">
+    <div class="problem-card reveal reveal-d1">
+      <div class="problem-card-num">01</div>
+      <div class="problem-card-title">Botão Enviar superdimensionado</div>
+      <div class="problem-card-desc">O botão "ENVIAR" ocupava toda a largura da tela mesmo sem nenhum texto digitado — desperdiçando espaço e dando peso excessivo a uma ação contextual.</div>
+    </div>
+    <div class="problem-card reveal reveal-d2">
+      <div class="problem-card-num">02</div>
+      <div class="problem-card-title">Sem separação visual no input</div>
+      <div class="problem-card-desc">O campo de digitação flutuava sem borda ou divisor, sem distinção visual entre a área de composição e o histórico de conversa.</div>
+    </div>
+    <div class="problem-card reveal reveal-d3">
+      <div class="problem-card-num">03</div>
+      <div class="problem-card-title">Excesso de ícones na toolbar</div>
+      <div class="problem-card-desc">7 ícones expostos simultaneamente com tamanho e espaçamento excessivos — gerando poluição visual e dificultando a identificação rápida das ações.</div>
+    </div>
+    <div class="problem-card reveal reveal-d4">
+      <div class="problem-card-num">04</div>
+      <div class="problem-card-title">Funcionalidades enterradas no menu "..."</div>
+      <div class="problem-card-desc">GIF, Gift e Solicitar mídias ficavam escondidos num segundo nível de navegação, reduzindo a descoberta e o uso dessas funcionalidades.</div>
+    </div>
+    <div class="problem-card reveal reveal-d5">
+      <div class="problem-card-num">05</div>
+      <div class="problem-card-title">Emoji picker fora do padrão mobile</div>
+      <div class="problem-card-desc">Um modal próprio substituía o teclado nativo — sobrepondo a conversa e impedindo digitação simultânea. Comportamento oposto ao Instagram, WhatsApp e Telegram.</div>
+    </div>
+    <div class="problem-card reveal" style="transition-delay:.5s">
+      <div class="problem-card-num">06</div>
+      <div class="problem-card-title">Galeria de GIFs com área insuficiente</div>
+      <div class="problem-card-desc">Uma faixa estreita exibia apenas 2 GIFs por vez, exigindo scroll vertical dentro da faixa — experiência lenta e visualmente quebrada.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HIPÓTESES -->
+<section class="case-section">
+    <h2 class="section-heading reveal reveal-d1">O raciocínio<br>antes da <span>solução.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>Antes de partir para o redesenho, levantei hipóteses sobre o que estava causando a experiência ruim — e por que alinhar ao padrão de mercado seria a abordagem correta.</p>
+  </div>
+  <div class="problem-grid" style="margin-top:40px">
+    <div class="problem-card hyp-card reveal reveal-d1">
+      <div class="problem-card-num">H1</div>
+      <div class="problem-card-title">Padrão mobile existe por um motivo</div>
+      <div class="problem-card-desc">Instagram, WhatsApp e Telegram convergiram para os mesmos padrões de chat porque eles funcionam. A hipótese era que alinhar a Spark a esses padrões reduziria a curva de aprendizado e aumentaria o engajamento no chat.</div>
+    </div>
+    <div class="problem-card hyp-card reveal reveal-d2">
+      <div class="problem-card-num">H2</div>
+      <div class="problem-card-title">Menos é mais na toolbar</div>
+      <div class="problem-card-desc">7 ícones expostos não aumentam o uso das funcionalidades — ao contrário, criam paralisia visual. A hipótese era que uma toolbar mais limpa elevaria o uso das ações realmente importantes.</div>
+    </div>
+    <div class="problem-card hyp-card reveal reveal-d3" style="grid-column:span 2">
+      <div class="problem-card-num">H3</div>
+      <div class="problem-card-title">Gift na visão Creator é ruído — não funcionalidade</div>
+      <div class="problem-card-desc">O fluxo de Gift na Spark é unidirecional: assinantes enviam para creators. Manter a opção de enviar Gift na toolbar do creator era um erro de produto — não de design. Removê-la não é simplificação, é correção de lógica de negócio.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section class="case-section">
+    <h2 class="section-heading reveal reveal-d1">Chat <span>alinhado</span><br>ao padrão mobile.</h2>
+  <div class="section-text reveal reveal-d2">
+    <p>As soluções foram organizadas por área de impacto — cada uma resolvendo um problema específico sem criar novos. O princípio guia foi simples: <strong>o chat deve se comportar como o usuário já espera que um chat se comporte.</strong></p>
+  </div>
+  <div class="solution-grid">
+    <div class="solution-card reveal reveal-d1">
+      <div class="solution-card-num">Toolbar e Envio</div>
+      <div class="solution-card-title">Input compacto e contextual</div>
+      <div class="solution-card-desc">Botão de envio substituído por ícone de seta à direita do campo — só ativo com conteúdo digitado. Área de input com fundo diferenciado e altura reduzida de 180px para 117px.</div>
+    </div>
+    <div class="solution-card reveal reveal-d2">
+      <div class="solution-card-num">Ícones</div>
+      <div class="solution-card-title">Toolbar revisada e enxuta</div>
+      <div class="solution-card-desc">Ícones redimensionados, espaçamento ajustado. Menu "..." removido da visão Creator. Gift removido da toolbar — ação que não faz sentido no modelo de negócio da funcionalidade.</div>
+    </div>
+    <div class="solution-card reveal reveal-d3">
+      <div class="solution-card-num">Emojis e GIFs</div>
+      <div class="solution-card-title">Unificados no padrão nativo</div>
+      <div class="solution-card-desc">GIF e Emoji unificados num único ícone de sticker na barra de digitação. Teclado nativo do dispositivo substituiu o modal próprio — sem sobreposição da conversa.</div>
+    </div>
+    <div class="solution-card reveal reveal-d4">
+      <div class="solution-card-num">Galeria de GIFs</div>
+      <div class="solution-card-title">Grid expandido de 2 colunas</div>
+      <div class="solution-card-desc">Faixa estreita substituída por grid completo abaixo do campo de digitação — múltiplos GIFs visíveis simultaneamente, com barra de pesquisa e tab switcher Emojis/GIFs.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TELAS -->
+<section class="case-section">
+    <h2 class="section-heading reveal reveal-d1"><span>Antes</span><br>e depois.</h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O redesenho abrange as visões de <strong>Creator e Assinante</strong> — com ajustes específicos para cada perfil, respeitando as diferenças de ações disponíveis em cada contexto.</p>
+  </div>
+
+  <div style="margin-top:36px" class="reveal reveal-d3">
+    <div class="screens-label">Toolbar e Botão Enviar — Visão Creator</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Botão "Enviar" substituído por ícone de seta contextual. Toolbar revisada — tamanho e ordenação dos ícones corrigidos, Gift removido da visão Creator. Altura reduzida de 180px para 117px.</p>
+    </div>
+    <div class="img-wrap reveal reveal-d2">
+      <img src="assets/spark-toolbar-antes-depois.png" alt="Toolbar e botão enviar — antes e depois" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal">
+    <div class="screens-label">Emojis e GIFs</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Modal próprio substituído pelo <strong>teclado nativo do dispositivo</strong> — sem sobreposição da conversa. GIF e Emoji unificados num único ícone com tab switcher e barra de pesquisa integrada.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/spark-emojis-antes-depois.png" alt="Emojis e GIFs — antes e depois" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal">
+    <div class="screens-label">Galeria de GIFs</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Faixa estreita substituída por <strong>grid de 2 colunas</strong> abaixo do campo de digitação — múltiplos GIFs visíveis simultaneamente, com barra de pesquisa e tab switcher Emojis/GIFs.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/spark-gifs-antes-depois.png" alt="Galeria de GIFs — antes e depois" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+</section>
+
+<!-- ENCERRAMENTO -->
+<section class="case-section">
+    <h2 class="section-heading reveal reveal-d1">O que ficou<br>desse <span>projeto.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O estudo resultou em um redesenho completo do chat — com telas e fluxos definidos para as visões de Creator e Assinante, documentando decisões de design para cada problema identificado.</p>
+  </div>
+  <div class="learning-box reveal reveal-d3">
+    <div class="learning-label">Aprendizado</div>
+    <div class="learning-text">Às vezes o melhor design é o que o usuário já conhece. <strong>Alinhar ao padrão de mercado não é falta de criatividade — é respeito pelo modelo mental de quem usa.</strong> Estudar um produto real força você a entender restrições reais — e a propor soluções que façam sentido dentro do contexto, não apenas visualmente.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">opedro<span>.</span></div>
+  <div class="footer-nav">
+    <a href="index.html">&#8592; Portfólio</a>
+  </div>
+  <div class="footer-dots">
+    <div class="fd" style="background:var(--signal)"></div>
+    <div class="fd" style="background:var(--lime)"></div>
+    <div class="fd" style="background:var(--cyan)"></div>
+  </div>
+</footer>
+
+<script>
+var cursor=document.getElementById('cursor');
+var hasPointer=window.matchMedia('(pointer: fine)').matches;
+if(hasPointer){
+  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
+  document.querySelectorAll('a').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
+  });
+}
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+</script>
+</body>
+</html>

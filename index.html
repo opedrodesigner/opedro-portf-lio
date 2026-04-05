@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>opedro. — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --void:#0E0E0E;--carbon:#1A1A1A;--dark3:#242424;--border:#2A2A2A;
+  --signal:#FF3C3C;--lime:#CAFF00;--cyan:#00E5FF;
+  --ash:#888888;--ash2:#555555;--chalk:#F2F2F0;--white:#FFFFFF;
+  --display:'Bricolage Grotesque',sans-serif;--ui:'Syne',sans-serif;
+}
+body{background:var(--void);color:var(--white);font-family:var(--display);cursor:none;overflow-x:hidden}
+.cursor{position:fixed;width:12px;height:12px;background:var(--signal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.cursor.hover{width:40px;height:40px;background:var(--lime);mix-blend-mode:difference}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:0.5px solid transparent;transition:border-color .3s,background .3s}
+nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-text{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-0.03em;color:var(--white)}
+.nav-logo-dot{color:var(--signal)}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 20px;border-radius:8px;background:var(--signal);color:var(--void);text-decoration:none;transition:background .2s,transform .15s}
+.nav-cta:hover{background:var(--lime);transform:translateY(-1px)}
+.hero{min-height:100vh;padding:0 48px 80px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.hero-bg-icon{position:absolute;top:50%;right:-6%;transform:translateY(-52%);width:55vw;opacity:0.04;pointer-events:none}
+.hero-tag{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:24px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--signal)}
+.hero-headline{font-size:clamp(72px,10vw,140px);font-weight:800;letter-spacing:-0.04em;line-height:0.88;color:var(--white);opacity:0;animation:fadeUp .9s .35s forwards}
+.hero-headline .hl-red{color:var(--signal)}
+.hero-headline .hl-dim{color:var(--ash2)}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:48px;opacity:0;animation:fadeUp .8s .55s forwards}
+.hero-desc{max-width:380px;font-size:15px;line-height:1.65;color:var(--ash)}
+.hero-desc strong{color:var(--white);font-weight:400}
+.hero-stats{display:flex;gap:40px}
+.hero-stat-num{font-size:36px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+.c-signal{color:var(--signal)}.c-lime{color:var(--lime)}.c-cyan{color:var(--cyan)}
+.hero-stat-lbl{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--ash);margin-top:4px}
+.hero-photo{position:absolute;bottom:0;right:48px;height:88%;width:auto;object-fit:contain;object-position:bottom;pointer-events:none;mask-image:linear-gradient(to top,transparent 0%,black 18%,black 85%,transparent 100%),linear-gradient(to left,black 60%,transparent 100%);mask-composite:intersect;-webkit-mask-image:linear-gradient(to top,transparent 0%,black 18%,black 85%,transparent 100%),linear-gradient(to left,black 60%,transparent 100%);-webkit-mask-composite:destination-in;z-index:1}
+.hero-tag,.hero-headline,.hero-bottom{position:relative;z-index:2}
+.scroll-ind{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:fadeIn 1s 1.2s forwards}
+.scroll-ind span{font-family:var(--ui);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--border)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--signal),transparent);animation:scrollLine 1.5s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.4}}
+section{padding:120px 48px}
+.section-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--signal)}
+.section-title{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.03em;line-height:0.95;margin-bottom:64px}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.work-card{border-radius:20px;overflow:hidden;position:relative;cursor:none;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.work-card:hover{transform:translateY(-6px)}
+.work-card:hover .work-arrow{transform:translate(4px,-4px)}
+.work-card-inner{padding:36px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.work-card.featured{grid-column:span 2;min-height:360px}
+.work-card.featured .work-card-inner{flex-direction:row;align-items:flex-end;gap:48px}
+.wc-dark{background:var(--carbon)}.wc-signal{background:var(--signal)}.wc-lime{background:var(--lime)}.wc-cyan{background:var(--cyan)}
+.work-tag{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px}
+.wt-dark{background:var(--border);color:var(--ash)}.wt-void{background:rgba(0,0,0,0.2);color:rgba(0,0,0,0.6)}.wt-white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)}
+.work-title{font-size:28px;font-weight:800;letter-spacing:-0.02em;line-height:1.1}
+.wt-b{color:var(--void)}.wt-w{color:var(--white)}
+.work-sub{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px;opacity:0.5}
+.work-bottom{display:flex;align-items:center;justify-content:space-between}
+.work-arrow{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.wa-dark{background:var(--border)}.wa-void{background:rgba(0,0,0,0.2)}.wa-white{background:rgba(255,255,255,0.2)}
+.work-featured-right{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.work-big-num{font-size:80px;font-weight:800;letter-spacing:-0.05em;line-height:1;color:var(--void);opacity:0.15}
+.card-icon{position:absolute;bottom:-20px;right:-20px;opacity:0.06}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
+.about-photo-wrap{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:var(--carbon);border:0.5px solid var(--border)}
+.about-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.about-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--ash);min-height:320px}
+.about-photo-placeholder svg{opacity:0.3}
+.about-photo-placeholder span{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;opacity:0.4}
+.about-text{font-size:18px;line-height:1.7;color:var(--ash)}
+.about-text strong{color:var(--white);font-weight:400}
+.about-text p+p{margin-top:20px}
+.services-section{background:var(--carbon)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:-20px}
+.service-card{padding:40px 32px;background:var(--carbon);border:0.5px solid var(--border);transition:background .3s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.sc-signal::before{background:var(--signal)}.sc-lime::before{background:var(--lime)}.sc-cyan::before{background:var(--cyan)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{background:var(--dark3)}
+.svc-num{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.2em;color:var(--border);margin-bottom:24px}
+.svc-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px}
+.svc-desc{font-size:13px;line-height:1.65;color:var(--ash);margin-bottom:24px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.svc-tag{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:var(--border);color:var(--ash)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border:0.5px solid var(--border);border-radius:20px;overflow:hidden}
+.metric-cell{padding:40px 32px;display:flex;flex-direction:column;gap:8px;background:var(--carbon);border-right:0.5px solid var(--border)}
+.metric-cell:last-child{border-right:none}
+.metric-num{font-size:52px;font-weight:800;letter-spacing:-0.04em;line-height:0.9}
+.mn-signal{color:var(--signal)}.mn-lime{color:var(--lime)}.mn-cyan{color:var(--cyan)}.mn-white{color:var(--white)}
+.metric-lbl{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ash)}
+.metric-bar{height:2px;background:var(--border);border-radius:1px;margin-top:4px;overflow:hidden}
+.mb-fill{height:100%;border-radius:1px}
+.contact-section{background:var(--void);border-top:0.5px solid var(--border)}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.contact-headline{font-size:clamp(48px,6vw,80px);font-weight:800;letter-spacing:-0.04em;line-height:0.9}
+.ch-dim{color:var(--ash2)}.ch-signal{color:var(--signal)}
+
+footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;letter-spacing:-0.02em;color:var(--white)}
+.footer-logo span{color:var(--signal)}
+.footer-links{display:flex;gap:28px;list-style:none}
+.footer-links a{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-dots{display:flex;gap:6px;align-items:center}
+.fd{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body{cursor:auto}
+  .cursor{display:none}
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  .nav-cta{font-size:12px;padding:8px 14px}
+  .nav-logo-text{font-size:17px}
+  nav svg{width:24px;height:auto}
+  .hero{padding:96px 20px 48px;min-height:auto;justify-content:flex-start}
+  .hero-photo{height:70%;right:-8%;opacity:0.35;bottom:0;max-height:500px}
+  .hero-bg-icon{width:90vw;right:-20%;opacity:0.035}
+  .hero-tag{font-size:12px;letter-spacing:0.16em;margin-bottom:20px}
+  .hero-headline{font-size:clamp(60px,16vw,80px)}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:24px;margin-top:28px}
+  .hero-desc{font-size:14px;max-width:100%}
+  .hero-stats{gap:28px}
+  .hero-stat-num{font-size:28px}
+  .scroll-ind{display:none}
+  section{padding:80px 20px}
+  .section-title{font-size:clamp(32px,10vw,48px);margin-bottom:40px}
+  #work{padding-top:64px}
+  .work-grid{grid-template-columns:1fr;gap:12px}
+  .work-card.featured{grid-column:span 1;min-height:auto}
+  .work-card.featured .work-card-inner{flex-direction:column;align-items:flex-start;gap:24px}
+  .work-card-inner{padding:24px;min-height:220px}
+  .work-title{font-size:24px}
+  .work-featured-right{width:100%;flex-direction:row;align-items:center;justify-content:space-between}
+  .work-big-num{font-size:48px}
+  .metrics-row{grid-template-columns:1fr 1fr;border-radius:16px}
+  .metric-cell{padding:24px 20px;border-right:none;border-bottom:0.5px solid var(--border)}
+  .metric-cell:nth-child(3),.metric-cell:nth-child(4){border-bottom:none}
+  .metric-cell:nth-child(1),.metric-cell:nth-child(3){border-right:0.5px solid var(--border)}
+  .metric-num{font-size:38px}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .about-text{font-size:16px}
+  .skill-bar{width:90px}
+  .services-grid{grid-template-columns:1fr;gap:2px;margin-top:-12px}
+  .service-card{padding:32px 20px}
+  .contact-inner{grid-template-columns:1fr;gap:48px}
+  .contact-headline{font-size:clamp(44px,12vw,60px)}
+  footer{padding:24px 20px;flex-direction:column;gap:20px;align-items:flex-start}
+  .footer-links{gap:20px}
+  .footer-dots{align-self:flex-end}
+}
+@media(max-width:380px){
+  .hero-headline{font-size:52px}
+  .hero-stats{gap:20px}
+  .hero-stat-num{font-size:24px}
+  .work-card-inner{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg width="32" height="21" viewBox="0 0 483 321"><path fill-rule="evenodd" clip-rule="evenodd" d="M474.102 140.572C433.633 97.5857 331.771 0 241.043 0C150.314 0 48.4522 97.5857 7.98325 140.572C-2.66108 151.879 -2.66109 169.121 7.98325 180.428C48.4522 223.414 150.314 321 241.043 321C331.771 321 433.633 223.414 474.102 180.428C484.746 169.121 484.746 151.879 474.102 140.572ZM259.29 86.0203L262.518 97.3318C265.332 107.192 275.462 113.041 285.408 110.547L296.819 107.687C315.36 103.04 328.385 125.599 315.089 139.333L306.907 147.784C299.775 155.151 299.775 166.849 306.907 174.216L315.089 182.667C328.385 196.401 315.36 218.96 296.819 214.313L285.408 211.453C275.462 208.959 265.332 214.808 262.518 224.668L259.29 235.98C254.044 254.361 227.995 254.361 222.749 235.98L219.521 224.668C216.707 214.808 206.577 208.959 196.631 211.453L185.22 214.313C166.679 218.96 153.654 196.401 166.95 182.667L175.132 174.216C182.264 166.849 182.264 155.151 175.132 147.784L166.95 139.333C153.654 125.599 166.679 103.04 185.22 107.687L196.631 110.547C206.577 113.041 216.707 107.192 219.521 97.3318L222.749 86.0203C227.995 67.6392 254.044 67.6392 259.29 86.0203Z" fill="white"/></svg>
+    <span class="nav-logo-text">opedro<span class="nav-logo-dot">.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire me &#8599;</a>
+</nav>
+
+<section class="hero">
+  <svg class="hero-bg-icon" viewBox="0 0 483 321" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M474.102 140.572C433.633 97.5857 331.771 0 241.043 0C150.314 0 48.4522 97.5857 7.98325 140.572C-2.66108 151.879 -2.66109 169.121 7.98325 180.428C48.4522 223.414 150.314 321 241.043 321C331.771 321 433.633 223.414 474.102 180.428C484.746 169.121 484.746 151.879 474.102 140.572ZM259.29 86.0203L262.518 97.3318C265.332 107.192 275.462 113.041 285.408 110.547L296.819 107.687C315.36 103.04 328.385 125.599 315.089 139.333L306.907 147.784C299.775 155.151 299.775 166.849 306.907 174.216L315.089 182.667C328.385 196.401 315.36 218.96 296.819 214.313L285.408 211.453C275.462 208.959 265.332 214.808 262.518 224.668L259.29 235.98C254.044 254.361 227.995 254.361 222.749 235.98L219.521 224.668C216.707 214.808 206.577 208.959 196.631 211.453L185.22 214.313C166.679 218.96 153.654 196.401 166.95 182.667L175.132 174.216C182.264 166.849 182.264 155.151 175.132 147.784L166.95 139.333C153.654 125.599 166.679 103.04 185.22 107.687L196.631 110.547C206.577 113.041 216.707 107.192 219.521 97.3318L222.749 86.0203C227.995 67.6392 254.044 67.6392 259.29 86.0203Z" fill="white"/></svg>
+  <img class="hero-photo" src="assets/hero-photo.png" alt="Pedro Santos">
+  <div class="hero-tag">Product Designer &#183; São Paulo, BR</div>
+  <h1 class="hero-headline">Design<br><span class="hl-dim">com</span><br><span class="hl-red">propósito.</span></h1>
+  <div class="hero-bottom">
+    <div style="display:flex;flex-direction:column;align-items:flex-start">
+    <p class="hero-desc">Olá, sou <strong>Pedro Santos</strong> — product designer focado em criar <strong>produtos digitais</strong> que as pessoas realmente querem usar.</p>
+
+      <div style="display:flex;gap:20px;margin-top:28px;align-items:center">
+        <a href="https://www.instagram.com/opedro.designer_/" target="_blank" rel="noopener" style="color:var(--ash);transition:color .2s;text-decoration:none;display:block" onmouseenter="this.style.color='var(--white)'" onmouseleave="this.style.color='var(--ash)'"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener" style="color:var(--ash);transition:color .2s;text-decoration:none;display:block" onmouseenter="this.style.color='var(--white)'" onmouseleave="this.style.color='var(--ash)'"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M7 10v7M7 7v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 17v-4c0-1.5.8-3 3-3s3 1.5 3 3v4M11 10v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <a href="https://www.behance.net/opedrodesigner_" target="_blank" rel="noopener" style="color:var(--ash);transition:color .2s;text-decoration:none;display:block" onmouseenter="this.style.color='var(--white)'" onmouseleave="this.style.color='var(--ash)'"><svg width="32" height="32" viewBox="0 0 258 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.269023 0.0787563L71.4109 0.034071C81.9253 0.0334714 89.1773 -0.441713 99.6786 2.17618C121.321 7.57177 132.697 25.906 127.016 47.6428C124.321 57.9632 116.674 66.2987 107.433 71.5837C119.287 75.6928 129.279 83.2748 133.483 95.4349C137.386 106.723 136.313 120.265 131.162 130.962C129.438 134.532 126.8 138.085 123.976 140.846C105.826 158.598 80.8535 156.178 57.899 156.175L0.124812 156.151C0.454896 143.401 0.173994 129.325 0.173394 116.487L0.164391 40.583C0.159595 28.0961 -0.264629 12.3249 0.269023 0.0787563ZM35.8549 129.223C45.4823 129.313 55.1099 129.343 64.7375 129.319C75.3254 129.322 85.3404 130.902 93.5452 122.915C97.8405 118.496 100.345 113.975 100.255 107.604C100.129 101.953 97.7553 96.5832 93.6582 92.6857C90.962 90.1164 87.6552 88.2756 84.0503 87.3402C79.0466 86.039 70.4416 86.3448 64.9945 86.3568L45.535 86.4108C43.1585 86.4168 38.0948 86.5727 35.9362 86.2579C35.8427 99.935 36.3733 115.885 35.8549 129.223ZM35.8253 62.9901L60.1373 63.0692C70.5345 63.0785 80.346 64.9295 88.3535 57.1892C95.2277 49.4857 95.654 38.6804 87.7122 31.5256C85.2942 29.3469 82.3598 27.8224 79.1869 27.0965C75.4307 26.2007 70.3196 26.344 66.376 26.3509L46.6041 26.4022C43.741 26.4109 38.6107 26.5746 35.959 26.3078C35.7875 37.7126 36.4168 52.0616 35.8253 62.9901Z" fill="currentColor"/>
+<path d="M197.677 37.3299C198.627 37.306 199.59 37.3395 200.54 37.3686C216.316 37.7131 231.3 44.3433 242.165 55.7859C255.764 70.3813 258.51 84.8559 257.791 103.893C251.972 104.106 245.037 103.941 239.155 103.938L185.28 103.947C181.97 103.965 176.283 104.175 173.216 103.854C173.726 114.027 177.563 124.361 186.944 129.44C195.56 134.102 208.611 134.165 217.113 129.101C221.925 126.235 224.3 122.703 226.881 117.918C233.579 117.514 242.735 117.771 249.627 117.792L255.533 117.933C248.314 142.295 232.451 153.895 207.028 155.934C190.308 157.274 172.997 154.057 160.009 142.766C136.148 122.026 134.748 79.2285 156.103 56.2086C167.52 43.8147 181.176 38.2674 197.677 37.3299ZM172.301 84.8469C180.717 84.2952 194.214 84.7659 203.049 84.7659C209.738 84.7659 219.353 84.4811 225.811 84.8679C224.842 76.8211 221.694 70.4113 215.248 65.2921C208.746 60.1301 202.792 59.4876 194.841 60.0743C181.511 63.0052 174.559 71.6135 172.301 84.8469Z" fill="currentColor"/>
+<path d="M168.176 7.06285C189.579 7.05176 211.825 6.72766 233.162 7.13989C233.219 12.3121 233.201 17.485 233.108 22.6569C231.666 22.7945 229.84 22.805 228.362 22.8566C206.791 22.6644 185.136 23.0187 163.574 22.7555C163.649 17.6154 163.616 12.3742 163.634 7.22503C165.124 7.13209 166.68 7.10902 168.176 7.06285Z" fill="currentColor"/>
+</svg></a>
+      </div>
+    </div>
+
+  </div>
+  <div class="scroll-ind"><span>scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section id="work" style="padding-top:80px">
+  <div class="section-label reveal">Selected Work</div>
+  <h2 class="section-title reveal reveal-d1">Projetos<br><span style="color:var(--ash2)">selecionados.</span></h2>
+  <div class="work-grid">
+    <div class="work-card wc-cyan reveal reveal-d2" onclick="window.location='cury.html'" style="cursor:pointer">
+      <div class="work-card-inner">
+        <div>
+          <span class="work-tag wt-void">UX Study &#183; 2026</span>
+          <div class="work-title wt-b">Cury<br>Estudo</div>
+          <div class="work-sub wt-b">Construtora &#183; UX &#183; Redesign</div>
+        </div>
+        <div class="work-bottom">
+          <div class="work-arrow wa-void"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(0,0,0,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card wc-dark reveal reveal-d3" onclick="window.location='wavebio.html'" style="cursor:pointer;border-top:2px solid #FF6B00">
+      <div class="work-card-inner">
+        <div>
+          <span class="work-tag wt-dark">Product Design &#183; 2026</span>
+          <div class="work-title wt-w">wave.bio</div>
+          <div class="work-sub wt-w">Link in bio &#183; Conceito &#183; Pesquisa</div>
+        </div>
+        <div class="work-bottom">
+          <div class="work-arrow wa-dark"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card wc-lime reveal reveal-d4" onclick="window.location='spark.html'" style="cursor:pointer">
+      <div class="work-card-inner">
+        <div>
+          <span class="work-tag wt-void">Product Design &#183; 2026</span>
+          <div class="work-title wt-b">Spark<br>Chat Redesign</div>
+          <div class="work-sub wt-b">UX/UI &#183; Chat &#183; Creator &amp; Fã</div>
+        </div>
+        <div class="work-bottom">
+          <div class="work-arrow wa-void"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(0,0,0,0.6)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="about" style="padding-top:48px">
+  <div class="section-label reveal">About me</div>
+  <h2 class="section-title reveal reveal-d1">Quem<br><span style="color:var(--ash2)">sou eu.</span></h2>
+  <div class="about-grid">
+    <div class="about-photo-wrap reveal reveal-d2">
+      <img src="assets/about-photo.png" alt="Pedro Santos — Product Designer">
+    </div>
+    <div class="about-text reveal reveal-d2">
+      <p>O design que me interessa é aquele que <strong>muda o produto</strong>, não só a tela.</p>
+      <p>Trabalho de ponta a ponta — do problema à interface — em colaboração próxima com <strong>produto e engenharia</strong>.</p>
+      <p>Acredito que o papel do designer não é apenas entregar boas interfaces, mas <strong>ajudar a direcionar o produto para melhores decisões.</strong></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="contact-inner" style="display:flex;flex-direction:column;align-items:flex-start;max-width:640px">
+    <div class="section-label reveal">Get in touch</div>
+    <h2 class="contact-headline reveal reveal-d1">Vamos<br><span class="ch-dim">trabalhar</span><br><span class="ch-signal">juntos?</span></h2>
+    <div style="margin-top:40px;display:flex;flex-direction:column;gap:20px" class="reveal reveal-d2">
+      <div style="margin-top:8px;display:flex;align-items:center;gap:8px">
+        <div style="width:8px;height:8px;border-radius:50%;background:#4CAF50"></div>
+        <span style="font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ash)">Disponível para novos projetos</span>
+      </div>
+      <div style="font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--ash)">Redes</div>
+      <div style="display:flex;gap:24px;align-items:center">
+        <a href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener" style="font-size:16px;font-weight:800;color:var(--white);text-decoration:none;transition:color .2s" onmouseenter="this.style.color='var(--signal)'" onmouseleave="this.style.color='var(--white)'">LinkedIn</a>
+        <a href="https://www.behance.net/opedrodesigner_" target="_blank" rel="noopener" style="font-size:16px;font-weight:800;color:var(--white);text-decoration:none;transition:color .2s" onmouseenter="this.style.color='var(--signal)'" onmouseleave="this.style.color='var(--white)'">Behance</a>
+        <a href="https://www.instagram.com/opedro.designer_/" target="_blank" rel="noopener" style="font-size:16px;font-weight:800;color:var(--white);text-decoration:none;transition:color .2s" onmouseenter="this.style.color='var(--signal)'" onmouseleave="this.style.color='var(--white)'">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">opedro<span>.</span></div>
+  <ul class="footer-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-dots">
+    <div class="fd" style="background:var(--signal)"></div>
+    <div class="fd" style="background:var(--lime)"></div>
+    <div class="fd" style="background:var(--cyan)"></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var cursor=document.getElementById('cursor');
+var hasPointer=window.matchMedia('(pointer: fine)').matches;
+if(hasPointer){
+  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
+  document.querySelectorAll('a,button,.work-card,.service-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
+  });
+}
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+</script>
+</body>
+</html>

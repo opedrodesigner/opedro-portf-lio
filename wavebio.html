@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wave.bio — opedro.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --void:#0E0E0E;--carbon:#1A1A1A;--dark3:#242424;--border:#2A2A2A;
+  --signal:#FF3C3C;--lime:#CAFF00;--cyan:#00E5FF;
+  --wave:#FF6B00;
+  --ash:#888888;--ash2:#555555;--white:#FFFFFF;
+  --display:'Bricolage Grotesque',sans-serif;--ui:'Syne',sans-serif;
+}
+body{background:var(--void);color:var(--white);font-family:var(--display);cursor:none;overflow-x:hidden}
+.cursor{position:fixed;width:12px;height:12px;background:var(--wave);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+.cursor.hover{width:40px;height:40px;mix-blend-mode:difference}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:0.5px solid transparent;transition:border-color .3s,background .3s}
+nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-text{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-0.03em;color:var(--white)}
+.nav-logo-dot{color:var(--signal)}
+.nav-back{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 20px;border-radius:8px;background:var(--border);color:var(--white);text-decoration:none;transition:background .2s;display:flex;align-items:center;gap:8px}
+.nav-back:hover{background:var(--dark3)}
+
+/* HERO */
+.case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
+.case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(255,107,0,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--wave)}
+.hero-title{font-size:clamp(44px,6vw,84px);font-weight:800;letter-spacing:-0.04em;line-height:0.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-title span{color:var(--wave)}
+.hero-summary{max-width:600px;font-size:17px;line-height:1.7;color:var(--ash);opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-summary strong{color:var(--white);font-weight:400}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero-tag{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 14px;border-radius:20px;background:var(--carbon);border:0.5px solid var(--border);color:var(--ash)}
+.hero-tag.t-wave{background:rgba(255,107,0,0.1);border-color:rgba(255,107,0,0.3);color:var(--wave)}
+
+/* SEÇÕES */
+.case-section{padding:80px 48px}
+.case-section+.case-section{border-top:0.5px solid var(--border)}
+.section-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--wave)}
+.section-heading{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.03em;line-height:0.95;margin-bottom:32px}
+.section-heading span{color:var(--wave)}
+.section-text{font-size:16px;line-height:1.75;color:var(--ash);max-width:680px}
+.section-text strong{color:var(--white);font-weight:400}
+.section-text p+p{margin-top:16px}
+.screens-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--wave)}
+
+/* META */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.meta-card{background:var(--carbon);border:0.5px solid var(--border);padding:24px}
+.meta-card:first-child{border-radius:14px 0 0 14px}
+.meta-card:last-child{border-radius:0 14px 14px 0}
+.meta-card+.meta-card{border-left:none}
+.meta-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ash);margin-bottom:8px}
+.meta-value{font-size:15px;font-weight:800;letter-spacing:-0.01em;margin-bottom:4px}
+.meta-desc{font-size:13px;line-height:1.5;color:var(--ash)}
+
+/* MÉTRICAS */
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px;border-radius:14px;overflow:hidden;border:0.5px solid var(--border)}
+.metric-box{background:var(--carbon);padding:28px 24px;border-right:0.5px solid var(--border)}
+.metric-box:last-child{border-right:none}
+.metric-num{font-size:40px;font-weight:800;letter-spacing:-0.04em;line-height:1;color:var(--wave);margin-bottom:6px}
+.metric-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ash)}
+.metric-source{font-size:12px;color:var(--ash2);margin-top:4px}
+
+/* DORES */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+.pain-card{background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;padding:24px}
+.pain-severity{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.pain-severity.critical{color:var(--signal)}
+.pain-severity.high{color:#FF8C00}
+.pain-severity.medium{color:var(--ash)}
+.pain-title{font-size:15px;font-weight:800;letter-spacing:-0.01em;margin-bottom:6px}
+.pain-desc{font-size:13px;line-height:1.6;color:var(--ash)}
+
+/* PILARES */
+.pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+.pillar-card{background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;padding:28px 24px;border-top:2px solid var(--wave)}
+.pillar-num{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.2em;color:var(--ash2);margin-bottom:12px}
+.pillar-title{font-size:16px;font-weight:800;letter-spacing:-0.01em;margin-bottom:8px}
+.pillar-desc{font-size:14px;line-height:1.6;color:var(--ash)}
+
+/* DIFERENCIAIS */
+.gap-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:40px}
+.gap-card{background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;padding:24px}
+.gap-icon{font-size:20px;margin-bottom:12px}
+.gap-title{font-size:14px;font-weight:800;letter-spacing:-0.01em;margin-bottom:6px}
+.gap-desc{font-size:13px;line-height:1.6;color:var(--ash)}
+
+/* IMAGENS */
+.img-wrap{border-radius:16px;overflow:hidden;border:0.5px solid var(--border);width:fit-content;margin:0 auto}
+.img-wrap img{width:100%;max-width:1200px;display:block;margin:0 auto}
+
+/* APRENDIZADO */
+.learning-box{margin-top:40px;padding:28px 32px;background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;border-left:3px solid var(--wave)}
+.learning-label{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ash);margin-bottom:12px}
+.learning-text{font-size:16px;line-height:1.7;color:var(--ash)}
+.learning-text strong{color:var(--white);font-weight:400}
+
+/* QUOTE */
+.quote-box{margin:32px 0;padding:28px 32px;background:var(--carbon);border:0.5px solid var(--border);border-radius:14px;border-left:3px solid var(--wave)}
+.quote-text{font-size:18px;line-height:1.65;color:var(--ash);font-style:italic}
+
+footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:var(--display);font-size:16px;font-weight:800;letter-spacing:-0.02em;color:var(--white)}
+.footer-logo span{color:var(--signal)}
+.footer-nav{display:flex;gap:24px}
+.footer-nav a{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--white)}
+.footer-dots{display:flex;gap:6px;align-items:center}
+.fd{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:block}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
+
+@media(max-width:960px){
+  .pain-grid,.pillar-grid,.gap-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  body{cursor:auto}
+  .cursor{display:none}
+  nav{padding:16px 20px}
+  .nav-logo-text{font-size:17px}
+  nav svg{width:24px;height:auto}
+  .nav-back{font-size:12px;padding:8px 14px}
+  .case-hero{padding:100px 20px 56px}
+  .case-section{padding:56px 20px}
+  .meta-grid{grid-template-columns:1fr}
+  .meta-card{border-radius:0 !important;border-left:0.5px solid var(--border) !important}
+  .meta-card:first-child{border-radius:14px 14px 0 0 !important}
+  .meta-card:last-child{border-radius:0 0 14px 14px !important}
+  .metrics-row{grid-template-columns:1fr}
+  .metric-box{border-right:none;border-bottom:0.5px solid var(--border)}
+  .metric-box:last-child{border-bottom:none}
+  footer{padding:24px 20px;flex-direction:column;gap:16px;align-items:flex-start}
+  .footer-dots{align-self:flex-end}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="21" viewBox="0 0 483 321"><path fill-rule="evenodd" clip-rule="evenodd" d="M474.102 140.572C433.633 97.5857 331.771 0 241.043 0C150.314 0 48.4522 97.5857 7.98325 140.572C-2.66108 151.879 -2.66109 169.121 7.98325 180.428C48.4522 223.414 150.314 321 241.043 321C331.771 321 433.633 223.414 474.102 180.428C484.746 169.121 484.746 151.879 474.102 140.572ZM259.29 86.0203L262.518 97.3318C265.332 107.192 275.462 113.041 285.408 110.547L296.819 107.687C315.36 103.04 328.385 125.599 315.089 139.333L306.907 147.784C299.775 155.151 299.775 166.849 306.907 174.216L315.089 182.667C328.385 196.401 315.36 218.96 296.819 214.313L285.408 211.453C275.462 208.959 265.332 214.808 262.518 224.668L259.29 235.98C254.044 254.361 227.995 254.361 222.749 235.98L219.521 224.668C216.707 214.808 206.577 208.959 196.631 211.453L185.22 214.313C166.679 218.96 153.654 196.401 166.95 182.667L175.132 174.216C182.264 166.849 182.264 155.151 175.132 147.784L166.95 139.333C153.654 125.599 166.679 103.04 185.22 107.687L196.631 110.547C206.577 113.041 216.707 107.192 219.521 97.3318L222.749 86.0203C227.995 67.6392 254.044 67.6392 259.29 86.0203Z" fill="white"/></svg>
+    <span class="nav-logo-text">opedro<span class="nav-logo-dot">.</span></span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Portfólio
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="hero-eyebrow">Product Design &#183; Conceito &#183; 2026</div>
+  <h1 class="hero-title">wave.bio</h1>
+  <p class="hero-summary">Conceito de produto — uma ferramenta de link-in-bio feita para <strong>creators brasileiros</strong>, com proteção contra shadowban, personalização real e preço justo em reais.</p>
+  <div class="hero-tags">
+    <span class="hero-tag t-wave">Product Design</span>
+    <span class="hero-tag">Pesquisa de Mercado</span>
+    <span class="hero-tag">Conceito</span>
+    <span class="hero-tag">2026</span>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section class="case-section" style="padding-top:56px;padding-bottom:56px">
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="meta-label">Meu papel</div>
+      <div class="meta-value">Product Designer</div>
+      <div class="meta-desc">Pesquisa de mercado, benchmark competitivo, definição de produto e design do app.</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Tipo</div>
+      <div class="meta-value">Conceito de Produto</div>
+      <div class="meta-desc">Projeto autoral — pesquisa baseada em fontes públicas reais.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="case-section">
+  <div class="section-eyebrow reveal">Problema</div>
+  <h2 class="section-heading reveal reveal-d1">O link na bio<br>que <span>trabalha contra</span><br>o creator.</h2>
+  <div class="section-text reveal reveal-d2">
+    <p>Instagram e TikTok permitem apenas um link clicável na bio. Para creators que precisam direcionar sua audiência para múltiplos destinos, isso é uma limitação crítica de negócio. As ferramentas de link-in-bio surgiram para resolver essa dor — mas falharam em partes importantes do mercado.</p>
+    <p>O Linktree foi pioneiro em 2016 e hoje tem <strong>mais de 40 milhões de usuários</strong>. Mesmo assim, a pesquisa em 6.993 avaliações no Trustpilot revelou falhas graves — especialmente para dois grupos: creators de conteúdo adulto e o público brasileiro.</p>
+  </div>
+
+  <div class="quote-box reveal reveal-d3">
+    <div class="quote-text">"O Instagram não notifica o creator quando um link é removido ou quando o alcance é reduzido silenciosamente. O tráfego simplesmente some — e junto com ele, a receita."</div>
+  </div>
+
+  <div class="metrics-row reveal reveal-d4">
+    <div class="metric-box">
+      <div class="metric-num">40M+</div>
+      <div class="metric-label">Usuários do Linktree</div>
+      <div class="metric-source">Maior player do mercado</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-num">6.993</div>
+      <div class="metric-label">Reviews analisadas</div>
+      <div class="metric-source">Trustpilot · pesquisa primária</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-num">R$150</div>
+      <div class="metric-label">Até por mês</div>
+      <div class="metric-source">Planos pagos em dólar</div>
+    </div>
+  </div>
+</section>
+
+<!-- DORES -->
+<section class="case-section">
+  <div class="section-eyebrow reveal">Pesquisa</div>
+  <h2 class="section-heading reveal reveal-d1">As sete<br>principais <span>dores.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>A pesquisa cruzou avaliações do Trustpilot, G2, Capterra, Product Hunt, App Store, Play Store e fóruns no Reddit. Os padrões que emergiram revelaram um mercado que atende mal exatamente quem mais precisa da ferramenta.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal reveal-d1" style="border-left:3px solid var(--signal)">
+      <div class="pain-severity critical">Crítico</div>
+      <div class="pain-title">Banimento sem aviso</div>
+      <div class="pain-desc">O Linktree proíbe conteúdo adulto nos ToS mas não comunica isso no onboarding. Creators configuram tudo e descobrem a restrição só quando a conta é banida — sem suporte.</div>
+    </div>
+    <div class="pain-card reveal reveal-d2" style="border-left:3px solid var(--signal)">
+      <div class="pain-severity critical">Crítico</div>
+      <div class="pain-title">Shadowban e links bloqueados</div>
+      <div class="pain-desc">Links diretos para OnlyFans ou Linktree podem ser bloqueados pelo Instagram. O in-app browser ainda bloqueia cookies e logins — quebrando o fluxo de conversão mesmo quando o link funciona.</div>
+    </div>
+    <div class="pain-card reveal reveal-d3" style="border-left:3px solid #FF8C00">
+      <div class="pain-severity high">Alto</div>
+      <div class="pain-title">Customização presa em paywall</div>
+      <div class="pain-desc">Com 40M de usuários, todas as páginas do Linktree parecem idênticas. Remover a marca, usar domínio próprio ou mudar fontes fica atrás de planos caros.</div>
+    </div>
+    <div class="pain-card reveal reveal-d4" style="border-left:3px solid #FF8C00">
+      <div class="pain-severity high">Alto</div>
+      <div class="pain-title">Taxas opacas</div>
+      <div class="pain-desc">O Beacons cobra 9% sobre todas as vendas no plano gratuito. 34% das avaliações negativas mencionam taxas surpresa. Um creator vendendo R$1.000/mês paga R$90 em taxas — mais caro que o plano Pro da maioria dos concorrentes.</div>
+    </div>
+    <div class="pain-card reveal reveal-d5" style="border-left:3px solid var(--ash)">
+      <div class="pain-severity medium">Médio</div>
+      <div class="pain-title">Analytics limitados no gratuito</div>
+      <div class="pain-desc">Cliques, origem do tráfego e taxa de conversão ficam exclusivamente nos planos pagos. O creator não consegue entender o que funciona sem pagar.</div>
+    </div>
+    <div class="pain-card reveal" style="transition-delay:.5s;border-left:3px solid var(--ash)">
+      <div class="pain-severity medium">Médio</div>
+      <div class="pain-title">Mercado brasileiro ignorado</div>
+      <div class="pain-desc">Todos os players cobram em dólar, nenhum tem suporte em português. O creator brasileiro paga preços desproporcionais ao poder de compra local — ou fica preso em planos gratuitos limitados.</div>
+    </div>
+    <div class="pain-card reveal" style="transition-delay:.6s;border-left:3px solid var(--ash);grid-column:span 2">
+      <div class="pain-severity medium">Médio</div>
+      <div class="pain-title">Falta de geo-block e controle de privacidade</div>
+      <div class="pain-desc">Creators de conteúdo adulto frequentemente precisam bloquear regiões específicas por segurança pessoal. Nenhuma plataforma mainstream oferece esse recurso — apenas o GetAllMyLinks implementa geo-filter, de forma ainda limitada.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GAPS -->
+<section class="case-section">
+  <div class="section-eyebrow reveal">Oportunidade</div>
+  <h2 class="section-heading reveal reveal-d1">Nenhum player<br>resolve <span>tudo.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O benchmark de 6 competidores diretos — Linktree, Beacons, AllMyLinks, Stan Store, MyOtherLink e GetAML — revelou lacunas claras que nenhum produto atende de forma completa.</p>
+  </div>
+  <div class="gap-grid">
+    <div class="gap-card reveal reveal-d1">
+      <div class="gap-title">Adult-friendly + customização</div>
+      <div class="gap-desc">Nenhum produto combina ToS permissivo para conteúdo adulto com personalização visual forte numa única plataforma.</div>
+    </div>
+    <div class="gap-card reveal reveal-d2">
+      <div class="gap-title">Shield link nativo</div>
+      <div class="gap-desc">Nenhum player mainstream oferece redirect inteligente que força abertura no browser nativo — proteção técnica contra o in-app browser do Instagram.</div>
+    </div>
+    <div class="gap-card reveal reveal-d3">
+      <div class="gap-title">Brasil como mercado real</div>
+      <div class="gap-desc">Zero produtos com suporte em português, preço em reais ou construídos para a realidade econômica do creator brasileiro.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTO -->
+<section class="case-section">
+  <div class="section-eyebrow reveal">Produto</div>
+  <h2 class="section-heading reveal reveal-d1">Quatro <span>pilares</span><br>do wave.bio.</h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O wave.bio foi desenhado em torno de quatro diferenciais — cada um resolvendo diretamente uma das falhas identificadas na pesquisa.</p>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar-card reveal reveal-d1">
+      <div class="pillar-num">Pilar 1</div>
+      <div class="pillar-title">Shield link nativo</div>
+      <div class="pillar-desc">Todo link gerado passa por redirect inteligente que força abertura no browser nativo do celular — evitando o in-app browser do Instagram, que bloqueia cookies e logins, e reduzindo o risco de shadowban ao não expor o domínio de destino diretamente. Disponível em todos os planos.</div>
+    </div>
+    <div class="pillar-card reveal reveal-d2">
+      <div class="pillar-num">Pilar 2</div>
+      <div class="pillar-title">Customização visual real</div>
+      <div class="pillar-desc">Cores, fontes, layout e foto de perfil que refletem a identidade do creator. Customização básica disponível no plano gratuito — não uma página genérica igual a todos os outros 40 milhões de usuários do Linktree.</div>
+    </div>
+    <div class="pillar-card reveal reveal-d3">
+      <div class="pillar-num">Pilar 3</div>
+      <div class="pillar-title">Analytics em camadas</div>
+      <div class="pillar-desc">Plano gratuito: total de visitas e cliques por link nos últimos 7 dias. Plano Pro: origem do tráfego, dispositivo, país/estado, horário de pico e histórico de 90 dias. Modelo que cria valor percebido claro e incentivo orgânico para upgrade.</div>
+    </div>
+    <div class="pillar-card reveal reveal-d4">
+      <div class="pillar-num">Pilar 4</div>
+      <div class="pillar-title">Preço justo em reais</div>
+      <div class="pillar-desc">Primeiro produto de link-in-bio com preços desenvolvidos para a realidade econômica brasileira, suporte em português e ToS explicitamente permissivo para creators de conteúdo adulto.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TELAS — placeholder -->
+<section class="case-section">
+  <div class="section-eyebrow reveal">Processo</div>
+  <h2 class="section-heading reveal reveal-d1">As telas<br>do <span>produto.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O design do app foi pensado de ponta a ponta — do onboarding ao dashboard, passando pela gestão de links, analytics e página pública do creator.</p>
+  </div>
+  <div style="margin-top:36px" class="reveal reveal-d1">
+    <div class="screens-label">Login e Cadastro</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Telas de login e criação de conta — com suporte a Google e foto de fundo dinâmica.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-login-cadastro.jpg" alt="Login e Cadastro — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d2">
+    <div class="screens-label">Onboarding</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Três telas de apresentação dos pilares do produto — shield link, proteção contra shadowban e analytics.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-onboarding.jpg" alt="Onboarding — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d3">
+    <div class="screens-label">Definição de perfil</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Seleção de nicho (incluindo +18 de forma explícita) e configuração do perfil público.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-definicao-perfil.jpg" alt="Definição de perfil — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d1">
+    <div class="screens-label">Dashboard — Início</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Dashboard com preview da página, URL com cópia rápida, métricas do dia e lista de links.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-dashboard-inicio.jpg" alt="Dashboard — Início — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d2">
+    <div class="screens-label">Adição e edição de links</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Bottom sheet com detecção automática de rede ao colar URL — Privacy, OnlyFans, Amazon e outros.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-adicao-edicao-links.jpg" alt="Adição e edição de links — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d3">
+    <div class="screens-label">Seção Links</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Gestão completa dos links com toggles, estados vazios e banner de upgrade para o Pro.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-secao-links.jpg" alt="Seção Links — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d1">
+    <div class="screens-label">Analytics</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Analytics em camadas — plano free com dados básicos e Pro com origem de tráfego e horário de pico.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-analytics.jpg" alt="Analytics — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d2">
+    <div class="screens-label">Aparência</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Customização visual em tempo real — cores, estilos de botão, fontes e temas prontos no Pro.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-aparencia.jpg" alt="Aparência — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+  <div style="margin-top:64px" class="reveal reveal-d3">
+    <div class="screens-label">Páginas públicas</div>
+    <div class="section-text reveal" style="margin-bottom:32px">
+      <p>Variações de personalização da página pública — do plano free ao Pro com backgrounds customizados.</p>
+    </div>
+    <div class="img-wrap">
+      <img src="assets/wave-paginas-publicas.jpg" alt="Páginas públicas — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+    </div>
+  </div>
+</section>
+
+<!-- ENCERRAMENTO -->
+<section class="case-section">
+  <div class="section-eyebrow reveal">Encerramento</div>
+  <h2 class="section-heading reveal reveal-d1">O que esse<br>projeto <span>ensinou.</span></h2>
+  <div class="section-text reveal reveal-d2">
+    <p>O wave.bio é um exercício completo de descoberta de produto — da pesquisa com fontes reais ao benchmark competitivo, da definição de posicionamento ao design do app. O projeto mostra como uma oportunidade de mercado pode ser identificada a partir de dados públicos e transformada em proposta de produto coerente.</p>
+  </div>
+  <div class="learning-box reveal reveal-d3">
+    <div class="learning-label">Aprendizado</div>
+    <div class="learning-text">Um produto não precisa inventar uma categoria para ser relevante — precisa encontrar <strong>quem está sendo mal atendido dentro de uma categoria já existente</strong>. O Linktree tem 40 milhões de usuários e ainda assim deixou um nicho inteiro desprotegido. Essa é a oportunidade.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">opedro<span>.</span></div>
+  <div class="footer-nav">
+    <a href="index.html">&#8592; Portfólio</a>
+  </div>
+  <div class="footer-dots">
+    <div class="fd" style="background:var(--signal)"></div>
+    <div class="fd" style="background:var(--lime)"></div>
+    <div class="fd" style="background:var(--cyan)"></div>
+  </div>
+</footer>
+
+<script>
+var cursor=document.getElementById('cursor');
+var hasPointer=window.matchMedia('(pointer: fine)').matches;
+if(hasPointer){
+  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
+  document.querySelectorAll('a').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
+  });
+}
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+</script>
+</body>
+</html>
