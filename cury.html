@@ -29,6 +29,9 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* HERO */
 .case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
 .case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(0,229,255,0.05) 0%,transparent 70%);pointer-events:none}
+.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.case-hero-image{border-radius:16px;overflow:hidden;border:0.5px solid var(--border)}
+.case-hero-image img{width:100%;display:block}
 .hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
 .hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--cyan)}
 .hero-title{font-size:clamp(44px,6vw,84px);font-weight:800;letter-spacing:-0.04em;line-height:0.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
@@ -137,6 +140,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
   nav svg{width:24px;height:auto}
   .nav-back{font-size:12px;padding:8px 14px}
   .case-hero{padding:100px 20px 56px}
+  .case-hero-inner{grid-template-columns:1fr;gap:32px}
   .case-section{padding:56px 20px}
   .meta-grid,.pain-grid,.quote-grid,.hyp-grid,.solution-grid{grid-template-columns:1fr}
   .meta-card{border-radius:0 !important;border-left:0.5px solid var(--border) !important}
@@ -166,14 +170,21 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
 
 <!-- HERO -->
 <section class="case-hero">
-  <div class="hero-eyebrow">UX Study &#183; Cury Construtora &#183; 2026</div>
-  <h1 class="hero-title">Cury<br><span>UX Study.</span></h1>
-  <p class="hero-summary">Estudo de UX do app Cury Cliente — identificando falhas críticas no <strong>onboarding pós-compra</strong> e propondo redesign do fluxo mais impactante para compradores de imóvel.</p>
-  <div class="hero-tags">
-    <span class="hero-tag t-cyan">UX Research</span>
-    <span class="hero-tag">Product Design</span>
-    <span class="hero-tag">Estudo de Caso</span>
-    <span class="hero-tag">2026</span>
+  <div class="case-hero-inner">
+    <div>
+      <div class="hero-eyebrow">UX Study &#183; Cury Construtora &#183; 2026</div>
+      <h1 class="hero-title">Cury<br><span>UX Study.</span></h1>
+      <p class="hero-summary">Estudo de UX do app Cury Cliente — identificando falhas críticas no <strong>onboarding pós-compra</strong> e propondo redesign do fluxo mais impactante para compradores de imóvel.</p>
+      <div class="hero-tags">
+        <span class="hero-tag t-cyan">UX Research</span>
+        <span class="hero-tag">Product Design</span>
+        <span class="hero-tag">Estudo de Caso</span>
+        <span class="hero-tag">2026</span>
+      </div>
+    </div>
+    <div class="case-hero-image">
+      <img src="assets/cury-cover.jpg" alt="Cury UX Study — Capa do projeto">
+    </div>
   </div>
 </section>
 
