@@ -30,6 +30,9 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* HERO */
 .case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
 .case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(255,107,0,0.07) 0%,transparent 70%);pointer-events:none}
+.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.case-hero-image{border-radius:16px;overflow:hidden;border:0.5px solid var(--border)}
+.case-hero-image img{width:100%;display:block}
 .hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
 .hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--wave)}
 .hero-title{font-size:clamp(44px,6vw,84px);font-weight:800;letter-spacing:-0.04em;line-height:0.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
@@ -135,6 +138,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
   nav svg{width:24px;height:auto}
   .nav-back{font-size:12px;padding:8px 14px}
   .case-hero{padding:100px 20px 56px}
+  .case-hero-inner{grid-template-columns:1fr;gap:32px}
   .case-section{padding:56px 20px}
   .meta-grid{grid-template-columns:1fr}
   .meta-card{border-radius:0 !important;border-left:0.5px solid var(--border) !important}
@@ -164,14 +168,21 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
 
 <!-- HERO -->
 <section class="case-hero">
-  <div class="hero-eyebrow">Product Design &#183; Conceito &#183; 2026</div>
-  <h1 class="hero-title">wave.bio</h1>
-  <p class="hero-summary">Conceito de produto — uma ferramenta de link-in-bio feita para <strong>creators brasileiros</strong>, com proteção contra shadowban, personalização real e preço justo em reais.</p>
-  <div class="hero-tags">
-    <span class="hero-tag t-wave">Product Design</span>
-    <span class="hero-tag">Pesquisa de Mercado</span>
-    <span class="hero-tag">Conceito</span>
-    <span class="hero-tag">2026</span>
+  <div class="case-hero-inner">
+    <div>
+      <div class="hero-eyebrow">Product Design &#183; Conceito &#183; 2026</div>
+      <h1 class="hero-title">wave.bio</h1>
+      <p class="hero-summary">Conceito de produto — uma ferramenta de link-in-bio feita para <strong>creators brasileiros</strong>, com proteção contra shadowban, personalização real e preço justo em reais.</p>
+      <div class="hero-tags">
+        <span class="hero-tag t-wave">Product Design</span>
+        <span class="hero-tag">Pesquisa de Mercado</span>
+        <span class="hero-tag">Conceito</span>
+        <span class="hero-tag">2026</span>
+      </div>
+    </div>
+    <div class="case-hero-image">
+      <img src="assets/wavebio-cover.jpg" alt="wave.bio — Capa do projeto">
+    </div>
   </div>
 </section>
 
@@ -330,7 +341,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
   <div class="section-text reveal reveal-d2">
     <p>O design do app foi pensado de ponta a ponta — do onboarding ao dashboard, passando pela gestão de links, analytics e página pública do creator.</p>
   </div>
-  <div style="margin-top:36px" class="reveal reveal-d1">
+  <div style="margin-top:36px" class="reveal reveal-d2">
     <div class="screens-label">Login e Cadastro</div>
     <div class="section-text reveal" style="margin-bottom:32px">
       <p>Telas de login e criação de conta — com suporte a Google e foto de fundo dinâmica.</p>
