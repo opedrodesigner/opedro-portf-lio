@@ -1,8 +1,14 @@
 [[redirects]]
-  from = "/:page.html"
-  to = "/:page"
-  status = 301
-  force = true
+  from = "/cury"
+  to = "/cury.html"
+  status = 200
 
-[build]
-  publish = "."
+[[redirects]]
+  from = "/wavebio"
+  to = "/wavebio.html"
+  status = 200
+
+[[redirects]]
+  from = "/spark"
+  to = "/spark.html"
+  status = 200
