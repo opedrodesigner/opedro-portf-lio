@@ -31,9 +31,12 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* HERO */
 .case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
 .case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(255,107,0,0.07) 0%,transparent 70%);pointer-events:none}
-.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;max-width:1100px;margin:0 auto}
 .case-hero-image{border-radius:16px;overflow:hidden;border:0.5px solid var(--border)}
 .case-hero-image img{width:100%;display:block}
+
+/* WRAPPER */
+.content-wrap{max-width:1100px;margin:0 auto}
 .hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
 .hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--wave)}
 .hero-title{font-size:clamp(44px,6vw,84px);font-weight:800;letter-spacing:-0.04em;line-height:0.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
@@ -47,6 +50,7 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* SEÇÕES */
 .case-section{padding:80px 48px}
 .case-section+.case-section{border-top:0.5px solid var(--border)}
+.section-inner{max-width:1100px;margin:0 auto}
 .section-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--wave)}
 .section-heading{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.03em;line-height:0.95;margin-bottom:32px}
@@ -189,6 +193,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
 
 <!-- CONTEXTO -->
 <section class="case-section" style="padding-top:56px;padding-bottom:56px">
+  <div class="section-inner">
   <div class="meta-grid">
     <div class="meta-card">
       <div class="meta-label">Meu papel</div>
@@ -201,10 +206,13 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="meta-desc">Projeto autoral — pesquisa baseada em fontes públicas reais.</div>
     </div>
   </div>
+  </div>
+  </div>
 </section>
 
 <!-- PROBLEMA -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Problema</div>
   <h2 class="section-heading reveal reveal-d1">O link na bio<br>que <span>trabalha contra</span><br>o creator.</h2>
   <div class="section-text reveal reveal-d2">
@@ -233,10 +241,13 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="metric-source">Planos pagos em dólar</div>
     </div>
   </div>
+  </div>
+  </div>
 </section>
 
 <!-- DORES -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Pesquisa</div>
   <h2 class="section-heading reveal reveal-d1">As sete<br>principais <span>dores.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -279,10 +290,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="pain-desc">Creators de conteúdo adulto frequentemente precisam bloquear regiões específicas por segurança pessoal. Nenhuma plataforma mainstream oferece esse recurso — apenas o GetAllMyLinks implementa geo-filter, de forma ainda limitada.</div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- GAPS -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Oportunidade</div>
   <h2 class="section-heading reveal reveal-d1">Nenhum player<br>resolve <span>tudo.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -302,10 +315,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="gap-desc">Zero produtos com suporte em português, preço em reais ou construídos para a realidade econômica do creator brasileiro.</div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- PRODUTO -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Produto</div>
   <h2 class="section-heading reveal reveal-d1">Quatro <span>pilares</span><br>do wave.bio.</h2>
   <div class="section-text reveal reveal-d2">
@@ -333,10 +348,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="pillar-desc">Primeiro produto de link-in-bio com preços desenvolvidos para a realidade econômica brasileira, suporte em português e ToS explicitamente permissivo para creators de conteúdo adulto.</div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- TELAS — placeholder -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Processo</div>
   <h2 class="section-heading reveal reveal-d1">As telas<br>do <span>produto.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -423,10 +440,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <img src="assets/wave-paginas-publicas.jpg" alt="Páginas públicas — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ENCERRAMENTO -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Encerramento</div>
   <h2 class="section-heading reveal reveal-d1">O que esse<br>projeto <span>ensinou.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -435,6 +454,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
   <div class="learning-box reveal reveal-d3">
     <div class="learning-label">Aprendizado</div>
     <div class="learning-text">Um produto não precisa inventar uma categoria para ser relevante — precisa encontrar <strong>quem está sendo mal atendido dentro de uma categoria já existente</strong>. O Linktree tem 40 milhões de usuários e ainda assim deixou um nicho inteiro desprotegido. Essa é a oportunidade.</div>
+  </div>
   </div>
 </section>
 
