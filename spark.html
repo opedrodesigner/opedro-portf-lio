@@ -31,7 +31,7 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* HERO */
 .case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
 .case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(170,255,0,0.05) 0%,transparent 70%);pointer-events:none}
-.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;max-width:1100px;margin:0 auto}
 .case-hero-image{border-radius:16px;overflow:hidden;border:0.5px solid var(--border)}
 .case-hero-image img{width:100%;display:block}
 .hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
@@ -47,6 +47,7 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* SEÇÕES */
 .case-section{padding:80px 48px}
 .case-section+.case-section{border-top:0.5px solid var(--border)}
+.section-inner{max-width:1100px;margin:0 auto}
 .section-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--spark)}
 .section-heading{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.03em;line-height:0.95;margin-bottom:32px}
@@ -179,6 +180,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
 
 <!-- CONTEXTO -->
 <section class="case-section" style="padding-top:56px;padding-bottom:56px">
+  <div class="section-inner">
   <div class="meta-grid">
     <div class="meta-card">
       <div class="meta-label">Meu papel</div>
@@ -190,19 +192,21 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="meta-value">Estudo de Caso</div>
       <div class="meta-desc">Projeto individual desenvolvido como exercício de análise e redesign.</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- SOBRE A SPARK -->
 <section class="case-section">
+  <div class="section-inner">
     <h2 class="section-heading reveal reveal-d1">Sobre<br>a <span>Spark.</span></h2>
   <div class="section-text reveal reveal-d2">
     <p>A <strong>Spark</strong> é uma rede social de monetização de conteúdo exclusivo — plataforma escolhida como base para este estudo por ter um chat como ponto central da relação entre creator e fã, usado diariamente por ambos os lados da plataforma.</p>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- PROBLEMA -->
 <section class="case-section">
+  <div class="section-inner">
     <h2 class="section-heading reveal reveal-d1">Um chat que<br>pedia <span>redesign.</span></h2>
   <div class="section-text reveal reveal-d2">
     <p>O chat existente tinha uma série de problemas que afetavam tanto creators quanto assinantes — desde decisões de layout que desperdiçavam espaço até comportamentos que destoavam do padrão esperado em apps mobile. Com mais de <strong>95% dos usuários acessando via mobile</strong>, qualquer desvio do comportamento esperado tinha impacto direto na experiência.</p>
@@ -238,11 +242,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="problem-card-title">Galeria de GIFs com área insuficiente</div>
       <div class="problem-card-desc">Uma faixa estreita exibia apenas 2 GIFs por vez, exigindo scroll vertical dentro da faixa — experiência lenta e visualmente quebrada.</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- HIPÓTESES -->
 <section class="case-section">
+  <div class="section-inner">
     <h2 class="section-heading reveal reveal-d1">O raciocínio<br>antes da <span>solução.</span></h2>
   <div class="section-text reveal reveal-d2">
     <p>Antes de partir para o redesenho, levantei hipóteses sobre o que estava causando a experiência ruim — e por que alinhar ao padrão de mercado seria a abordagem correta.</p>
@@ -263,11 +268,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="problem-card-title">Gift na visão Creator é ruído — não funcionalidade</div>
       <div class="problem-card-desc">O fluxo de Gift na Spark é unidirecional: assinantes enviam para creators. Manter a opção de enviar Gift na toolbar do creator era um erro de produto — não de design. Removê-la não é simplificação, é correção de lógica de negócio.</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- SOLUÇÃO -->
 <section class="case-section">
+  <div class="section-inner">
     <h2 class="section-heading reveal reveal-d1">Chat <span>alinhado</span><br>ao padrão mobile.</h2>
   <div class="section-text reveal reveal-d2">
     <p>As soluções foram organizadas por área de impacto — cada uma resolvendo um problema específico sem criar novos. O princípio guia foi simples: <strong>o chat deve se comportar como o usuário já espera que um chat se comporte.</strong></p>
@@ -293,11 +299,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="solution-card-title">Grid expandido de 2 colunas</div>
       <div class="solution-card-desc">Faixa estreita substituída por grid completo abaixo do campo de digitação — múltiplos GIFs visíveis simultaneamente, com barra de pesquisa e tab switcher Emojis/GIFs.</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- TELAS -->
 <section class="case-section">
+  <div class="section-inner">
     <h2 class="section-heading reveal reveal-d1"><span>Antes</span><br>e depois.</h2>
   <div class="section-text reveal reveal-d2">
     <p>O redesenho abrange as visões de <strong>Creator e Assinante</strong> — com ajustes específicos para cada perfil, respeitando as diferenças de ações disponíveis em cada contexto.</p>
@@ -329,11 +336,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
     <div class="img-wrap">
       <img src="assets/spark-gifs-antes-depois.png" alt="Galeria de GIFs — antes e depois" style="width:100%;max-width:1200px;display:block;margin:0 auto">
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- ENCERRAMENTO -->
 <section class="case-section">
+  <div class="section-inner">
     <h2 class="section-heading reveal reveal-d1">O que ficou<br>desse <span>projeto.</span></h2>
   <div class="section-text reveal reveal-d2">
     <p>O estudo resultou em um redesenho completo do chat — com telas e fluxos definidos para as visões de Creator e Assinante, documentando decisões de design para cada problema identificado.</p>
@@ -341,7 +349,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
   <div class="learning-box reveal reveal-d3">
     <div class="learning-label">Aprendizado</div>
     <div class="learning-text">Às vezes o melhor design é o que o usuário já conhece. <strong>Alinhar ao padrão de mercado não é falta de criatividade — é respeito pelo modelo mental de quem usa.</strong> Estudar um produto real força você a entender restrições reais — e a propor soluções que façam sentido dentro do contexto, não apenas visualmente.</div>
-  </div>
+  </div>  </div>
 </section>
 
 <footer>
