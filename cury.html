@@ -30,7 +30,7 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* HERO */
 .case-hero{padding:140px 48px 72px;position:relative;overflow:hidden;border-bottom:0.5px solid var(--border)}
 .case-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 85% 40%,rgba(0,229,255,0.05) 0%,transparent 70%);pointer-events:none}
-.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.case-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;max-width:1100px;margin:0 auto}
 .case-hero-image{border-radius:16px;overflow:hidden;border:0.5px solid var(--border)}
 .case-hero-image img{width:100%;display:block}
 .hero-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
@@ -46,6 +46,7 @@ nav.scrolled{background:rgba(14,14,14,0.92);border-color:var(--border);backdrop-
 /* SEÇÕES */
 .case-section{padding:80px 48px}
 .case-section+.case-section{border-top:0.5px solid var(--border)}
+.section-inner{max-width:1100px;margin:0 auto}
 .section-eyebrow{font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--cyan)}
 .section-heading{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.03em;line-height:0.95;margin-bottom:32px}
@@ -191,6 +192,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
 
 <!-- CONTEXTO -->
 <section class="case-section" style="padding-top:56px;padding-bottom:56px">
+  <div class="section-inner">
   <div class="meta-grid">
     <div class="meta-card">
       <div class="meta-label">Meu papel</div>
@@ -202,11 +204,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="meta-value">Estudo de Caso</div>
       <div class="meta-desc">Baseado em App Store, Google Play e Reclame Aqui. Sem vínculo com a Cury Construtora.</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- PESQUISA -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Pesquisa</div>
   <h2 class="section-heading reveal reveal-d1">O app que <span>não funciona</span><br>quando mais importa.</h2>
   <div class="section-text reveal reveal-d2">
@@ -228,11 +231,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="metric-label">Tempo médio de resposta</div>
       <div class="metric-source">Reclame Aqui · Set/25 a Fev/26</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- DORES -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Dores mapeadas</div>
   <h2 class="section-heading reveal reveal-d1">Seis dores,<br>duas <span>críticas.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -263,11 +267,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="pain-severity medium">Médio</div>
       <div class="pain-title">Regras do Chega Mais invisíveis e expectativa errada</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- EVIDÊNCIAS -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Evidências qualitativas</div>
   <h2 class="section-heading reveal reveal-d1">A voz de <span>quem comprou.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -290,11 +295,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="quote-text">"Apenas fui simular uma antecipação para ver se valia a pena amortizar. Um boleto foi emitido em meu CPF sem meu consentimento."</div>
       <div class="quote-source">Reclame Aqui</div>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- HIPÓTESES -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Hipóteses</div>
   <h2 class="section-heading reveal reveal-d1">Quatro hipóteses,<br><span>todas adotadas.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -325,11 +331,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
       <div class="hyp-desc">Quando dados não estão disponíveis, o app explica o motivo e informa o que esperar — eliminando a percepção de que o app está quebrado.</div>
       <span class="hyp-badge badge-quick">Rápida</span>
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- SOLUÇÃO -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Solução</div>
   <h2 class="section-heading reveal reveal-d1">Redesign do <span>fluxo crítico.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -397,11 +404,12 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
     <div class="img-wrap">
       <img src="assets/cury-bottom-sheets.jpg" alt="Bottom sheets de status dos ciclos — Cury Chega Mais" style="width:100%;max-width:1200px;display:block;margin:0 auto">
     </div>
-  </div>
+  </div>  </div>
 </section>
 
 <!-- ENCERRAMENTO -->
 <section class="case-section">
+  <div class="section-inner">
   <div class="section-eyebrow reveal">Encerramento</div>
   <h2 class="section-heading reveal reveal-d1">O que ficou<br>desse <span>estudo.</span></h2>
   <div class="section-text reveal reveal-d2">
@@ -410,7 +418,7 @@ footer{padding:32px 48px;border-top:0.5px solid var(--border);display:flex;align
   <div class="learning-box reveal reveal-d3">
     <div class="learning-label">Aprendizado</div>
     <div class="learning-text">Às vezes o maior problema de um produto não é o design — é o <strong>momento em que ele falha</strong>. Um app que quebra logo após a maior compra da vida de alguém não é só um bug de UX: é uma falha de confiança que contamina toda a relação com a marca.</div>
-  </div>
+  </div>  </div>
 </section>
 
 <footer>
