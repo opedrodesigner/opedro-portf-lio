@@ -1,0 +1,193 @@
+/* ============================================================
+   DESIGN SYSTEM — opedro. Portfolio
+   tokens.css — Source of truth for all design decisions
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     COLOR PALETTE
+     ---------------------------------------------------------- */
+
+  /* Brand Accent */
+  --color-signal: #FF3C3C;
+  --color-lime:   #CAFF00;
+  --color-cyan:   #00E5FF;
+  --color-orange: #FF6B00;   /* usado em cards de projeto — acento quente */
+
+  /* Status */
+  --color-success: #4CAF50;  /* disponibilidade, confirmações */
+  --color-warning: #FF6B00;  /* alias semântico → --color-orange */
+  --color-error:   #FF3C3C;  /* alias semântico → --color-signal */
+
+  /* Neutral Scale — Dark to Light
+     Nota: ash2 (#555) é mais escuro que ash (#888).
+     O sufixo "2" indica variante, não luminosidade.
+     Use os aliases semânticos abaixo para clareza. */
+  --color-void:      #0E0E0E;   /* bg principal da página */
+  --color-carbon:    #1A1A1A;   /* surface — cards, containers */
+  --color-dark3:     #242424;   /* surface elevada sobre carbon */
+  --color-border:    #2A2A2A;   /* bordas e divisores */
+  --color-ash2:      #555555;   /* texto desabilitado / placeholder */
+  --color-ash:       #888888;   /* texto secundário / labels */
+  --color-ash-light: #AAAAAA;   /* corpo de texto em cards de conteúdo */
+  --color-chalk:     #F2F2F0;   /* texto principal sobre dark */
+  --color-white:     #FFFFFF;   /* branco puro */
+
+  /* Aliases semânticos — PREFIRA ESTES nos componentes
+     Os nomes acima (void, carbon, ash…) são os raw values.
+     Os aliases abaixo comunicam a intenção de uso. */
+
+  /* Superfícies */
+  --color-bg:             var(--color-void);
+  --color-surface:        var(--color-carbon);
+  --color-surface-raised: var(--color-dark3);   /* elevated sobre surface */
+  --color-surface-subtle: var(--color-dark3);   /* alias alternativo legível */
+
+  /* Bordas */
+  --color-border-default: var(--color-border);
+
+  /* Texto */
+  --color-text-primary:   var(--color-chalk);      /* títulos, conteúdo principal */
+  --color-text-body:      var(--color-ash-light);  /* parágrafos em cards de conteúdo */
+  --color-text-secondary: var(--color-ash);        /* ash (#888) — labels, suporte */
+  --color-text-muted:     var(--color-ash2);       /* ash2 (#555) — IDs, numeração */
+  --color-text-disabled:  var(--color-ash2);       /* estados desabilitados */
+  --color-text-inverted:  var(--color-void);       /* texto sobre fundo claro */
+
+  /* Marca */
+  --color-accent:         var(--color-signal);
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+     ---------------------------------------------------------- */
+
+  /* Font Families */
+  --font-display: 'Bricolage Grotesque', sans-serif;  /* headlines, logo */
+  --font-ui:      'Syne', sans-serif;                 /* labels, nav, meta */
+
+  /* Font Sizes — fluid where appropriate
+     Mínimo absoluto: 12px (--text-2xs).
+     Nunca use tamanhos menores que este. */
+  --text-2xs:  12px;   /* mínimo absoluto — chips, copyright, badges */
+  --text-xs:   13px;   /* labels, tags, nav links, botões */
+  --text-sm:   14px;
+  --text-base: 15px;
+  --text-md:   18px;
+  --text-lg:   clamp(20px, 2vw, 24px);
+  --text-xl:   clamp(28px, 3vw, 36px);
+  --text-2xl:  clamp(36px, 5vw, 64px);
+  --text-hero: clamp(72px, 10vw, 140px);
+
+  /* Font Weights */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  /* Line Heights */
+  --leading-tight:  0.9;
+  --leading-snug:   1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  /* Letter Spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;
+  --tracking-wider:  0.15em;
+  --tracking-widest: 0.22em;
+
+
+  /* ----------------------------------------------------------
+     SPACING
+     ---------------------------------------------------------- */
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* Semantic spacing */
+  --space-page-x:   var(--space-12);   /* horizontal page padding */
+  --space-section-y: var(--space-30);  /* section vertical padding */
+  --space-card-gap:  var(--space-4);   /* gap between cards */
+  --space-section-gap: var(--space-16);/* gap between section elements */
+
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS
+     ---------------------------------------------------------- */
+
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-full: 9999px;
+
+
+  /* ----------------------------------------------------------
+     BORDERS
+     ---------------------------------------------------------- */
+
+  --border-width: 1px;
+  --border-default: var(--border-width) solid var(--color-border-default);
+
+
+  /* ----------------------------------------------------------
+     SHADOWS
+     ---------------------------------------------------------- */
+
+  --shadow-sm:  0 2px 8px rgba(0,0,0,.4);
+  --shadow-md:  0 4px 24px rgba(0,0,0,.5);
+  --shadow-lg:  0 8px 48px rgba(0,0,0,.6);
+  --shadow-glow-signal: 0 0 24px rgba(255, 60, 60, .25);
+  --shadow-glow-lime:   0 0 24px rgba(202, 255, 0, .20);
+  --shadow-glow-cyan:   0 0 24px rgba(0, 229, 255, .20);
+
+
+  /* ----------------------------------------------------------
+     MOTION
+     ---------------------------------------------------------- */
+
+  --ease-out-expo:  cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out:    cubic-bezier(.4, 0, .2, 1);
+  --ease-spring:    cubic-bezier(.34, 1.56, .64, 1);
+
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   600ms;
+  --duration-enter:  800ms;
+
+
+  /* ----------------------------------------------------------
+     Z-INDEX SCALE
+     ---------------------------------------------------------- */
+
+  --z-below:   -1;
+  --z-base:     0;
+  --z-raised:   10;
+  --z-overlay:  100;
+  --z-nav:      200;
+  --z-cursor:   9999;
+
+
+  /* ----------------------------------------------------------
+     BREAKPOINTS  (reference — use in media queries)
+     --breakpoint-sm: 380px
+     --breakpoint-md: 768px
+     ---------------------------------------------------------- */
+}
