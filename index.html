@@ -46,12 +46,15 @@ section{padding:var(--space-30) var(--space-page-x)}
 
 /* WORK GRID */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-card-gap)}
-.work-card{aspect-ratio:unset;min-height:420px;border-radius:var(--radius-xl);overflow:hidden;position:relative;cursor:none;transition:transform var(--duration-normal) var(--ease-out-expo)}
+.work-card{aspect-ratio:unset;min-height:420px;border-radius:var(--radius-xl);overflow:hidden;position:relative;cursor:none;transition:transform var(--duration-normal) var(--ease-out-expo);background-size:cover;background-position:center;background-repeat:no-repeat}
 .work-card:hover{transform:translateY(-6px)}
 .work-card:hover .work-arrow{transform:translate(4px,-4px)}
 .work-card-inner{padding:36px;height:100%;min-height:420px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
 .work-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-.wc-dark{background:var(--color-carbon)}.wc-signal{background:var(--color-signal)}.wc-lime{background:var(--color-lime)}.wc-cyan{background:var(--color-cyan)}
+/* Backgrounds dos cards — definidos em CSS rule (não inline) */
+.wc-bg-cury  { background-image: url('assets/cury-cover.webp'); }
+.wc-bg-wave  { background-image: url('assets/wavebio-cover.webp'); }
+.wc-bg-spark { background-image: url('assets/spark-cover.webp'); }
 .work-tag{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-4)}
 .wt-dark{background:var(--color-border);color:var(--color-ash)}.wt-void{background:rgba(0,0,0,0.2);color:rgba(0,0,0,0.6)}.wt-white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)}
 .work-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);letter-spacing:var(--tracking-tight);line-height:var(--leading-snug)}
@@ -201,7 +204,7 @@ section{padding:var(--space-30) var(--space-page-x)}
   <h2 class="section-title reveal reveal-d1">Projetos<br><span style="color:var(--color-ash2)">selecionados.</span></h2>
   <div class="work-grid">
     <!-- Cury -->
-    <a class="work-card reveal reveal-d2" href="cury.html" style="text-decoration:none;background-image:url('assets/cury-cover.webp');background-size:cover;background-position:center">
+    <a class="work-card wc-bg-cury reveal reveal-d2" href="cury.html" style="text-decoration:none">
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.88) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
       <div class="work-card-inner">
         <div style="position:relative;z-index:1">
@@ -216,7 +219,7 @@ section{padding:var(--space-30) var(--space-page-x)}
     </a>
 
     <!-- wave.bio -->
-    <a class="work-card reveal reveal-d3" href="wavebio.html" style="text-decoration:none;border-top:2px solid var(--color-orange);background-image:url('assets/wavebio-cover.webp');background-size:cover;background-position:center">
+    <a class="work-card wc-bg-wave reveal reveal-d3" href="wavebio.html" style="text-decoration:none;border-top:2px solid var(--color-orange)">
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.95) 0%,rgba(14,14,14,0.4) 55%,rgba(14,14,14,0.05) 100%)"></div>
       <div class="work-card-inner">
         <div style="position:relative;z-index:1">
@@ -231,7 +234,7 @@ section{padding:var(--space-30) var(--space-page-x)}
     </a>
 
     <!-- Spark -->
-    <a class="work-card reveal reveal-d4" href="spark.html" style="text-decoration:none;background-image:url('assets/spark-cover.webp');background-size:cover;background-position:center">
+    <a class="work-card wc-bg-spark reveal reveal-d4" href="spark.html" style="text-decoration:none">
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
       <div class="work-card-inner">
         <div style="position:relative;z-index:1">
