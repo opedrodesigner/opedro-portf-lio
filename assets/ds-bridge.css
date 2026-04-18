@@ -1,0 +1,49 @@
+/* ============================================================
+   DS BRIDGE — opedro. Portfolio
+   Importa tokens + componentes do design system e cria aliases
+   retrocompatíveis para os nomes curtos que o portfolio usa.
+
+   NÃO EDITE ESTE ARQUIVO para alterar valores de design.
+   Edite: DEsign system/tokens.css ou components.css
+   Depois rode: sync-ds.bat
+   ============================================================ */
+
+@import './tokens.css';
+@import './components.css';
+
+
+/* ----------------------------------------------------------
+   ALIASES RETROCOMPATÍVEIS
+   Mapeia os nomes curtos usados no portfolio para os tokens
+   oficiais do design system.
+   ---------------------------------------------------------- */
+
+:root {
+  /* Superfícies */
+  --void:    var(--color-void);
+  --carbon:  var(--color-carbon);
+  --dark3:   var(--color-dark3);
+
+  /* Bordas */
+  --border:  var(--color-border);
+
+  /* Cores de acento */
+  --signal:  var(--color-signal);
+  --lime:    var(--color-lime);
+  --cyan:    var(--color-cyan);
+  --orange:  var(--color-orange);
+
+  /* Status */
+  --success: var(--color-success);
+
+  /* Neutros */
+  --ash:       var(--color-ash);
+  --ash2:      var(--color-ash2);
+  --ash-light: var(--color-ash-light);
+  --chalk:     var(--color-chalk);
+  --white:     var(--color-white);
+
+  /* Tipografia */
+  --display: var(--font-display);
+  --ui:      var(--font-ui);
+}
