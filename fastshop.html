@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/opedrodesigner.png">
+<title>Fast Shop — opedro.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/ds-bridge.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(--font-display);cursor:none;overflow-x:hidden}
+.cursor{position:fixed;width:12px;height:12px;background:var(--color-orange);border-radius:var(--radius-full);pointer-events:none;z-index:var(--z-cursor);transform:translate(-50%,-50%);transition:width var(--duration-normal) var(--ease-out-expo),height var(--duration-normal) var(--ease-out-expo)}
+.cursor.hover{width:40px;height:40px;background:var(--color-orange);mix-blend-mode:difference}
+
+/* NAV */
+.nav{background:transparent!important;border-bottom-color:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transition:background var(--duration-normal) ease,border-color var(--duration-normal) ease,backdrop-filter var(--duration-normal) ease}
+.nav.scrolled{background:rgba(14,14,14,0.85)!important;border-bottom-color:var(--color-border-default)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+
+/* HERO */
+.case-hero{padding:180px 48px 100px;position:relative;overflow:hidden;border-bottom:var(--border-default);background-image:url('assets/fastshop-cover.webp');background-size:cover;background-position:center}
+.case-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,14,14,0.75) 0%,rgba(14,14,14,0.88) 100%);pointer-events:none}
+.case-hero-inner{position:relative;z-index:1;max-width:720px}
+
+.hero-eyebrow{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-ash-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--color-orange)}
+.hero-title{font-family:var(--font-display);font-size:clamp(44px,6vw,84px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-title span{color:var(--color-orange)}
+.hero-summary{max-width:600px;font-size:var(--text-md);line-height:var(--leading-relaxed);color:var(--color-ash-light);opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-summary strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
+.hero-tags{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-8);opacity:0;animation:fadeUp .8s .4s forwards}
+.hero-tag{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-full);background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);color:var(--color-ash-light)}
+.hero-tag--orange{background:rgba(255,107,0,0.1);border-color:rgba(255,107,0,0.3);color:var(--color-orange)}
+
+.hero-back{position:absolute;top:100px;left:48px;z-index:2;display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--color-ash-light);text-decoration:none;transition:color var(--duration-fast) ease;opacity:0;animation:fadeUp .7s .05s forwards}
+.hero-back:hover{color:var(--color-text-primary)}
+
+/* SEÇÕES */
+.case-section{padding:var(--space-20) 48px}
+.case-section+.case-section{border-top:var(--border-default)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-eyebrow{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-3)}
+.section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--color-orange)}
+.section-heading{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.95;margin-bottom:var(--space-8)}
+.section-heading span{color:var(--color-orange)}
+.section-text{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--color-text-body);max-width:680px}
+.section-text strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
+.section-text p+p{margin-top:var(--space-4)}
+.screens-label{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-6);display:flex;align-items:center;gap:var(--space-3)}
+.screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--color-orange)}
+
+/* MÉTRICAS */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:var(--space-10);overflow:hidden;border:var(--border-default)}
+.metric-box{background:var(--color-surface);padding:28px 24px;border-right:var(--border-default)}
+.metric-box:last-child{border-right:none}
+.metric-num{font-family:var(--font-display);font-size:40px;font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:1;color:var(--color-orange);margin-bottom:var(--space-2)}
+.metric-label{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--color-text-secondary)}
+.metric-source{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-1)}
+
+/* IMAGENS */
+.img-wrap{border-radius:0;overflow:hidden;border:var(--border-default);width:fit-content;margin:0 auto}
+.img-wrap img{width:100%;max-width:1200px;display:block;margin:0 auto}
+
+/* FOOTER DOTS */
+.footer-dots{display:flex;gap:var(--space-2);align-items:center}
+.fd{width:8px;height:8px;border-radius:var(--radius-full);flex-shrink:0;display:block}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s var(--ease-out-expo)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
+
+@media(max-width:768px){
+  body{cursor:auto}
+  .cursor{display:none}
+  .case-hero{padding:140px 20px 72px}
+  .hero-back{left:20px}
+  .case-section{padding:56px 20px}
+  .metrics-row{grid-template-columns:1fr}
+  .metric-box{border-right:none;border-bottom:var(--border-default)}
+  .metric-box:last-child{border-bottom:none}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo">
+    <img src="assets/logo.svg" alt="opedro." />
+  </a>
+  <a href="index.html" class="btn btn--ghost btn--sm">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Portfólio
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Voltar
+  </a>
+  <div class="case-hero-inner">
+    <div class="hero-eyebrow">UX Research · Benchmarking · UI Design · 2026</div>
+    <h1 class="hero-title">Fast Shop<br><span>Redesign.</span></h1>
+    <p class="hero-summary">O app mais bem avaliado do varejo brasileiro de eletrônicos e uma <strong>navegação exploratória quebrada</strong> num produto tecnicamente sólido.</p>
+    <div class="hero-tags">
+      <span class="hero-tag hero-tag--orange">UX Research</span>
+      <span class="hero-tag">Arquitetura da Informação</span>
+      <span class="hero-tag">UI Design</span>
+      <span class="hero-tag">2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section class="case-section" style="padding-top:56px;padding-bottom:56px">
+  <div class="section-inner">
+    <div class="grid-meta">
+      <div class="card-flat">
+        <div class="card-flat__eyebrow">Meu papel</div>
+        <div class="card-flat__value">UX Designer</div>
+        <div class="card-flat__body">Definição de escopo, pesquisa, avaliação heurística, benchmarking e UI de alta fidelidade.</div>
+      </div>
+      <div class="card-flat">
+        <div class="card-flat__eyebrow">Tipo</div>
+        <div class="card-flat__value">Estudo de Caso</div>
+        <div class="card-flat__body">Projeto autoral — análise baseada no app público da Fast Shop.</div>
+      </div>
+      <div class="card-flat">
+        <div class="card-flat__eyebrow">Processo</div>
+        <div class="card-flat__value">4 etapas</div>
+        <div class="card-flat__body">Research + Heurística + Benchmarking + UI.</div>
+      </div>
+      <div class="card-flat">
+        <div class="card-flat__eyebrow">Escopo</div>
+        <div class="card-flat__value">14 critérios · 5 players</div>
+        <div class="card-flat__body">Avaliação heurística em 4 dimensões + análise comparativa de mercado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Problema</div>
+    <h2 class="section-heading reveal reveal-d1">Um app nota 4.8<br>com uma navegação<br><span>nota zero.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>A Fast Shop é o app nacional mais próximo da Apple Store em estética e experiência — nota 4.8 na App Store, Apple Pay nativo, qualidade visual impecável. E escondia uma contradição direta: a tab de categorias era uma lista textual plana.</p>
+      <p>Sem ícones, sem imagens, sem hierarquia. O usuário precisava ler item por item e percorrer até <strong>4 níveis de subcategorias</strong> antes de ver qualquer produto. Num app que compete por posicionamento premium, isso é invisível — até você parar para medir.</p>
+    </div>
+
+    <div class="metrics-row reveal reveal-d3">
+      <div class="metric-box">
+        <div class="metric-num">1.5</div>
+        <div class="metric-label">Score heurístico médio</div>
+        <div class="metric-source">Escala 0–5 · avaliação interna</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">4–5</div>
+        <div class="metric-label">Toques até o produto</div>
+        <div class="metric-source">Pior resultado entre os 5 players</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">3</div>
+        <div class="metric-label">Critérios com nota zero</div>
+        <div class="metric-source">Agrupamento, suporte visual, curadoria</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">5</div>
+        <div class="metric-label">Critérios de severidade alta</div>
+        <div class="metric-source">De 14 critérios avaliados</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Estado atual — fluxo real</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-antes.webp" alt="Telas atuais da Fast Shop — fluxo de categorias" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONA -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Persona</div>
+    <h2 class="section-heading reveal reveal-d1">Quem usa,<br>e o que <span>espera.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>O perfil do usuário Fast Shop é o de um comprador de tecnologia com alta intenção de compra e baixa tolerância a fricção. Ativa notificações de lançamento, paga via Apple Pay, e abandona o app se a informação não aparecer rápido o suficiente.</p>
+    </div>
+    <div style="margin-top:40px" class="reveal reveal-d3">
+      <div class="img-wrap">
+        <img src="assets/fastshop-persona.webp" alt="Persona — Lucas Moreira, 29 anos" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Processo</div>
+    <h2 class="section-heading reveal reveal-d1">4 fases antes<br>de qualquer <span>proposta.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>O estudo foi estruturado para não partir de uma solução — mas de diagnóstico. Cada fase alimentou a próxima: a jornada atual revelou onde medir, a heurística revelou o que estava quebrado, o benchmarking revelou o quanto estava atrasado, e a síntese revelou onde agir primeiro.</p>
+    </div>
+
+    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
+      <div class="card-flat card-flat--left-signal">
+        <div class="card-flat__id card-flat__id--signal">Fase 1</div>
+        <div class="card-flat__title">Descoberta e contexto</div>
+        <div class="card-flat__body">Mapeamento da jornada atual, definição de 5 hipóteses e inventário de categorias. O escopo foi redefinido de search para navegação exploratória — a decisão mais importante do projeto.</div>
+      </div>
+      <div class="card-flat card-flat--left-signal">
+        <div class="card-flat__id card-flat__id--signal">Fase 2</div>
+        <div class="card-flat__title">Avaliação heurística</div>
+        <div class="card-flat__body">14 critérios avaliados em 4 dimensões — arquitetura da informação, interface, descoberta e curadoria. Diagnóstico completo com severidade por critério.</div>
+      </div>
+      <div class="card-flat card-flat--left-orange">
+        <div class="card-flat__id card-flat__id--orange">Fase 3</div>
+        <div class="card-flat__title">Benchmarking</div>
+        <div class="card-flat__body">Análise comparativa de 5 players — Fast Shop, Amazon, Mercado Livre, Magalu e Apple Store — em 6 dimensões de UX. Matriz comparativa com gaps identificados.</div>
+      </div>
+      <div class="card-flat card-flat--left-orange">
+        <div class="card-flat__id card-flat__id--orange">Fase 4</div>
+        <div class="card-flat__title">Síntese e oportunidades</div>
+        <div class="card-flat__body">Consolidação dos achados em três camadas de problema, mapa de 7 oportunidades priorizadas por impacto e proposta de redesign em alta fidelidade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARKING -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Benchmarking</div>
+    <h2 class="section-heading reveal reveal-d1">Todos chegam<br>em 2–3 toques.<br><span>A Fast Shop em 5.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>O dado mais direto do estudo: todos os concorrentes chegam ao produto em 2–3 toques. Apple Store com o "Today" editorial, Magalu com chips horizontais visíveis no home, Mercado Livre com grid visual de ícones. Nenhum concorrente brasileiro combina os três — essa é a janela de oportunidade.</p>
+    </div>
+
+    <div style="margin-top:40px" class="reveal reveal-d3">
+      <div class="screens-label">Toques até o produto — navegação por categoria</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-toquesporproduto.webp" alt="Comparativo de toques até o produto por player" loading="lazy">
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Scores por dimensão de UX</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-scoresUX.webp" alt="Scores por dimensão de UX — comparativo entre players" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHADOS -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">O que o estudo revelou</div>
+    <h2 class="section-heading reveal reveal-d1">Três camadas<br>de <span>problema.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>Os achados se organizam em três camadas que se alimentam — e precisam ser resolvidas nessa ordem.</p>
+    </div>
+
+    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">Estrutural</div>
+        <div class="card-flat__title card-flat__title--lg">Arquitetura de informação quebrada</div>
+        <div class="card-flat__body">Sobreposições, profundidade inconsistente, subcategorias sem agrupamento. O usuário não consegue prever onde vai chegar dependendo do caminho escolhido.</div>
+      </div>
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">Visual</div>
+        <div class="card-flat__title card-flat__title--lg">Interface sem suporte ao reconhecimento</div>
+        <div class="card-flat__body">Sem ícones, sem imagens, sem hierarquia de peso entre os itens. O usuário é obrigado a ler tudo para identificar qualquer coisa — num app com qualidade visual impecável no restante.</div>
+      </div>
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">Estratégico</div>
+        <div class="card-flat__title card-flat__title--lg">Sem resposta para o usuário exploratório</div>
+        <div class="card-flat__body">Sem porta de entrada, sem curadoria, sem personalização. Os concorrentes que resolveram isso chegam ao produto mais rápido e com menos esforço cognitivo.</div>
+      </div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Resultado</div>
+        <div class="card-flat__title card-flat__title--lg">36% dos critérios aprovados</div>
+        <div class="card-flat__body">Apenas 5 de 14 critérios heurísticos atingiram nota satisfatória. Os outros 9 representam oportunidades diretas rastreadas à proposta de redesign.</div>
+        <span class="badge badge--neutral">Meta: 78% na proposta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPOSTA -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">A proposta</div>
+    <h2 class="section-heading reveal reveal-d1">Três mudanças<br><span>conectadas.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>O redesign não parte do zero. A base estética e funcional já é sólida — qualidade visual, ficha técnica e clareza de navegação funcionam. O trabalho foi remover o que bloqueia a descoberta e adicionar o que cria desejo, sem destruir o que já diferencia.</p>
+    </div>
+
+    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">01</div>
+        <div class="card-flat__title card-flat__title--lg">Nav bar inferior redesenhada</div>
+        <div class="card-flat__body">O ícone de menu hambúrguer escondia a navegação por categorias. Substituído por um ícone de grid que comunica visualmente o que o usuário vai encontrar.</div>
+        <div class="card-flat__source" style="margin-top:var(--space-3)">Critério 10 — Suporte a intenções vagas · Nota 1/5</div>
+      </div>
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">02</div>
+        <div class="card-flat__title card-flat__title--lg">Tab de categorias reorganizada</div>
+        <div class="card-flat__body">Três zonas: descoberta ativa com trilho "Em alta agora" e ofertas, grid de 9 categorias com ícone e label, e trilho de marcas. De lista textual para navegação visual.</div>
+        <div class="card-flat__source" style="margin-top:var(--space-3)">Critérios 02, 03, 04, 06, 07, 10, 11, 12, 13</div>
+      </div>
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">03</div>
+        <div class="card-flat__title card-flat__title--lg">Fluxo dentro de categoria</div>
+        <div class="card-flat__body">Da tab redesenhada, um toque leva à listagem com breadcrumb de localização e filtros inline visíveis. De 4–5 toques para máximo 2.</div>
+        <div class="card-flat__source" style="margin-top:var(--space-3)">Critérios 03, 05 — Profundidade e orientação</div>
+      </div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Metodologia</div>
+        <div class="card-flat__title card-flat__title--lg">Wireframe → Alta fidelidade</div>
+        <div class="card-flat__body">Estrutura validada em wireframe antes da execução visual. Cada decisão de layout rastreada a um critério heurístico específico do diagnóstico.</div>
+        <div class="card-flat__source" style="margin-top:var(--space-3)">Síntese das 4 fases do estudo</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d3">
+      <div class="screens-label">Nav bar — antes e depois</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-navbar.webp" alt="Redesign da nav bar — comparativo antes e depois" loading="lazy">
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Wireframe da proposta</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-wifreframe.webp" alt="Wireframe — tab de categorias redesenhada" loading="lazy">
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
+      <div class="screens-label">Alta fidelidade — proposta final</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-telas.webp" alt="Telas em alta fidelidade — Fast Shop redesign" loading="lazy">
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
+      <div class="screens-label">Fluxo novo — breadcrumb e filtros inline</div>
+      <div class="img-wrap">
+        <img src="assets/fastshop-breadcrumb.webp" alt="Fluxo redesenhado — breadcrumb e listagem com filtros" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Impacto esperado</div>
+    <h2 class="section-heading reveal reveal-d1">Do diagnóstico<br>aos <span>números.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>Cada métrica está rastreada a um critério heurístico específico e a uma decisão de design concreta — não são estimativas genéricas, são consequências diretas das mudanças propostas.</p>
+    </div>
+
+    <div class="metrics-row reveal reveal-d3">
+      <div class="metric-box">
+        <div class="metric-num">2</div>
+        <div class="metric-label">Toques máx. até o produto</div>
+        <div class="metric-source">Antes: 4–5 toques</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">Suporte visual nas categorias</div>
+        <div class="metric-source">Antes: 0%</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">3</div>
+        <div class="metric-label">Trilhos de curadoria ativos</div>
+        <div class="metric-source">Antes: nenhum</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">78%</div>
+        <div class="metric-label">Critérios heurísticos aprovados</div>
+        <div class="metric-source">Antes: 36%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENCERRAMENTO -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Encerramento</div>
+    <h2 class="section-heading reveal reveal-d1">O que ficou<br>desse <span>estudo.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>O achado mais importante não foi um problema de interface — foi aprender a olhar além do que parece resolvido. A nota 4.8 e a qualidade visual do app criam uma camada de confiança que pode mascarar problemas estruturais sérios. O trabalho de um designer de produto é questionar exatamente esse tipo de ilusão.</p>
+      <p>A redefinição de escopo na Fase 1 — de search para navegação exploratória — foi a decisão mais importante do projeto. Sem ela, o estudo teria respondido uma pergunta menos relevante.</p>
+    </div>
+
+    <div class="callout callout--cyan reveal reveal-d3" style="margin-top:var(--space-10)">
+      <div class="callout__label">Próximo passo natural</div>
+      <div class="callout__text">O que ficou para uma próxima fase — e que o benchmarking mostrou claramente — é a <strong>personalização algorítmica</strong>. A Fast Shop tem os dados via Fast Prime. Ativar isso no front-end seria o movimento seguinte depois de resolver a descoberta.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__logo"><img src="assets/logo.svg" alt="opedro." /></div>
+  <div class="footer__links">
+    <a href="index.html">&#8592; Portfólio</a>
+  </div>
+  <div class="footer-dots">
+    <div class="fd" style="background:var(--color-signal)"></div>
+    <div class="fd" style="background:var(--color-lime)"></div>
+    <div class="fd" style="background:var(--color-orange)"></div>
+  </div>
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+var cursor=document.getElementById('cursor');
+var hasPointer=window.matchMedia('(pointer: fine)').matches;
+if(hasPointer){
+  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
+  document.querySelectorAll('a').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
+  });
+}
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+
+// Lightbox
+var lightbox=document.createElement('div');
+lightbox.id='lightbox';
+lightbox.style.cssText='display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.92);cursor:zoom-out;align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(8px)';
+var lightboxImg=document.createElement('img');
+lightboxImg.style.cssText='max-width:100%;max-height:100%;object-fit:contain;border:0.5px solid rgba(255,255,255,0.1);box-shadow:0 32px 80px rgba(0,0,0,0.6)';
+lightbox.appendChild(lightboxImg);
+document.body.appendChild(lightbox);
+document.querySelectorAll('.img-wrap img').forEach(function(img){
+  img.style.cursor='zoom-in';
+  img.addEventListener('click',function(){lightboxImg.src=this.src;lightboxImg.alt=this.alt;lightbox.style.display='flex';document.body.style.overflow='hidden';});
+});
+lightbox.addEventListener('click',function(){lightbox.style.display='none';document.body.style.overflow='';});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){lightbox.style.display='none';document.body.style.overflow='';}});
+</script>
+</body>
+</html>
