@@ -91,6 +91,28 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
   .metric-box{border-right:none;border-bottom:var(--border-default)}
   .metric-box:last-child{border-bottom:none}
 }
+
+/* BG CARDS */
+
+/* CARDS — outros projetos */
+.work-card{min-height:320px;border-radius:0;overflow:hidden;position:relative;display:block;transition:transform var(--duration-normal) var(--ease-out-expo);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--color-surface)}
+.work-card:hover{transform:translateY(-4px)}
+.work-card-inner{padding:28px;height:100%;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.work-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.work-tag{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-3)}
+.wt-white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)}
+.wt-dark{background:var(--color-border);color:var(--color-ash)}
+.work-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);letter-spacing:var(--tracking-tight);line-height:var(--leading-snug);color:var(--color-white)}
+.work-sub{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-top:var(--space-2);opacity:0.5;color:var(--color-white)}
+.work-arrow{width:36px;height:36px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;transition:transform var(--duration-normal) var(--ease-out-expo)}
+.wa-white{background:rgba(255,255,255,0.2)}
+
+
+/* BG CARDS — outros projetos */
+.wc-bg-fastshop{background-image:url('assets/fastshop-cover.webp') !important;background-size:cover !important;background-position:center !important}
+.wc-bg-cury{background-image:url('assets/cury-cover.webp') !important;background-size:cover !important;background-position:center !important}
+.wc-bg-wave{background-image:url('assets/wavebio-cover.webp') !important;background-size:cover !important;background-position:center !important}
+.wc-bg-spark{background-image:url('assets/spark-cover.webp') !important;background-size:cover !important;background-position:center !important}
 </style>
 </head>
 <body>
@@ -367,6 +389,55 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 </section>
 
 <!-- FOOTER — classes do DS -->
+
+<!-- OUTROS PROJETOS -->
+<section class="case-section" style="border-top:var(--border-default)">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Outros projetos</div>
+  </div>
+  <div class="work-grid-outros" style="margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <a class="work-card wc-bg-fastshop" href="fastshop.html" style="text-decoration:none">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
+      <div class="work-card-inner">
+        <div style="position:relative;z-index:1">
+          <span class="work-tag wt-white">UX Research · 2026</span>
+          <div class="work-title wt-w">Fast Shop<br>Redesign</div>
+          <div class="work-sub wt-w">UX Research · Benchmarking · UI</div>
+        </div>
+        <div class="work-bottom" style="position:relative;z-index:1">
+          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+    </a>
+    <a class="work-card wc-bg-wave" href="wavebio.html" style="text-decoration:none">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.95) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
+      <div class="work-card-inner">
+        <div style="position:relative;z-index:1">
+          <span class="work-tag wt-white">Product Design · 2026</span>
+          <div class="work-title wt-w">wave.bio</div>
+          <div class="work-sub wt-w">Link in bio · Conceito · Pesquisa</div>
+        </div>
+        <div class="work-bottom" style="position:relative;z-index:1">
+          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+    </a>
+    <a class="work-card wc-bg-spark" href="spark.html" style="text-decoration:none">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
+      <div class="work-card-inner">
+        <div style="position:relative;z-index:1">
+          <span class="work-tag wt-white">Product Design · 2026</span>
+          <div class="work-title wt-w">Spark<br>Chat Redesign</div>
+          <div class="work-sub wt-w">UX/UI · Chat · Creator &amp; Fã</div>
+        </div>
+        <div class="work-bottom" style="position:relative;z-index:1">
+          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer__logo"><img src="assets/logo.svg" alt="opedro." /></div>
   <div class="footer__links">
