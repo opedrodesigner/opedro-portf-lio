@@ -57,7 +57,7 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 .screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--wave)}
 
 /* MÉTRICAS */
-.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:var(--space-10);overflow:hidden;border:var(--border-default)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:var(--space-10);overflow:hidden;border:var(--border-default)}
 .metric-box{background:var(--color-surface);padding:28px 24px;border-right:var(--border-default)}
 .metric-box:last-child{border-right:none}
 .metric-num{font-family:var(--font-display);font-size:40px;font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:1;color:var(--wave);margin-bottom:var(--space-2)}
@@ -180,17 +180,12 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 <section class="case-section">
   <div class="section-inner">
     <div class="section-eyebrow reveal">Problema</div>
-    <h2 class="section-heading reveal reveal-d1">O link na bio<br>que <span>trabalha contra</span><br>o creator.</h2>
+    <h2 class="section-heading reveal reveal-d1">O link na bio que<br><span>trabalha contra o creator.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>Instagram e TikTok permitem apenas um link clicável na bio. Para creators que precisam direcionar sua audiência para múltiplos destinos, isso é uma limitação crítica de negócio. As ferramentas de link-in-bio surgiram para resolver essa dor — mas falharam em partes importantes do mercado.</p>
-      <p>O Linktree foi pioneiro em 2016 e hoje tem <strong>mais de 40 milhões de usuários</strong>. Mesmo assim, a pesquisa em 6.993 avaliações no Trustpilot revelou falhas graves — especialmente para dois grupos: creators de conteúdo adulto e o público brasileiro.</p>
+      <p>Instagram e TikTok permitem apenas um link clicável na bio. As ferramentas de link-in-bio surgiram para resolver essa limitação — mas falharam com partes importantes do mercado. A pesquisa em 6.993 avaliações no Trustpilot revelou um padrão: os maiores players atendem mal exatamente quem mais precisa da ferramenta.</p>
     </div>
 
-    <div class="callout callout--wave reveal reveal-d3">
-      <div class="callout__text" style="font-style:italic">"O Instagram não notifica o creator quando um link é removido ou quando o alcance é reduzido silenciosamente. O tráfego simplesmente some — e junto com ele, a receita."</div>
-    </div>
-
-    <div class="metrics-row reveal reveal-d4">
+    <div class="metrics-row reveal reveal-d3">
       <div class="metric-box">
         <div class="metric-num">40M+</div>
         <div class="metric-label">Usuários do Linktree</div>
@@ -198,7 +193,7 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
       </div>
       <div class="metric-box">
         <div class="metric-num">6.993</div>
-        <div class="metric-label">Reviews analisadas</div>
+        <div class="metric-label">Avaliações analisadas</div>
         <div class="metric-source">Trustpilot · pesquisa primária</div>
       </div>
       <div class="metric-box">
@@ -206,78 +201,53 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
         <div class="metric-label">Até por mês</div>
         <div class="metric-source">Planos pagos em dólar</div>
       </div>
+      <div class="metric-box">
+        <div class="metric-num">6</div>
+        <div class="metric-label">Competidores analisados</div>
+        <div class="metric-source">Benchmark direto</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- DORES -->
+<!-- DIAGNÓSTICO -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Pesquisa</div>
-    <h2 class="section-heading reveal reveal-d1">As sete<br>principais <span>dores.</span></h2>
+    <div class="section-eyebrow reveal">Diagnóstico</div>
+    <h2 class="section-heading reveal reveal-d1">Nenhum player<br><span>resolve tudo.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>A pesquisa cruzou avaliações do Trustpilot, G2, Capterra, Product Hunt, App Store, Play Store e fóruns no Reddit. Os padrões que emergiram revelaram um mercado que atende mal exatamente quem mais precisa da ferramenta.</p>
+      <p>A pesquisa cruzou avaliações do Trustpilot, G2, Capterra, Product Hunt, App Store, Play Store e fóruns no Reddit. O benchmark de 6 competidores revelou lacunas que nenhum produto atende de forma completa.</p>
     </div>
-    <div class="pain-grid">
-      <div class="card-flat card-flat--left-signal reveal reveal-d1">
-        <div class="card-flat__id card-flat__id--signal">Crítico</div>
+
+    <div class="pillar-grid">
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">Crítico</div>
         <div class="card-flat__title card-flat__title--lg">Banimento sem aviso</div>
         <div class="card-flat__body">O Linktree proíbe conteúdo adulto nos ToS mas não comunica isso no onboarding. Creators configuram tudo e descobrem a restrição só quando a conta é banida — sem suporte.</div>
       </div>
-      <div class="card-flat card-flat--left-signal reveal reveal-d2">
-        <div class="card-flat__id card-flat__id--signal">Crítico</div>
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">Crítico</div>
         <div class="card-flat__title card-flat__title--lg">Shadowban e links bloqueados</div>
         <div class="card-flat__body">Links diretos para OnlyFans ou Linktree podem ser bloqueados pelo Instagram. O in-app browser ainda bloqueia cookies e logins — quebrando o fluxo de conversão mesmo quando o link funciona.</div>
       </div>
-      <div class="card-flat card-flat--left-orange reveal reveal-d3">
-        <div class="card-flat__id card-flat__id--orange">Alto</div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Alto</div>
         <div class="card-flat__title card-flat__title--lg">Customização presa em paywall</div>
         <div class="card-flat__body">Com 40M de usuários, todas as páginas do Linktree parecem idênticas. Remover a marca, usar domínio próprio ou mudar fontes fica atrás de planos caros.</div>
       </div>
-      <div class="card-flat card-flat--left-orange reveal reveal-d4">
-        <div class="card-flat__id card-flat__id--orange">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">Taxas opacas</div>
-        <div class="card-flat__body">O Beacons cobra 9% sobre todas as vendas no plano gratuito. 34% das avaliações negativas mencionam taxas surpresa. Um creator vendendo R$1.000/mês paga R$90 em taxas — mais caro que o plano Pro da maioria dos concorrentes.</div>
-      </div>
-      <div class="card-flat card-flat--left-ash reveal reveal-d5">
-        <div class="card-flat__id card-flat__id--ash">Médio</div>
-        <div class="card-flat__title card-flat__title--lg">Analytics limitados no gratuito</div>
-        <div class="card-flat__body">Cliques, origem do tráfego e taxa de conversão ficam exclusivamente nos planos pagos. O creator não consegue entender o que funciona sem pagar.</div>
-      </div>
-      <div class="card-flat card-flat--left-ash reveal" style="transition-delay:.5s">
-        <div class="card-flat__id card-flat__id--ash">Médio</div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Alto</div>
         <div class="card-flat__title card-flat__title--lg">Mercado brasileiro ignorado</div>
-        <div class="card-flat__body">Todos os players cobram em dólar, nenhum tem suporte em português. O creator brasileiro paga preços desproporcionais ao poder de compra local — ou fica preso em planos gratuitos limitados.</div>
-      </div>
-      <div class="card-flat card-flat--left-ash reveal" style="transition-delay:.6s;grid-column:span 2">
-        <div class="card-flat__id card-flat__id--ash">Médio</div>
-        <div class="card-flat__title card-flat__title--lg">Falta de geo-block e controle de privacidade</div>
-        <div class="card-flat__body">Creators de conteúdo adulto frequentemente precisam bloquear regiões específicas por segurança pessoal. Nenhuma plataforma mainstream oferece esse recurso — apenas o GetAllMyLinks implementa geo-filter, de forma ainda limitada.</div>
+        <div class="card-flat__body">Todos os players cobram em dólar, nenhum tem suporte em português. O creator brasileiro paga preços desproporcionais — ou fica preso em planos gratuitos limitados.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- GAPS -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Oportunidade</div>
-    <h2 class="section-heading reveal reveal-d1">Nenhum player<br>resolve <span>tudo.</span></h2>
-    <div class="section-text reveal reveal-d2">
-      <p>O benchmark de 6 competidores diretos — Linktree, Beacons, AllMyLinks, Stan Store, MyOtherLink e GetAML — revelou lacunas claras que nenhum produto atende de forma completa.</p>
-    </div>
-    <div class="gap-grid">
-      <div class="card-flat reveal reveal-d1">
-        <div class="card-flat__title">Adult-friendly + customização</div>
-        <div class="card-flat__body">Nenhum produto combina ToS permissivo para conteúdo adulto com personalização visual forte numa única plataforma.</div>
-      </div>
-      <div class="card-flat reveal reveal-d2">
-        <div class="card-flat__title">Shield link nativo</div>
-        <div class="card-flat__body">Nenhum player mainstream oferece redirect inteligente que força abertura no browser nativo — proteção técnica contra o in-app browser do Instagram.</div>
-      </div>
-      <div class="card-flat reveal reveal-d3">
-        <div class="card-flat__title">Brasil como mercado real</div>
-        <div class="card-flat__body">Zero produtos com suporte em português, preço em reais ou construídos para a realidade econômica do creator brasileiro.</div>
+    <div class="callout callout--cyan reveal reveal-d4" style="margin-top:var(--space-10)">
+      <div class="callout__label">Gaps do benchmark — nenhum player resolve esses três</div>
+      <div class="callout__text">
+        <p style="margin-bottom:8px"><strong>Adult-friendly + customização:</strong> nenhum produto combina ToS permissivo com personalização visual forte numa única plataforma.</p>
+        <p style="margin-bottom:8px"><strong>Shield link nativo:</strong> nenhum player mainstream oferece redirect que força abertura no browser nativo — proteção contra o in-app browser do Instagram.</p>
+        <p><strong>Brasil como mercado real:</strong> zero produtos com suporte em português, preço em reais ou construídos para a realidade econômica do creator brasileiro.</p>
       </div>
     </div>
   </div>
@@ -287,30 +257,31 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 <section class="case-section">
   <div class="section-inner">
     <div class="section-eyebrow reveal">Produto</div>
-    <h2 class="section-heading reveal reveal-d1">Quatro <span>pilares</span><br>do wave.bio.</h2>
+    <h2 class="section-heading reveal reveal-d1">Quatro pilares<br><span>do wave.bio.</span></h2>
     <div class="section-text reveal reveal-d2">
       <p>O wave.bio foi desenhado em torno de quatro diferenciais — cada um resolvendo diretamente uma das falhas identificadas na pesquisa.</p>
     </div>
+
     <div class="pillar-grid">
-      <div class="card-flat card-flat--top-orange reveal reveal-d1">
+      <div class="card-flat card-flat--top-orange">
         <div class="card-flat__id card-flat__id--orange">Pilar 1</div>
-        <div class="card-flat__title">Shield link nativo</div>
-        <div class="card-flat__body">Todo link gerado passa por redirect inteligente que força abertura no browser nativo do celular — evitando o in-app browser do Instagram, que bloqueia cookies e logins, e reduzindo o risco de shadowban ao não expor o domínio de destino diretamente. Disponível em todos os planos.</div>
+        <div class="card-flat__title card-flat__title--lg">Shield link nativo</div>
+        <div class="card-flat__body">Todo link gerado passa por redirect inteligente que força abertura no browser nativo — evitando o in-app browser do Instagram e reduzindo risco de shadowban. Disponível em todos os planos.</div>
       </div>
-      <div class="card-flat card-flat--top-orange reveal reveal-d2">
+      <div class="card-flat card-flat--top-orange">
         <div class="card-flat__id card-flat__id--orange">Pilar 2</div>
-        <div class="card-flat__title">Customização visual real</div>
-        <div class="card-flat__body">Cores, fontes, layout e foto de perfil que refletem a identidade do creator. Customização básica disponível no plano gratuito — não uma página genérica igual a todos os outros 40 milhões de usuários do Linktree.</div>
+        <div class="card-flat__title card-flat__title--lg">Customização visual real</div>
+        <div class="card-flat__body">Cores, fontes, layout e foto de perfil que refletem a identidade do creator. Customização básica disponível no gratuito — não uma página genérica igual às outras 40 milhões.</div>
       </div>
-      <div class="card-flat card-flat--top-orange reveal reveal-d3">
+      <div class="card-flat card-flat--top-orange">
         <div class="card-flat__id card-flat__id--orange">Pilar 3</div>
-        <div class="card-flat__title">Analytics em camadas</div>
-        <div class="card-flat__body">Plano gratuito: total de visitas e cliques por link nos últimos 7 dias. Plano Pro: origem do tráfego, dispositivo, país/estado, horário de pico e histórico de 90 dias. Modelo que cria valor percebido claro e incentivo orgânico para upgrade.</div>
+        <div class="card-flat__title card-flat__title--lg">Analytics em camadas</div>
+        <div class="card-flat__body">Gratuito: visitas e cliques dos últimos 7 dias. Pro: origem do tráfego, dispositivo, país e horário de pico. Modelo que cria valor percebido claro e incentivo orgânico para upgrade.</div>
       </div>
-      <div class="card-flat card-flat--top-orange reveal reveal-d4">
+      <div class="card-flat card-flat--top-orange">
         <div class="card-flat__id card-flat__id--orange">Pilar 4</div>
-        <div class="card-flat__title">Preço justo em reais</div>
-        <div class="card-flat__body">Primeiro produto de link-in-bio com preços desenvolvidos para a realidade econômica brasileira, suporte em português e ToS explicitamente permissivo para creators de conteúdo adulto.</div>
+        <div class="card-flat__title card-flat__title--lg">Preço justo em reais</div>
+        <div class="card-flat__body">Primeiro produto de link-in-bio com preços desenvolvidos para a realidade econômica brasileira, suporte em português e ToS explicitamente permissivo para conteúdo adulto.</div>
       </div>
     </div>
   </div>
@@ -319,111 +290,92 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 <!-- TELAS -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Processo</div>
-    <h2 class="section-heading reveal reveal-d1">As telas<br>do <span>produto.</span></h2>
+    <div class="section-eyebrow reveal">Design</div>
+    <h2 class="section-heading reveal reveal-d1">As telas<br><span>do produto.</span></h2>
     <div class="section-text reveal reveal-d2">
       <p>O design do app foi pensado de ponta a ponta — do onboarding ao dashboard, passando pela gestão de links, analytics e página pública do creator.</p>
     </div>
-    <div style="margin-top:36px" class="reveal reveal-d2">
-      <div class="screens-label">Login e Cadastro</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Telas de login e criação de conta — com suporte a Google e foto de fundo dinâmica.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d3">
+      <div class="screens-label">Login e cadastro</div>
       <div class="img-wrap">
-        <img src="assets/wave-login-cadastro.webp" alt="Login e Cadastro — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-login-cadastro.webp" alt="Login e cadastro — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d2">
-      <div class="screens-label">Onboarding</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Três telas de apresentação dos pilares do produto — shield link, proteção contra shadowban e analytics.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d3">
+      <div class="screens-label">Onboarding — apresentação dos pilares</div>
       <div class="img-wrap">
-        <img src="assets/wave-onboarding.webp" alt="Onboarding — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-onboarding.webp" alt="Onboarding — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d3">
-      <div class="screens-label">Definição de perfil</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Seleção de nicho (incluindo +18 de forma explícita) e configuração do perfil público.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Definição de perfil — seleção de nicho</div>
       <div class="img-wrap">
-        <img src="assets/wave-definicao-perfil.webp" alt="Definição de perfil — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-definicao-perfil.webp" alt="Definição de perfil — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d1">
-      <div class="screens-label">Dashboard — Início</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Dashboard com preview da página, URL com cópia rápida, métricas do dia e lista de links.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Dashboard — início</div>
       <div class="img-wrap">
-        <img src="assets/wave-dashboard-inicio.webp" alt="Dashboard — Início — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-dashboard-inicio.webp" alt="Dashboard — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d2">
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
       <div class="screens-label">Adição e edição de links</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Bottom sheet com detecção automática de rede ao colar URL — Privacy, OnlyFans, Amazon e outros.</p>
-      </div>
       <div class="img-wrap">
-        <img src="assets/wave-adicao-edicao-links.webp" alt="Adição e edição de links — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-adicao-edicao-links.webp" alt="Adição e edição de links — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d3">
-      <div class="screens-label">Seção Links</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Gestão completa dos links com toggles, estados vazios e banner de upgrade para o Pro.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
+      <div class="screens-label">Seção de links — gestão completa</div>
       <div class="img-wrap">
-        <img src="assets/wave-secao-links.webp" alt="Seção Links — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-secao-links.webp" alt="Seção de links — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d1">
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
       <div class="screens-label">Analytics</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Analytics em camadas — plano free com dados básicos e Pro com origem de tráfego e horário de pico.</p>
-      </div>
       <div class="img-wrap">
-        <img src="assets/wave-analytics.webp" alt="Analytics — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-analytics.webp" alt="Analytics — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d2">
-      <div class="screens-label">Aparência</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Customização visual em tempo real — cores, estilos de botão, fontes e temas prontos no Pro.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
+      <div class="screens-label">Aparência — customização em tempo real</div>
       <div class="img-wrap">
-        <img src="assets/wave-aparencia.webp" alt="Aparência — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-aparencia.webp" alt="Aparência — wave.bio" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d3">
-      <div class="screens-label">Páginas públicas</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Variações de personalização da página pública — do plano free ao Pro com backgrounds customizados.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
+      <div class="screens-label">Páginas públicas — free e Pro</div>
       <div class="img-wrap">
-        <img src="assets/wave-paginas-publicas.webp" alt="Páginas públicas — wave.bio" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/wave-paginas-publicas.webp" alt="Páginas públicas — wave.bio" loading="lazy">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ENCERRAMENTO -->
+<!-- IMPACTO -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Encerramento</div>
-    <h2 class="section-heading reveal reveal-d1">O que esse<br>projeto <span>ensinou.</span></h2>
+    <div class="section-eyebrow reveal">Posicionamento</div>
+    <h2 class="section-heading reveal reveal-d1">Um nicho real<br><span>mal atendido.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>O wave.bio é um exercício completo de descoberta de produto — da pesquisa com fontes reais ao benchmark competitivo, da definição de posicionamento ao design do app. O projeto mostra como uma oportunidade de mercado pode ser identificada a partir de dados públicos e transformada em proposta de produto coerente.</p>
+      <p>Um produto não precisa inventar uma categoria para ser relevante — precisa encontrar quem está sendo mal atendido dentro de uma categoria já existente. O Linktree tem 40 milhões de usuários e ainda assim deixou um nicho inteiro desprotegido. Essa é a oportunidade.</p>
     </div>
-    <div class="callout callout--wave reveal reveal-d3">
-      <div class="callout__label">Aprendizado</div>
-      <div class="callout__text">Um produto não precisa inventar uma categoria para ser relevante — precisa encontrar <strong>quem está sendo mal atendido dentro de uma categoria já existente</strong>. O Linktree tem 40 milhões de usuários e ainda assim deixou um nicho inteiro desprotegido. Essa é a oportunidade.</div>
+
+    <div class="callout callout--cyan reveal reveal-d3" style="margin-top:var(--space-10)">
+      <div class="callout__label">Próximo passo</div>
+      <div class="callout__text">A validação do conceito viria de entrevistas com creators brasileiros de conteúdo adulto, mapeando a jornada real de uso de ferramentas de link-in-bio — e testando o onboarding e a proposta de valor do Shield link com usuários reais.</div>
     </div>
   </div>
 </section>
-
-<!-- FOOTER — classes do DS -->
 
 <!-- OUTROS PROJETOS -->
 <section class="case-section" style="border-top:var(--border-default)">

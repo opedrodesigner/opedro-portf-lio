@@ -129,7 +129,7 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
   <div class="case-hero-inner">
     <div class="hero-eyebrow">UX Research · Benchmarking · UI Design · 2026</div>
     <h1 class="hero-title">Fast Shop<br><span>Redesign.</span></h1>
-    <p class="hero-summary">O app mais bem avaliado do varejo brasileiro de eletrônicos e uma <strong>navegação exploratória quebrada</strong> num produto tecnicamente sólido.</p>
+    <p class="hero-summary">O problema não era a aparência do app. Era a <strong>distância entre intenção de compra e contato com produto</strong> — 4 a 5 toques numa lista textual, num app que compete por posicionamento premium.</p>
     <div class="hero-tags">
       <span class="hero-tag hero-tag--orange">UX Research</span>
       <span class="hero-tag">Arquitetura da Informação</span>
@@ -171,10 +171,10 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 <section class="case-section">
   <div class="section-inner">
     <div class="section-eyebrow reveal">Problema</div>
-    <h2 class="section-heading reveal reveal-d1">Quatro toques<br><span>até o produto.</span></h2>
+    <h2 class="section-heading reveal reveal-d1">A navegação que<br><span>escondia produtos.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>A Fast Shop é o app nacional mais próximo da Apple Store em estética e experiência — nota 4.8 na App Store, Apple Pay nativo, qualidade visual impecável. E escondia uma contradição direta: a tab de categorias era uma lista textual plana.</p>
-      <p>Sem ícones, sem imagens, sem hierarquia. O usuário precisava ler item por item e percorrer até <strong>4 níveis de subcategorias</strong> antes de ver qualquer produto. Num app que compete por posicionamento premium, isso é invisível — até você parar para medir.</p>
+      <p>A Fast Shop tem uma experiência visualmente refinada e consistente com seu posicionamento premium, mas a tab de categorias criava uma ruptura na jornada de descoberta. Em vez de aproximar o usuário dos produtos, ela funcionava como uma lista textual profunda — sem ícones, sem imagens, sem agrupamentos visuais, com múltiplas camadas de subcategorias antes da listagem.</p>
+      <p>O resultado: o usuário precisava interpretar a arquitetura da informação antes de começar a comprar. Num app de varejo, isso transforma uma área que deveria estimular descoberta num ponto de fricção.</p>
     </div>
 
     <div class="metrics-row reveal reveal-d3">
@@ -194,9 +194,9 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
         <div class="metric-source">Agrupamento, suporte visual, curadoria</div>
       </div>
       <div class="metric-box">
-        <div class="metric-num">5</div>
-        <div class="metric-label">Critérios de severidade alta</div>
-        <div class="metric-source">De 14 critérios avaliados</div>
+        <div class="metric-num">36%</div>
+        <div class="metric-label">Critérios heurísticos aprovados</div>
+        <div class="metric-source">5 de 14 · os outros 9 viraram oportunidades</div>
       </div>
     </div>
 
@@ -209,92 +209,13 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
   </div>
 </section>
 
-<!-- HIPÓTESES -->
+<!-- DIAGNÓSTICO -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Hipóteses</div>
-    <h2 class="section-heading reveal reveal-d1">O que o estudo<br>foi testar.</h2>
-    <div class="section-text reveal reveal-d2">
-      <p>Antes de qualquer proposta, três hipóteses foram definidas para guiar o olhar durante a pesquisa e o benchmarking — e todas se confirmaram ao longo do processo.</p>
-    </div>
-
-    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">H1</div>
-        <div class="card-flat__title">Profundidade reduz conversão</div>
-        <div class="card-flat__body">O alto número de camadas até o usuário ter contato com algum produto pode estar diminuindo a conversão — quanto mais passos antes do produto aparecer, maior a chance de abandono.</div>
-      </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">H2</div>
-        <div class="card-flat__title">Menos camadas, mais conversão</div>
-        <div class="card-flat__body">A redução de camadas do fluxo pode aumentar a conversão e diminuir o abandono de jornada — chegando ao produto mais rápido, o usuário mantém o interesse e completa a compra.</div>
-      </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">H3</div>
-        <div class="card-flat__title">Discovery aumenta ticket médio</div>
-        <div class="card-flat__body">Com contato mais fácil com diferentes produtos, o usuário pode comprar mais de um item por sessão — o funil fechado por categoria atual impede esse comportamento de discovery.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERSONA -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Persona</div>
-    <h2 class="section-heading reveal reveal-d1">Quem usa,<br>e o que <span>espera.</span></h2>
-    <div class="section-text reveal reveal-d2">
-      <p>O perfil do usuário Fast Shop é o de um comprador de tecnologia com alta intenção de compra e baixa tolerância a fricção. Ativa notificações de lançamento, paga via Apple Pay, e abandona o app se a informação não aparecer rápido o suficiente.</p>
-    </div>
-    <div style="margin-top:40px" class="reveal reveal-d3">
-      <div class="img-wrap">
-        <img src="assets/fastshop-persona.webp" alt="Persona — Lucas Moreira, 29 anos" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESSO -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Processo</div>
-    <h2 class="section-heading reveal reveal-d1">4 fases antes<br>de qualquer <span>proposta.</span></h2>
-    <div class="section-text reveal reveal-d2">
-      <p>O estudo foi estruturado para não partir de uma solução — mas de diagnóstico. Cada fase alimentou a próxima: a jornada atual revelou onde medir, a heurística revelou o que estava quebrado, o benchmarking revelou o quanto estava atrasado, e a síntese revelou onde agir primeiro.</p>
-    </div>
-
-    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
-      <div class="card-flat card-flat--left-signal">
-        <div class="card-flat__id card-flat__id--signal">Fase 1</div>
-        <div class="card-flat__title">Descoberta e contexto</div>
-        <div class="card-flat__body">Mapeamento da jornada atual, definição de 5 hipóteses e inventário de categorias. O escopo foi redefinido de search para navegação exploratória — a decisão mais importante do projeto.</div>
-      </div>
-      <div class="card-flat card-flat--left-signal">
-        <div class="card-flat__id card-flat__id--signal">Fase 2</div>
-        <div class="card-flat__title">Avaliação heurística</div>
-        <div class="card-flat__body">14 critérios avaliados em 4 dimensões — arquitetura da informação, interface, descoberta e curadoria. Diagnóstico completo com severidade por critério.</div>
-      </div>
-      <div class="card-flat card-flat--left-orange">
-        <div class="card-flat__id card-flat__id--orange">Fase 3</div>
-        <div class="card-flat__title">Benchmarking</div>
-        <div class="card-flat__body">Análise comparativa de 5 players — Fast Shop, Amazon, Mercado Livre, Magalu e Apple Store — em 6 dimensões de UX. Matriz comparativa com gaps identificados.</div>
-      </div>
-      <div class="card-flat card-flat--left-orange">
-        <div class="card-flat__id card-flat__id--orange">Fase 4</div>
-        <div class="card-flat__title">Síntese e oportunidades</div>
-        <div class="card-flat__body">Consolidação dos achados em três camadas de problema, mapa de 7 oportunidades priorizadas por impacto e proposta de redesign em alta fidelidade.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BENCHMARKING -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Benchmarking</div>
+    <div class="section-eyebrow reveal">Diagnóstico</div>
     <h2 class="section-heading reveal reveal-d1">Todos chegam<br>em 2–3 toques.<br><span>A Fast Shop em 5.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>O dado mais direto do estudo: todos os concorrentes chegam ao produto em 2–3 toques. Apple Store com o "Today" editorial, Magalu com chips horizontais visíveis no home, Mercado Livre com grid visual de ícones. Nenhum concorrente brasileiro combina os três — essa é a janela de oportunidade.</p>
+      <p>O dado mais direto do estudo: todos os concorrentes chegam ao produto em 2–3 toques. Apple Store com editorial "Today", Magalu com chips horizontais no home, Mercado Livre com grid visual de ícones. Nenhum concorrente brasileiro combina os três — essa é a janela de oportunidade.</p>
     </div>
 
     <div style="margin-top:40px" class="reveal reveal-d3">
@@ -304,25 +225,7 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
       </div>
     </div>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Scores por dimensão de UX</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-scoresUX.webp" alt="Scores por dimensão de UX — comparativo entre players" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ACHADOS -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">O que o estudo revelou</div>
-    <h2 class="section-heading reveal reveal-d1">Três camadas<br>de <span>problema.</span></h2>
-    <div class="section-text reveal reveal-d2">
-      <p>Os achados se organizam em três camadas que se alimentam — e precisam ser resolvidas nessa ordem.</p>
-    </div>
-
-    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
+    <div class="grid-content reveal reveal-d4" style="margin-top:var(--space-10)">
       <div class="card-flat card-flat--top-orange">
         <div class="card-flat__id card-flat__id--orange">Estrutural</div>
         <div class="card-flat__title card-flat__title--lg">Arquitetura de informação quebrada</div>
@@ -338,49 +241,58 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
         <div class="card-flat__title card-flat__title--lg">Sem resposta para o usuário exploratório</div>
         <div class="card-flat__body">Sem porta de entrada, sem curadoria, sem personalização. Os concorrentes que resolveram isso chegam ao produto mais rápido e com menos esforço cognitivo.</div>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Resultado</div>
-        <div class="card-flat__title card-flat__title--lg">36% dos critérios aprovados</div>
-        <div class="card-flat__body">Apenas 5 de 14 critérios heurísticos atingiram nota satisfatória. Os outros 9 representam oportunidades diretas rastreadas à proposta de redesign.</div>
-        <span class="badge badge--neutral">Meta: 78% na proposta</span>
+    </div>
+  </div>
+</section>
+
+<!-- HIPÓTESES -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Hipóteses</div>
+    <h2 class="section-heading reveal reveal-d1">O que o estudo<br>foi <span>testar.</span></h2>
+    <div class="section-text reveal reveal-d2">
+      <p>Duas hipóteses guiaram o olhar durante a pesquisa e o benchmarking. Ambas foram reforçadas pelo diagnóstico heurístico, mas ainda dependeriam de teste com usuários ou dados reais de produto para validação conclusiva.</p>
+    </div>
+
+    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">H1</div>
+        <div class="card-flat__title">Profundidade reduz descoberta</div>
+        <div class="card-flat__body">Se o usuário precisa atravessar muitas camadas antes de ver produtos, a navegação por categoria deixa de funcionar como exploração e passa a exigir esforço de busca — aumentando abandono e reduzindo exposição ao catálogo.</div>
+      </div>
+      <div class="card-flat card-flat--top-orange">
+        <div class="card-flat__id card-flat__id--orange">H2</div>
+        <div class="card-flat__title">Reconhecimento visual acelera decisão</div>
+        <div class="card-flat__body">Se categorias, marcas e ofertas forem apresentadas com suporte visual e hierarquia clara, o usuário tende a entender mais rápido para onde seguir e encontra produtos com menos esforço cognitivo.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROPOSTA -->
+<!-- SOLUÇÃO -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">A proposta</div>
-    <h2 class="section-heading reveal reveal-d1">Três mudanças<br><span>conectadas.</span></h2>
+    <div class="section-eyebrow reveal">Solução</div>
+    <h2 class="section-heading reveal reveal-d1">Três camadas<br><span>de decisão.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>O redesign não parte do zero. A base estética e funcional já é sólida — qualidade visual, ficha técnica e clareza de navegação funcionam. O trabalho foi remover o que bloqueia a descoberta e adicionar o que cria desejo, sem destruir o que já diferencia.</p>
+      <p>O redesign não parte do zero — a base estética e funcional já é sólida. O trabalho foi reorganizar a navegação por categorias em três níveis: entrada, descoberta e refinamento. Em vez de obrigar o usuário a atravessar camadas de subcategoria, a nova estrutura antecipa produtos, marcas e caminhos de compra.</p>
     </div>
 
     <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
       <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">01</div>
-        <div class="card-flat__title card-flat__title--lg">Nav bar inferior redesenhada</div>
+        <div class="card-flat__id card-flat__id--orange">Entrada</div>
+        <div class="card-flat__title card-flat__title--lg">Nav bar redesenhada</div>
         <div class="card-flat__body">O ícone de menu hambúrguer escondia a navegação por categorias. Substituído por um ícone de grid que comunica visualmente o que o usuário vai encontrar.</div>
-        <div class="card-flat__source" style="margin-top:var(--space-3)">Critério 10 — Suporte a intenções vagas · Nota 1/5</div>
       </div>
       <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">02</div>
+        <div class="card-flat__id card-flat__id--orange">Descoberta</div>
         <div class="card-flat__title card-flat__title--lg">Tab de categorias reorganizada</div>
-        <div class="card-flat__body">Três zonas: descoberta ativa com trilho "Em alta agora" e ofertas, grid de 9 categorias com ícone e label, e trilho de marcas. De lista textual para navegação visual.</div>
-        <div class="card-flat__source" style="margin-top:var(--space-3)">Critérios 02, 03, 04, 06, 07, 10, 11, 12, 13</div>
+        <div class="card-flat__body">Três zonas: trilho "Em alta agora" e ofertas, grid de 9 categorias com ícone e label, e trilho de marcas. De lista textual para navegação visual e exploratória.</div>
       </div>
       <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">03</div>
-        <div class="card-flat__title card-flat__title--lg">Fluxo dentro de categoria</div>
+        <div class="card-flat__id card-flat__id--orange">Refinamento</div>
+        <div class="card-flat__title card-flat__title--lg">Listagem com breadcrumb e filtros</div>
         <div class="card-flat__body">Da tab redesenhada, um toque leva à listagem com breadcrumb de localização e filtros inline visíveis. De 4–5 toques para máximo 2.</div>
-        <div class="card-flat__source" style="margin-top:var(--space-3)">Critérios 03, 05 — Profundidade e orientação</div>
-      </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Metodologia</div>
-        <div class="card-flat__title card-flat__title--lg">Wireframe → Alta fidelidade</div>
-        <div class="card-flat__body">Estrutura validada em wireframe antes da execução visual. Cada decisão de layout rastreada a um critério heurístico específico do diagnóstico.</div>
-        <div class="card-flat__source" style="margin-top:var(--space-3)">Síntese das 4 fases do estudo</div>
       </div>
     </div>
 
@@ -420,7 +332,7 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
     <div class="section-eyebrow reveal">Impacto esperado</div>
     <h2 class="section-heading reveal reveal-d1">Do diagnóstico<br>aos <span>números.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>Cada métrica está rastreada a um critério heurístico específico e a uma decisão de design concreta — não são estimativas genéricas, são consequências diretas das mudanças propostas.</p>
+      <p>Cada métrica está rastreada a um achado específico e a uma decisão de design concreta — não são estimativas genéricas, são consequências diretas das mudanças propostas. A validação real viria de um teste de usabilidade comparando o fluxo atual e o redesenhado.</p>
     </div>
 
     <div class="metrics-row reveal reveal-d3">
@@ -447,29 +359,11 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
     </div>
 
     <div class="callout callout--cyan reveal reveal-d4" style="margin-top:var(--space-10)">
-      <div class="callout__label">Expectativa de conversão</div>
-      <div class="callout__text">Com o usuário tendo contato com produtos em até 2 toques — contra os 4–5 atuais — a expectativa é de aumento direto na taxa de conversão. Menos camadas significam menos fricção e menos abandono de jornada. A exposição a múltiplos produtos via grid visual e trilhos de descoberta também abre espaço para compras não planejadas, algo que o fluxo atual, por ser um funil fechado por categoria, simplesmente não permite.</div>
+      <div class="callout__label">Próximo passo</div>
+      <div class="callout__text">Validar a proposta com teste de usabilidade comparando os dois fluxos — observando tempo até encontrar produto, taxa de conclusão da tarefa e percepção de clareza. O que o benchmarking mostrou claramente como próxima camada é a <strong>personalização algorítmica</strong>: a Fast Shop tem os dados via Fast Prime, e ativar isso no front-end seria o movimento seguinte depois de resolver a descoberta.</div>
     </div>
   </div>
 </section>
-
-<!-- ENCERRAMENTO -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Encerramento</div>
-    <h2 class="section-heading reveal reveal-d1">O que ficou<br>desse <span>estudo.</span></h2>
-    <div class="section-text reveal reveal-d2">
-      <p>O achado mais importante não foi um problema de interface — foi aprender a olhar além do que parece resolvido. A nota 4.8 e a qualidade visual do app criam uma camada de confiança que pode mascarar problemas estruturais sérios. O trabalho de um designer de produto é questionar exatamente esse tipo de ilusão.</p>
-      <p>A redefinição de escopo na Fase 1 — de search para navegação exploratória — foi a decisão mais importante do projeto. Sem ela, o estudo teria respondido uma pergunta menos relevante.</p>
-    </div>
-
-    <div class="callout callout--cyan reveal reveal-d3" style="margin-top:var(--space-10)">
-      <div class="callout__label">Próximo passo natural</div>
-      <div class="callout__text">O que ficou para uma próxima fase — e que o benchmarking mostrou claramente — é a <strong>personalização algorítmica</strong>. A Fast Shop tem os dados via Fast Prime. Ativar isso no front-end seria o movimento seguinte depois de resolver a descoberta.</div>
-    </div>
-  </div>
-</section>
-
 
 <!-- OUTROS PROJETOS -->
 <section class="case-section" style="border-top:var(--border-default)">

@@ -53,7 +53,7 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 .screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--color-cyan)}
 
 /* MÉTRICAS */
-.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:var(--space-10);border-radius:0;overflow:hidden;border:var(--border-default)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:var(--space-10);border-radius:0;overflow:hidden;border:var(--border-default)}
 .metric-box{background:var(--color-surface);padding:28px 24px;border-right:var(--border-default)}
 .metric-box:last-child{border-right:none}
 .metric-num{font-family:var(--font-display);font-size:40px;font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:1;color:var(--color-cyan);margin-bottom:var(--space-2)}
@@ -168,18 +168,19 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
   </div>
 </section>
 
-<!-- PESQUISA -->
+<!-- PROBLEMA -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Pesquisa</div>
-    <h2 class="section-heading reveal reveal-d1">O app que <span>não funciona</span><br>quando mais importa.</h2>
+    <div class="section-eyebrow reveal">Problema</div>
+    <h2 class="section-heading reveal reveal-d1">O app que não funciona<br><span>quando mais importa.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>O Cury Cliente atende compradores de imóvel na planta — um público com <strong>alta carga emocional</strong> e baixa familiaridade com apps financeiros. É o maior investimento de suas vidas. A pesquisa foi conduzida a partir de fontes públicas — <strong>App Store, Google Play e Reclame Aqui</strong> — e revelou um padrão preocupante.</p>
+      <p>O Cury Cliente atende compradores de imóvel na planta — o maior investimento de suas vidas. Com alta carga emocional e baixa familiaridade com apps financeiros, esse público tem tolerância zero para fricção. A pesquisa em fontes públicas revelou um padrão: o app falha exatamente no momento mais crítico da jornada.</p>
     </div>
+
     <div class="metrics-row reveal reveal-d3">
       <div class="metric-box">
-        <div class="metric-num">1,7</div>
-        <div class="metric-label">Nota App Store</div>
+        <div class="metric-num">1.7</div>
+        <div class="metric-label">Nota na App Store</div>
         <div class="metric-source">148 avaliações</div>
       </div>
       <div class="metric-box">
@@ -190,73 +191,55 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
       <div class="metric-box">
         <div class="metric-num">16d</div>
         <div class="metric-label">Tempo médio de resposta</div>
-        <div class="metric-source">Reclame Aqui · Set/25 a Fev/26</div>
+        <div class="metric-source">Reclame Aqui · Set/25–Fev/26</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num">2</div>
+        <div class="metric-label">Dores críticas identificadas</div>
+        <div class="metric-source">Onboarding + Chega Mais</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DORES -->
+<!-- DIAGNÓSTICO -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Dores mapeadas</div>
-    <h2 class="section-heading reveal reveal-d1">Seis dores,<br>duas <span>críticas.</span></h2>
+    <div class="section-eyebrow reveal">Diagnóstico</div>
+    <h2 class="section-heading reveal reveal-d1">Seis dores,<br><span>duas críticas.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>As dores foram classificadas por severidade e impacto emocional. As duas críticas têm algo em comum: acontecem exatamente no momento em que o comprador mais precisa do app — o que as tornou o ponto de partida natural para o redesign.</p>
+      <p>As dores foram classificadas por severidade e impacto emocional. As duas críticas têm algo em comum: acontecem exatamente no momento em que o comprador mais precisa do app.</p>
     </div>
+
     <div class="pain-grid">
-      <div class="card-flat card-flat--left-signal reveal reveal-d1">
+      <div class="card-flat card-flat--top-cyan">
         <div class="card-flat__id card-flat__id--signal">Crítico</div>
-        <div class="card-flat__title card-flat__title--lg">Onboarding quebrado — sem acesso após a compra</div>
+        <div class="card-flat__title card-flat__title--lg">Onboarding quebrado</div>
+        <div class="card-flat__body">Sem acesso ao app após a compra — o período de limbo entre assinatura do contrato e liberação digital gera ansiedade e reclamações em volume.</div>
       </div>
-      <div class="card-flat card-flat--left-signal reveal reveal-d2">
+      <div class="card-flat card-flat--top-cyan">
         <div class="card-flat__id card-flat__id--signal">Crítico</div>
-        <div class="card-flat__title card-flat__title--lg">Cadastro no Chega Mais — fluxo obscuro com prazo urgente</div>
+        <div class="card-flat__title card-flat__title--lg">Chega Mais — fluxo obscuro</div>
+        <div class="card-flat__body">Adesão ao programa de desconto enterrada num fluxo secundário com prazo urgente. O comprador descobre a funcionalidade tarde — ou não descobre.</div>
       </div>
-      <div class="card-flat card-flat--left-orange reveal reveal-d3">
-        <div class="card-flat__id card-flat__id--orange">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">App logado mas vazio — sem dados financeiros visíveis</div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Alto</div>
+        <div class="card-flat__title card-flat__title--lg">App logado mas vazio</div>
+        <div class="card-flat__body">Usuário consegue logar, mas não vê dados financeiros — só o nome do empreendimento. Cria percepção de app quebrado mesmo quando o problema é de sincronização.</div>
       </div>
-      <div class="card-flat card-flat--left-orange reveal reveal-d4">
-        <div class="card-flat__id card-flat__id--orange">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">Antecipação de parcela gera boleto sem confirmação</div>
-      </div>
-      <div class="card-flat card-flat--left-ash reveal reveal-d5">
-        <div class="card-flat__id card-flat__id--ash">Médio</div>
-        <div class="card-flat__title card-flat__title--lg">Login sem persistência de sessão</div>
-      </div>
-      <div class="card-flat card-flat--left-ash reveal" style="transition-delay:.5s">
-        <div class="card-flat__id card-flat__id--ash">Médio</div>
-        <div class="card-flat__title card-flat__title--lg">Regras do Chega Mais invisíveis e expectativa errada</div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Alto</div>
+        <div class="card-flat__title card-flat__title--lg">Boleto emitido sem confirmação</div>
+        <div class="card-flat__body">Simular antecipação de parcela gera boleto real sem aviso. Comportamento que quebra a confiança e gera reclamações com urgência financeira.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- EVIDÊNCIAS -->
-<section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Evidências qualitativas</div>
-    <h2 class="section-heading reveal reveal-d1">A voz de <span>quem comprou.</span></h2>
-    <div class="section-text reveal reveal-d2">
-      <p>Relatos reais de compradores em plataformas públicas — que traduzem o impacto emocional por trás dos números.</p>
-    </div>
-    <div class="quote-grid">
-      <div class="card-flat card-flat--top-muted reveal reveal-d1">
-        <div class="card-flat__quote">"Já se passou 1 mês da assinatura com a Cury e eu ainda não consigo usar o app. Na tela de Home, fica uma bolinha carregando infinitamente."</div>
-        <div class="card-flat__source">App Store</div>
-      </div>
-      <div class="card-flat card-flat--top-muted reveal reveal-d2">
-        <div class="card-flat__quote">"Meu aplicativo precisa funcionar para que eu faça a adesão ao programa Cury Chega Mais. Quanto mais demorar, maior o risco de eu perder o desconto."</div>
-        <div class="card-flat__source">Reclame Aqui</div>
-      </div>
-      <div class="card-flat card-flat--top-muted reveal reveal-d3">
-        <div class="card-flat__quote">"Consegui fazer o login, mas não aparece nenhuma informação financeira e nem nada, somente o nome do empreendimento."</div>
-        <div class="card-flat__source">App Store</div>
-      </div>
-      <div class="card-flat card-flat--top-muted reveal reveal-d4">
-        <div class="card-flat__quote">"Apenas fui simular uma antecipação para ver se valia a pena amortizar. Um boleto foi emitido em meu CPF sem meu consentimento."</div>
-        <div class="card-flat__source">Reclame Aqui</div>
+    <div class="callout callout--cyan reveal reveal-d4" style="margin-top:var(--space-10)">
+      <div class="callout__label">A voz de quem comprou</div>
+      <div class="callout__text">
+        <p style="margin-bottom:12px">"Já se passou 1 mês da assinatura com a Cury e eu ainda não consigo usar o app. Na tela de Home, fica uma bolinha carregando infinitamente." <strong style="opacity:0.6">— App Store</strong></p>
+        <p style="margin-bottom:12px">"Meu aplicativo precisa funcionar para que eu faça a adesão ao programa Cury Chega Mais. Quanto mais demorar, maior o risco de eu perder o desconto." <strong style="opacity:0.6">— Reclame Aqui</strong></p>
+        <p>"Apenas fui simular uma antecipação para ver se valia a pena amortizar. Um boleto foi emitido em meu CPF sem meu consentimento." <strong style="opacity:0.6">— Reclame Aqui</strong></p>
       </div>
     </div>
   </div>
@@ -266,34 +249,35 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 <section class="case-section">
   <div class="section-inner">
     <div class="section-eyebrow reveal">Hipóteses</div>
-    <h2 class="section-heading reveal reveal-d1">Quatro hipóteses,<br><span>todas adotadas.</span></h2>
+    <h2 class="section-heading reveal reveal-d1">O que o redesign<br>foi <span>testar.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>Com base nas dores mapeadas, foram levantadas quatro hipóteses de solução. Três delas são de implementação rápida — mudanças de produto que não dependem de backend. A quarta é estrutural e resolve o problema na raiz, mas requer integração entre sistemas. Todas foram adotadas em combinação no redesign.</p>
+      <p>Quatro hipóteses guiaram as decisões de design — três de implementação rápida, uma estrutural. Todas foram adotadas em combinação no redesign.</p>
     </div>
+
     <div class="hyp-grid">
-      <div class="card-flat card-flat--top-cyan reveal reveal-d1">
-        <div class="card-flat__id card-flat__id--cyan">H1</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">H1</div>
         <div class="card-flat__title">Sala de espera com propósito</div>
         <div class="card-flat__body">Em vez de loading infinito, uma tela de status com checklist visual das etapas de ativação — e botão de WhatsApp direto com o atendimento.</div>
-        <span class="badge badge--cyan">Rápida</span>
+        <span class="badge badge--signal" style="margin-top:var(--space-3)">Rápida</span>
       </div>
-      <div class="card-flat card-flat--top-cyan reveal reveal-d2">
-        <div class="card-flat__id card-flat__id--cyan">H2</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">H2</div>
         <div class="card-flat__title">Chega Mais como passo do onboarding</div>
         <div class="card-flat__body">A adesão ao programa deixa de ser fluxo escondido e passa a ser um passo explícito e guiado no primeiro acesso, com regras visíveis antes da ação.</div>
-        <span class="badge badge--cyan">Rápida</span>
+        <span class="badge badge--signal" style="margin-top:var(--space-3)">Rápida</span>
       </div>
-      <div class="card-flat card-flat--top-cyan reveal reveal-d3">
-        <div class="card-flat__id card-flat__id--cyan">H3</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">H3</div>
         <div class="card-flat__title">Provisionamento antecipado pelo CRM</div>
-        <div class="card-flat__body">O acesso digital deve ser criado no momento da assinatura do contrato, não após a confirmação do pagamento — eliminando o período de limbo relatado pelos usuários.</div>
-        <span class="badge badge--neutral">Estrutural</span>
+        <div class="card-flat__body">O acesso digital deve ser criado no momento da assinatura do contrato — eliminando o período de limbo. Requer integração entre sistemas.</div>
+        <span class="badge badge--neutral" style="margin-top:var(--space-3)">Estrutural</span>
       </div>
-      <div class="card-flat card-flat--top-cyan reveal reveal-d4">
-        <div class="card-flat__id card-flat__id--cyan">H4</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">H4</div>
         <div class="card-flat__title">Estado vazio com contexto real</div>
         <div class="card-flat__body">Quando dados não estão disponíveis, o app explica o motivo e informa o que esperar — eliminando a percepção de que o app está quebrado.</div>
-        <span class="badge badge--cyan">Rápida</span>
+        <span class="badge badge--signal" style="margin-top:var(--space-3)">Rápida</span>
       </div>
     </div>
   </div>
@@ -303,92 +287,104 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 <section class="case-section">
   <div class="section-inner">
     <div class="section-eyebrow reveal">Solução</div>
-    <h2 class="section-heading reveal reveal-d1">Redesign do <span>fluxo crítico.</span></h2>
+    <h2 class="section-heading reveal reveal-d1">Redesign do<br><span>fluxo crítico.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>O onboarding pós-compra foi redesenhado do zero — priorizando o momento mais crítico da jornada do comprador e resolvendo cada dor identificada na pesquisa.</p>
+      <p>O onboarding pós-compra foi redesenhado priorizando o momento mais crítico da jornada do comprador. Cada tela resolve uma dor específica identificada na pesquisa.</p>
     </div>
+
     <div class="solution-grid">
-      <div class="card-flat card-flat--top-lime reveal reveal-d1">
-        <div class="card-flat__eyebrow">Pós-login</div>
-        <div class="card-flat__title">Sala de espera com checklist de status</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">Pós-login</div>
+        <div class="card-flat__title card-flat__title--lg">Sala de espera com checklist</div>
         <div class="card-flat__body">Saudação personalizada, barra de progresso, checklist com três etapas visíveis, alerta sobre o Chega Mais e botão de ajuda via WhatsApp como CTA principal.</div>
       </div>
-      <div class="card-flat card-flat--top-lime reveal reveal-d2">
-        <div class="card-flat__eyebrow">Onboarding</div>
-        <div class="card-flat__title">Chega Mais como passo guiado</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">Onboarding</div>
+        <div class="card-flat__title card-flat__title--lg">Chega Mais como passo guiado</div>
         <div class="card-flat__body">Card dedicado com regras em destaque — ciclo de 6 meses, prazo de adesão, valor do desconto. Dois botões com hierarquia clara: aderir ou pular sem punição visual.</div>
       </div>
-      <div class="card-flat card-flat--top-lime reveal reveal-d3" style="grid-column:span 2">
-        <div class="card-flat__eyebrow">Home</div>
-        <div class="card-flat__title">Hierarquia de ações por urgência</div>
-        <div class="card-flat__body">Três níveis hierárquicos — Urgente (2ª via, negociação), Frequente (obra, Chega Mais, extrato) e Secundário (dicas, agenda). Chega Mais com badge "Novo" para novos aderentes.</div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">Home</div>
+        <div class="card-flat__title card-flat__title--lg">Hierarquia de ações por urgência</div>
+        <div class="card-flat__body">Três níveis — Urgente (2ª via, negociação), Frequente (obra, Chega Mais, extrato) e Secundário (dicas, agenda). Chega Mais com badge "Novo" para novos aderentes.</div>
+      </div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Novo</div>
+        <div class="card-flat__title card-flat__title--lg">Tela interna do Chega Mais</div>
+        <div class="card-flat__body">Funcionalidade inexistente no app atual. Acompanhamento de ciclo, parcelas pagas, desconto acumulado e histórico completo — eliminando dúvidas que hoje geram contato com o atendimento.</div>
       </div>
     </div>
 
-    <div style="margin-top:64px" class="reveal">
-      <div class="screens-label">Sala de espera</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Em vez de loading infinito, o usuário vê seu <strong>checklist de ativação em tempo real</strong> — contrato assinado, pagamento identificado e acesso sendo liberado. Botão de WhatsApp direto para quem precisar de ajuda.</p>
-      </div>
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Sala de espera — checklist de ativação</div>
       <div class="img-wrap">
-        <img src="assets/cury-onboarding.webp" alt="Sala de espera — ativação do acesso Cury" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/cury-sala-de-espera.webp" alt="Sala de espera com checklist — Cury Cliente" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal reveal-d5">
-      <div class="screens-label">Onboarding pós-compra</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Fluxo de boas-vindas contextualizado — com apresentação do app, <strong>Chega Mais como passo guiado</strong> e CTA final para entrar no app.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d4">
+      <div class="screens-label">Onboarding — Chega Mais como passo guiado</div>
       <div class="img-wrap">
-        <img src="assets/cury-sala-de-espera.webp" alt="Telas do onboarding pós-compra — Cury" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/cury-onboarding.webp" alt="Onboarding Chega Mais — Cury Cliente" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal">
-      <div class="screens-label">Redesign da home</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Ícones e layout modernizados com <strong>hierarquia clara de ações</strong> — 2ª via de boleto e andamento da obra em destaque, Chega Mais com badge "Novo" e funções secundárias agrupadas ao final.</p>
-      </div>
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
+      <div class="screens-label">Home redesenhada — hierarquia de ações</div>
       <div class="img-wrap">
-        <img src="assets/cury-home-redesign.webp" alt="Redesign da home — Cury Cliente" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/cury-home-redesign.webp" alt="Home redesenhada — Cury Cliente" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal">
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
       <div class="screens-label">Tela interna do Chega Mais</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Funcionalidade inexistente no app atual. O usuário passa a acompanhar <strong>ciclo, parcelas pagas, desconto acumulado e histórico completo</strong> — eliminando dúvidas que hoje geram contato desnecessário com o atendimento.</p>
-      </div>
       <div class="img-wrap">
-        <img src="assets/cury-chega-mais-tela.webp" alt="Tela interna do Cury Chega Mais" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/cury-chega-mais-tela.webp" alt="Tela interna do Chega Mais — Cury Cliente" loading="lazy">
       </div>
     </div>
-    <div style="margin-top:64px" class="reveal">
+
+    <div style="margin-top:48px" class="reveal reveal-d5">
       <div class="screens-label">Bottom sheets — status dos ciclos</div>
-      <div class="section-text reveal" style="margin-bottom:32px">
-        <p>Três estados possíveis ao abrir um ciclo do histórico: <strong>não pontuado</strong> (com mês exato do atraso), <strong>em progresso</strong> (com previsão e CTA para 2ª via) e <strong>benefício conquistado</strong> — eliminando a principal causa de contato com o atendimento.</p>
-      </div>
       <div class="img-wrap">
-        <img src="assets/cury-bottom-sheets.webp" alt="Bottom sheets de status dos ciclos — Cury Chega Mais" style="width:100%;max-width:1200px;display:block;margin:0 auto">
+        <img src="assets/cury-bottom-sheets.webp" alt="Bottom sheets — estados do ciclo Chega Mais" loading="lazy">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ENCERRAMENTO -->
+<!-- IMPACTO -->
 <section class="case-section">
   <div class="section-inner">
-    <div class="section-eyebrow reveal">Encerramento</div>
-    <h2 class="section-heading reveal reveal-d1">O que ficou<br>desse <span>estudo.</span></h2>
+    <div class="section-eyebrow reveal">Impacto esperado</div>
+    <h2 class="section-heading reveal reveal-d1">Da falha de confiança<br>à <span>clareza de produto.</span></h2>
     <div class="section-text reveal reveal-d2">
-      <p>O estudo resultou no mapeamento de dores do usuário, na identificação do fluxo prioritário e no redesign documentado do onboarding pós-compra e da tela interna do Chega Mais.</p>
+      <p>O redesign não resolve o problema de backend — mas elimina a percepção de que o app está quebrado enquanto o sistema processa. A validação real viria de teste com usuários no onboarding e análise de volume de chamados após o lançamento.</p>
     </div>
-    <div class="callout callout--cyan reveal reveal-d3">
-      <div class="callout__label">Aprendizado</div>
-      <div class="callout__text">Às vezes o maior problema de um produto não é o design — é o <strong>momento em que ele falha</strong>. Um app que quebra logo após a maior compra da vida de alguém não é só um bug de UX: é uma falha de confiança que contamina toda a relação com a marca.</div>
+
+    <div class="solution-grid">
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">01</div>
+        <div class="card-flat__title">Loading infinito eliminado</div>
+        <div class="card-flat__body">Substituído por checklist de status com progresso visível e CTA de suporte — transformando espera ansiosa em espera orientada.</div>
+      </div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">02</div>
+        <div class="card-flat__title">Chega Mais visível no primeiro acesso</div>
+        <div class="card-flat__body">De fluxo escondido para passo guiado do onboarding — com regras claras antes da ação e sem risco de perder o prazo.</div>
+      </div>
+      <div class="card-flat card-flat--top-cyan">
+        <div class="card-flat__id card-flat__id--signal">03</div>
+        <div class="card-flat__title">Redução de contato com atendimento</div>
+        <div class="card-flat__body">Tela do Chega Mais com histórico e estado dos ciclos responde as dúvidas que hoje chegam por WhatsApp e Reclame Aqui.</div>
+      </div>
+      <div class="card-flat card-flat--top-muted">
+        <div class="card-flat__id card-flat__id--ash">Próximo passo</div>
+        <div class="card-flat__title">Validação com usuários reais</div>
+        <div class="card-flat__body">Teste de usabilidade com compradores no período de onboarding — observando tempo para completar o cadastro, percepção de clareza e taxa de adesão ao Chega Mais.</div>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- FOOTER — classes do DS -->
 
 <!-- OUTROS PROJETOS -->
 <section class="case-section" style="border-top:var(--border-default)">
