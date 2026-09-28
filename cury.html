@@ -1,168 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="assets/opedrodesigner.png">
-<title>Cury UX Study — opedro.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cury UX Study · opedro.</title>
+<meta name="description" content="Estudo de UX do app Cury Cliente — identificando falhas críticas no onboarding pós-compra e propondo redesign do fluxo mais impactante para compradores de imóvel.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/ds-bridge.css">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-
-body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(--font-display);cursor:none;overflow-x:hidden}
-.cursor{position:fixed;width:12px;height:12px;background:var(--color-cyan);border-radius:var(--radius-full);pointer-events:none;z-index:var(--z-cursor);transform:translate(-50%,-50%);transition:width var(--duration-normal) var(--ease-out-expo),height var(--duration-normal) var(--ease-out-expo)}
-.cursor.hover{width:40px;height:40px;background:var(--color-cyan);mix-blend-mode:difference}
-
-/* NAV — transparente por padrão, ganha bg/blur no scroll */
-.nav{background:transparent!important;border-bottom-color:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transition:background var(--duration-normal) ease,border-color var(--duration-normal) ease,backdrop-filter var(--duration-normal) ease}
-.nav.scrolled{background:rgba(14,14,14,0.85)!important;border-bottom-color:var(--color-border)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
-
-/* HERO */
-.case-hero{padding:180px 48px 100px;position:relative;overflow:hidden;border-bottom:var(--border-default);background-image:url('assets/cury-cover.webp');background-size:cover;background-position:center}
-.case-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,14,14,0.75) 0%,rgba(14,14,14,0.88) 100%);pointer-events:none}
-.case-hero-inner{position:relative;z-index:1;max-width:720px}
-
-.hero-eyebrow{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-ash-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
-.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--color-cyan)}
-.hero-title{font-family:var(--font-display);font-size:clamp(44px,6vw,84px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
-.hero-title span{color:var(--color-cyan)}
-.hero-summary{max-width:600px;font-size:var(--text-md);line-height:var(--leading-relaxed);color:var(--color-ash-light);opacity:0;animation:fadeUp .8s .3s forwards}
-.hero-summary strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
-.hero-tags{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-8);opacity:0;animation:fadeUp .8s .4s forwards}
-.hero-tag{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-full);background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);color:var(--color-ash-light)}
-.hero-tag.t-cyan{background:rgba(0,229,255,0.08);border-color:rgba(0,229,255,0.25);color:var(--color-cyan)}
-
-.hero-back{position:absolute;top:100px;left:48px;z-index:2;display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--color-ash-light);text-decoration:none;transition:color var(--duration-fast) ease;opacity:0;animation:fadeUp .7s .05s forwards}
-.hero-back:hover{color:var(--color-text-primary)}
-
-/* SEÇÕES */
-.case-section{padding:var(--space-20) 48px}
-.case-section+.case-section{border-top:var(--border-default)}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-eyebrow{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-3)}
-.section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--color-cyan)}
-.section-heading{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.95;margin-bottom:var(--space-8)}
-.section-heading span{color:var(--color-cyan)}
-.section-text{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--color-ash-light);max-width:680px}
-.section-text strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
-.section-text p+p{margin-top:var(--space-4)}
-.screens-label{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-6);display:flex;align-items:center;gap:var(--space-3)}
-.screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--color-cyan)}
-
-/* MÉTRICAS */
-.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:var(--space-10);border-radius:0;overflow:hidden;border:var(--border-default)}
-.metric-box{background:var(--color-surface);padding:28px 24px;border-right:var(--border-default)}
-.metric-box:last-child{border-right:none}
-.metric-num{font-family:var(--font-display);font-size:40px;font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:1;color:var(--color-cyan);margin-bottom:var(--space-2)}
-.metric-label{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--color-text-secondary)}
-.metric-source{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-1)}
-
-/* GRIDS */
-.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-.hyp-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-
-/* IMAGENS */
-.img-wrap{border-radius:var(--radius-lg);overflow:hidden;border:var(--border-default);width:fit-content;margin:0 auto}
-.img-wrap img{width:100%;max-width:1200px;display:block;margin:0 auto}
-
-/* FOOTER DOTS */
-.footer-dots{display:flex;gap:var(--space-2);align-items:center}
-.fd{width:8px;height:8px;border-radius:var(--radius-full);flex-shrink:0;display:block}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s var(--ease-out-expo)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
-.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
-
-@media(max-width:768px){
-  body{cursor:auto}
-  .cursor{display:none}
-  .case-hero{padding:140px 20px 72px}
-  .hero-back{left:20px}
-  .case-section{padding:56px 20px}
-  .pain-grid,.quote-grid,.hyp-grid,.solution-grid{grid-template-columns:1fr}
-  .metrics-row{grid-template-columns:1fr}
-  .metric-box{border-right:none;border-bottom:var(--border-default)}
-  .metric-box:last-child{border-bottom:none}
-}
-
-/* BG CARDS */
-
-/* CARDS — outros projetos */
-.work-card{min-height:320px;border-radius:0;overflow:hidden;position:relative;display:block;transition:transform var(--duration-normal) var(--ease-out-expo);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--color-surface)}
-.work-card:hover{transform:translateY(-4px)}
-.work-card-inner{padding:28px;height:100%;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
-.work-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-.work-tag{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-3)}
-.wt-white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)}
-.wt-dark{background:var(--color-border);color:var(--color-ash)}
-.work-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);letter-spacing:var(--tracking-tight);line-height:var(--leading-snug);color:var(--color-white)}
-.work-sub{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-top:var(--space-2);opacity:0.5;color:var(--color-white)}
-.work-arrow{width:36px;height:36px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;transition:transform var(--duration-normal) var(--ease-out-expo)}
-.wa-white{background:rgba(255,255,255,0.2)}
-
-
-/* BG CARDS — outros projetos */
-.wc-bg-fastshop{background-image:url('assets/fastshop-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-cury{background-image:url('assets/cury-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-wave{background-image:url('assets/wavebio-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-spark{background-image:url('assets/spark-cover.webp') !important;background-size:cover !important;background-position:center !important}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-
-<!-- NAV — classes do DS -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav__logo">
-    <img src="assets/logo.svg" alt="opedro." />
-  </a>
-  <a href="index.html" class="btn btn--ghost btn--sm">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    Portfólio
-  </a>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="appbar">
+  <div class="container appbar__inner">
+    <a class="appbar__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="121" height="22"></a>
+    <nav class="appbar__links" aria-label="Principal">
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#como-trabalho">Como trabalho</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn--tonal btn--sm appbar__cta" href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener">Vamos conversar</a>
+    <button class="icon-btn appbar__menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span class="icon" aria-hidden="true">menu</span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+  <a href="index.html#projetos">Projetos</a>
+  <a href="index.html#sobre">Sobre</a>
+  <a href="index.html#como-trabalho">Como trabalho</a>
+  <a href="index.html#contato">Contato</a>
 </nav>
 
-<!-- HERO -->
+<main id="main" class="case case--agua">
+
 <section class="case-hero">
-  <a href="index.html" class="hero-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    Voltar
-  </a>
-  <div class="case-hero-inner">
-    <div>
-      <div class="hero-eyebrow">UX Study &#183; Cury Construtora &#183; 2026</div>
-      <h1 class="hero-title">Cury<br><span>UX Study.</span></h1>
-      <p class="hero-summary">Estudo de UX do app Cury Cliente — identificando falhas críticas no <strong>onboarding pós-compra</strong> e propondo redesign do fluxo mais impactante para compradores de imóvel.</p>
-      <div class="hero-tags">
-        <span class="hero-tag t-cyan">UX Research</span>
-        <span class="hero-tag">Product Design</span>
-        <span class="hero-tag">Estudo de Caso</span>
-        <span class="hero-tag">2026</span>
+  <div class="container">
+    <a class="btn btn--text case-hero__back" href="index.html#projetos"><span class="icon" aria-hidden="true">arrow_back</span>Todos os projetos</a>
+    <div class="case-cover">
+      <div class="case-cover__copy">
+        <p class="overline">UX Study &#183; Cury Construtora &#183; 2026</p>
+        <h1 class="display display--l">Cury<br><span>UX Study.</span></h1>
+        <p class="lede">Estudo de UX do app Cury Cliente — identificando falhas críticas no <strong>onboarding pós-compra</strong> e propondo redesign do fluxo mais impactante para compradores de imóvel.</p>
+        <div class="case-cover__tags"><span class="tag">UX Research</span><span class="tag">Product Design</span><span class="tag">Estudo de Caso</span><span class="tag">2026</span></div>
       </div>
+      <div class="case-cover__media"><img src="assets/img/cury-cover.webp" alt="" width="1600" height="1200" fetchpriority="high"></div>
     </div>
   </div>
 </section>
 
+
 <!-- CONTEXTO -->
-<section class="case-section" style="padding-top:56px;padding-bottom:56px">
-  <div class="section-inner">
-    <div class="grid-meta">
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Meu papel</div>
-        <div class="card-flat__title card-flat__title--lg">UX Researcher + Designer</div>
-        <div class="card-flat__body">Pesquisa de fontes públicas, mapeamento de dores e redesign completo do fluxo crítico.</div>
+<section class="case-meta" aria-label="Sobre o projeto">
+  <div class="container">
+    <div class="meta-grid">
+      <div class="card">
+        <p class="overline">Meu papel</p>
+        <h3 class="card__title card__title--lg">UX Researcher + Designer</h3>
+        <p>Pesquisa de fontes públicas, mapeamento de dores e redesign completo do fluxo crítico.</p>
       </div>
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Tipo</div>
-        <div class="card-flat__title card-flat__title--lg">Estudo de Caso</div>
-        <div class="card-flat__body">Baseado em App Store, Google Play e Reclame Aqui. Sem vínculo com a Cury Construtora.</div>
+      <div class="card">
+        <p class="overline">Tipo</p>
+        <h3 class="card__title card__title--lg">Estudo de Caso</h3>
+        <p>Baseado em App Store, Google Play e Reclame Aqui. Sem vínculo com a Cury Construtora.</p>
       </div>
     </div>
   </div>
@@ -170,33 +77,35 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- PROBLEMA -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Problema</div>
-    <h2 class="section-heading reveal reveal-d1">O app que não funciona<br><span>quando mais importa.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">01</span>Problema</p>
+      <h2 class="section-title">O app que não funciona<br><span class="dim">quando mais importa.</span></h2>
+      <div class="prose">
       <p>O Cury Cliente atende compradores de imóvel na planta — o maior investimento de suas vidas. Com alta carga emocional e baixa familiaridade com apps financeiros, esse público tem tolerância zero para fricção. A pesquisa em fontes públicas revelou um padrão: o app falha exatamente no momento mais crítico da jornada.</p>
     </div>
+    </header>
 
-    <div class="metrics-row reveal reveal-d3">
-      <div class="metric-box">
-        <div class="metric-num">1.7</div>
-        <div class="metric-label">Nota na App Store</div>
-        <div class="metric-source">148 avaliações</div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat__num">1.7</div>
+        <div class="stat__label">Nota na App Store</div>
+        <div class="stat__source">148 avaliações</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">2.940</div>
-        <div class="metric-label">Reclamações</div>
-        <div class="metric-source">Reclame Aqui · últimos 6 meses</div>
+      <div class="stat">
+        <div class="stat__num">2.940</div>
+        <div class="stat__label">Reclamações</div>
+        <div class="stat__source">Reclame Aqui · últimos 6 meses</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">16d</div>
-        <div class="metric-label">Tempo médio de resposta</div>
-        <div class="metric-source">Reclame Aqui · Set/25–Fev/26</div>
+      <div class="stat">
+        <div class="stat__num">16d</div>
+        <div class="stat__label">Tempo médio de resposta</div>
+        <div class="stat__source">Reclame Aqui · Set/25–Fev/26</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">2</div>
-        <div class="metric-label">Dores críticas identificadas</div>
-        <div class="metric-source">Onboarding + Chega Mais</div>
+      <div class="stat">
+        <div class="stat__num">2</div>
+        <div class="stat__label">Dores críticas identificadas</div>
+        <div class="stat__source">Onboarding + Chega Mais</div>
       </div>
     </div>
   </div>
@@ -204,42 +113,44 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- DIAGNÓSTICO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Diagnóstico</div>
-    <h2 class="section-heading reveal reveal-d1">Seis dores,<br><span>duas críticas.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">02</span>Diagnóstico</p>
+      <h2 class="section-title">Seis dores,<br><span class="dim">duas críticas.</span></h2>
+      <div class="prose">
       <p>As dores foram classificadas por severidade e impacto emocional. As duas críticas têm algo em comum: acontecem exatamente no momento em que o comprador mais precisa do app.</p>
     </div>
+    </header>
 
-    <div class="pain-grid">
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">Crítico</div>
-        <div class="card-flat__title card-flat__title--lg">Onboarding quebrado</div>
-        <div class="card-flat__body">Sem acesso ao app após a compra — o período de limbo entre assinatura do contrato e liberação digital gera ansiedade e reclamações em volume.</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag tag--error">Crítico</span>
+        <h3 class="card__title card__title--lg">Onboarding quebrado</h3>
+        <p>Sem acesso ao app após a compra — o período de limbo entre assinatura do contrato e liberação digital gera ansiedade e reclamações em volume.</p>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">Crítico</div>
-        <div class="card-flat__title card-flat__title--lg">Chega Mais — fluxo obscuro</div>
-        <div class="card-flat__body">Adesão ao programa de desconto enterrada num fluxo secundário com prazo urgente. O comprador descobre a funcionalidade tarde — ou não descobre.</div>
+      <div class="card">
+        <span class="tag tag--error">Crítico</span>
+        <h3 class="card__title card__title--lg">Chega Mais — fluxo obscuro</h3>
+        <p>Adesão ao programa de desconto enterrada num fluxo secundário com prazo urgente. O comprador descobre a funcionalidade tarde — ou não descobre.</p>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">App logado mas vazio</div>
-        <div class="card-flat__body">Usuário consegue logar, mas não vê dados financeiros — só o nome do empreendimento. Cria percepção de app quebrado mesmo quando o problema é de sincronização.</div>
+      <div class="card">
+        <span class="tag tag--warning">Alto</span>
+        <h3 class="card__title card__title--lg">App logado mas vazio</h3>
+        <p>Usuário consegue logar, mas não vê dados financeiros — só o nome do empreendimento. Cria percepção de app quebrado mesmo quando o problema é de sincronização.</p>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">Boleto emitido sem confirmação</div>
-        <div class="card-flat__body">Simular antecipação de parcela gera boleto real sem aviso. Comportamento que quebra a confiança e gera reclamações com urgência financeira.</div>
+      <div class="card">
+        <span class="tag tag--warning">Alto</span>
+        <h3 class="card__title card__title--lg">Boleto emitido sem confirmação</h3>
+        <p>Simular antecipação de parcela gera boleto real sem aviso. Comportamento que quebra a confiança e gera reclamações com urgência financeira.</p>
       </div>
     </div>
 
-    <div class="callout callout--cyan reveal reveal-d4" style="margin-top:var(--space-10)">
-      <div class="callout__label">A voz de quem comprou</div>
-      <div class="callout__text">
-        <p style="margin-bottom:12px">"Já se passou 1 mês da assinatura com a Cury e eu ainda não consigo usar o app. Na tela de Home, fica uma bolinha carregando infinitamente." <strong style="opacity:0.6">— App Store</strong></p>
-        <p style="margin-bottom:12px">"Meu aplicativo precisa funcionar para que eu faça a adesão ao programa Cury Chega Mais. Quanto mais demorar, maior o risco de eu perder o desconto." <strong style="opacity:0.6">— Reclame Aqui</strong></p>
-        <p>"Apenas fui simular uma antecipação para ver se valia a pena amortizar. Um boleto foi emitido em meu CPF sem meu consentimento." <strong style="opacity:0.6">— Reclame Aqui</strong></p>
+    <div class="quote-block reveal">
+      <div class="overline">A voz de quem comprou</div>
+      <div class="quote-block__body">
+        <p>"Já se passou 1 mês da assinatura com a Cury e eu ainda não consigo usar o app. Na tela de Home, fica uma bolinha carregando infinitamente." <cite>— App Store</cite></p>
+        <p>"Meu aplicativo precisa funcionar para que eu faça a adesão ao programa Cury Chega Mais. Quanto mais demorar, maior o risco de eu perder o desconto." <cite>— Reclame Aqui</cite></p>
+        <p>"Apenas fui simular uma antecipação para ver se valia a pena amortizar. Um boleto foi emitido em meu CPF sem meu consentimento." <cite>— Reclame Aqui</cite></p>
       </div>
     </div>
   </div>
@@ -247,37 +158,39 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- HIPÓTESES -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Hipóteses</div>
-    <h2 class="section-heading reveal reveal-d1">O que o redesign<br>foi <span>testar.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">03</span>Hipóteses</p>
+      <h2 class="section-title">O que o redesign<br>foi <span class="dim">testar.</span></h2>
+      <div class="prose">
       <p>Quatro hipóteses guiaram as decisões de design — três de implementação rápida, uma estrutural. Todas foram adotadas em combinação no redesign.</p>
     </div>
+    </header>
 
-    <div class="hyp-grid">
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">H1</div>
-        <div class="card-flat__title">Sala de espera com propósito</div>
-        <div class="card-flat__body">Em vez de loading infinito, uma tela de status com checklist visual das etapas de ativação — e botão de WhatsApp direto com o atendimento.</div>
-        <span class="badge badge--signal" style="margin-top:var(--space-3)">Rápida</span>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag tag--draft">H1</span>
+        <h3 class="card__title">Sala de espera com propósito</h3>
+        <p>Em vez de loading infinito, uma tela de status com checklist visual das etapas de ativação — e botão de WhatsApp direto com o atendimento.</p>
+        <span class="tag tag--new">Rápida</span>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">H2</div>
-        <div class="card-flat__title">Chega Mais como passo do onboarding</div>
-        <div class="card-flat__body">A adesão ao programa deixa de ser fluxo escondido e passa a ser um passo explícito e guiado no primeiro acesso, com regras visíveis antes da ação.</div>
-        <span class="badge badge--signal" style="margin-top:var(--space-3)">Rápida</span>
+      <div class="card">
+        <span class="tag tag--draft">H2</span>
+        <h3 class="card__title">Chega Mais como passo do onboarding</h3>
+        <p>A adesão ao programa deixa de ser fluxo escondido e passa a ser um passo explícito e guiado no primeiro acesso, com regras visíveis antes da ação.</p>
+        <span class="tag tag--new">Rápida</span>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">H3</div>
-        <div class="card-flat__title">Provisionamento antecipado pelo CRM</div>
-        <div class="card-flat__body">O acesso digital deve ser criado no momento da assinatura do contrato — eliminando o período de limbo. Requer integração entre sistemas.</div>
-        <span class="badge badge--neutral" style="margin-top:var(--space-3)">Estrutural</span>
+      <div class="card">
+        <span class="tag tag--draft">H3</span>
+        <h3 class="card__title">Provisionamento antecipado pelo CRM</h3>
+        <p>O acesso digital deve ser criado no momento da assinatura do contrato — eliminando o período de limbo. Requer integração entre sistemas.</p>
+        <span class="tag tag--draft">Estrutural</span>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">H4</div>
-        <div class="card-flat__title">Estado vazio com contexto real</div>
-        <div class="card-flat__body">Quando dados não estão disponíveis, o app explica o motivo e informa o que esperar — eliminando a percepção de que o app está quebrado.</div>
-        <span class="badge badge--signal" style="margin-top:var(--space-3)">Rápida</span>
+      <div class="card">
+        <span class="tag tag--draft">H4</span>
+        <h3 class="card__title">Estado vazio com contexto real</h3>
+        <p>Quando dados não estão disponíveis, o app explica o motivo e informa o que esperar — eliminando a percepção de que o app está quebrado.</p>
+        <span class="tag tag--new">Rápida</span>
       </div>
     </div>
   </div>
@@ -285,196 +198,152 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- SOLUÇÃO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Solução</div>
-    <h2 class="section-heading reveal reveal-d1">Redesign do<br><span>fluxo crítico.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">04</span>Solução</p>
+      <h2 class="section-title">Redesign do<br><span class="dim">fluxo crítico.</span></h2>
+      <div class="prose">
       <p>O onboarding pós-compra foi redesenhado priorizando o momento mais crítico da jornada do comprador. Cada tela resolve uma dor específica identificada na pesquisa.</p>
     </div>
+    </header>
 
-    <div class="solution-grid">
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">Pós-login</div>
-        <div class="card-flat__title card-flat__title--lg">Sala de espera com checklist</div>
-        <div class="card-flat__body">Saudação personalizada, barra de progresso, checklist com três etapas visíveis, alerta sobre o Chega Mais e botão de ajuda via WhatsApp como CTA principal.</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag tag--draft">Pós-login</span>
+        <h3 class="card__title card__title--lg">Sala de espera com checklist</h3>
+        <p>Saudação personalizada, barra de progresso, checklist com três etapas visíveis, alerta sobre o Chega Mais e botão de ajuda via WhatsApp como CTA principal.</p>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">Onboarding</div>
-        <div class="card-flat__title card-flat__title--lg">Chega Mais como passo guiado</div>
-        <div class="card-flat__body">Card dedicado com regras em destaque — ciclo de 6 meses, prazo de adesão, valor do desconto. Dois botões com hierarquia clara: aderir ou pular sem punição visual.</div>
+      <div class="card">
+        <span class="tag tag--draft">Onboarding</span>
+        <h3 class="card__title card__title--lg">Chega Mais como passo guiado</h3>
+        <p>Card dedicado com regras em destaque — ciclo de 6 meses, prazo de adesão, valor do desconto. Dois botões com hierarquia clara: aderir ou pular sem punição visual.</p>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">Home</div>
-        <div class="card-flat__title card-flat__title--lg">Hierarquia de ações por urgência</div>
-        <div class="card-flat__body">Três níveis — Urgente (2ª via, negociação), Frequente (obra, Chega Mais, extrato) e Secundário (dicas, agenda). Chega Mais com badge "Novo" para novos aderentes.</div>
+      <div class="card">
+        <span class="tag tag--draft">Home</span>
+        <h3 class="card__title card__title--lg">Hierarquia de ações por urgência</h3>
+        <p>Três níveis — Urgente (2ª via, negociação), Frequente (obra, Chega Mais, extrato) e Secundário (dicas, agenda). Chega Mais com badge "Novo" para novos aderentes.</p>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Novo</div>
-        <div class="card-flat__title card-flat__title--lg">Tela interna do Chega Mais</div>
-        <div class="card-flat__body">Funcionalidade inexistente no app atual. Acompanhamento de ciclo, parcelas pagas, desconto acumulado e histórico completo — eliminando dúvidas que hoje geram contato com o atendimento.</div>
+      <div class="card">
+        <span class="tag tag--draft">Novo</span>
+        <h3 class="card__title card__title--lg">Tela interna do Chega Mais</h3>
+        <p>Funcionalidade inexistente no app atual. Acompanhamento de ciclo, parcelas pagas, desconto acumulado e histórico completo — eliminando dúvidas que hoje geram contato com o atendimento.</p>
       </div>
     </div>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Sala de espera — checklist de ativação</div>
-      <div class="img-wrap">
-        <img src="assets/cury-sala-de-espera.webp" alt="Sala de espera com checklist — Cury Cliente" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Sala de espera com checklist — Cury Cliente"><img src="assets/img/cury-sala-de-espera.webp" alt="Sala de espera com checklist — Cury Cliente" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">01</span>Sala de espera — checklist de ativação</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Onboarding — Chega Mais como passo guiado</div>
-      <div class="img-wrap">
-        <img src="assets/cury-onboarding.webp" alt="Onboarding Chega Mais — Cury Cliente" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Onboarding Chega Mais — Cury Cliente"><img src="assets/img/cury-onboarding.webp" alt="Onboarding Chega Mais — Cury Cliente" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">02</span>Onboarding — Chega Mais como passo guiado</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Home redesenhada — hierarquia de ações</div>
-      <div class="img-wrap">
-        <img src="assets/cury-home-redesign.webp" alt="Home redesenhada — Cury Cliente" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Home redesenhada — Cury Cliente"><img src="assets/img/cury-home-redesign.webp" alt="Home redesenhada — Cury Cliente" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">03</span>Home redesenhada — hierarquia de ações</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Tela interna do Chega Mais</div>
-      <div class="img-wrap">
-        <img src="assets/cury-chega-mais-tela.webp" alt="Tela interna do Chega Mais — Cury Cliente" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Tela interna do Chega Mais — Cury Cliente"><img src="assets/img/cury-chega-mais-tela.webp" alt="Tela interna do Chega Mais — Cury Cliente" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">04</span>Tela interna do Chega Mais</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Bottom sheets — status dos ciclos</div>
-      <div class="img-wrap">
-        <img src="assets/cury-bottom-sheets.webp" alt="Bottom sheets — estados do ciclo Chega Mais" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Bottom sheets — estados do ciclo Chega Mais"><img src="assets/img/cury-bottom-sheets.webp" alt="Bottom sheets — estados do ciclo Chega Mais" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">05</span>Bottom sheets — status dos ciclos</figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- IMPACTO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Impacto esperado</div>
-    <h2 class="section-heading reveal reveal-d1">Da falha de confiança<br>à <span>clareza de produto.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">05</span>Impacto esperado</p>
+      <h2 class="section-title">Da falha de confiança<br>à <span class="dim">clareza de produto.</span></h2>
+      <div class="prose">
       <p>O redesign não resolve o problema de backend — mas elimina a percepção de que o app está quebrado enquanto o sistema processa. A validação real viria de teste com usuários no onboarding e análise de volume de chamados após o lançamento.</p>
     </div>
+    </header>
 
-    <div class="solution-grid">
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">01</div>
-        <div class="card-flat__title">Loading infinito eliminado</div>
-        <div class="card-flat__body">Substituído por checklist de status com progresso visível e CTA de suporte — transformando espera ansiosa em espera orientada.</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag tag--draft">01</span>
+        <h3 class="card__title">Loading infinito eliminado</h3>
+        <p>Substituído por checklist de status com progresso visível e CTA de suporte — transformando espera ansiosa em espera orientada.</p>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">02</div>
-        <div class="card-flat__title">Chega Mais visível no primeiro acesso</div>
-        <div class="card-flat__body">De fluxo escondido para passo guiado do onboarding — com regras claras antes da ação e sem risco de perder o prazo.</div>
+      <div class="card">
+        <span class="tag tag--draft">02</span>
+        <h3 class="card__title">Chega Mais visível no primeiro acesso</h3>
+        <p>De fluxo escondido para passo guiado do onboarding — com regras claras antes da ação e sem risco de perder o prazo.</p>
       </div>
-      <div class="card-flat card-flat--top-cyan">
-        <div class="card-flat__id card-flat__id--signal">03</div>
-        <div class="card-flat__title">Redução de contato com atendimento</div>
-        <div class="card-flat__body">Tela do Chega Mais com histórico e estado dos ciclos responde as dúvidas que hoje chegam por WhatsApp e Reclame Aqui.</div>
+      <div class="card">
+        <span class="tag tag--draft">03</span>
+        <h3 class="card__title">Redução de contato com atendimento</h3>
+        <p>Tela do Chega Mais com histórico e estado dos ciclos responde as dúvidas que hoje chegam por WhatsApp e Reclame Aqui.</p>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Próximo passo</div>
-        <div class="card-flat__title">Validação com usuários reais</div>
-        <div class="card-flat__body">Teste de usabilidade com compradores no período de onboarding — observando tempo para completar o cadastro, percepção de clareza e taxa de adesão ao Chega Mais.</div>
+      <div class="card">
+        <span class="tag tag--draft">Próximo passo</span>
+        <h3 class="card__title">Validação com usuários reais</h3>
+        <p>Teste de usabilidade com compradores no período de onboarding — observando tempo para completar o cadastro, percepção de clareza e taxa de adesão ao Chega Mais.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- OUTROS PROJETOS -->
-<section class="case-section" style="border-top:var(--border-default)">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Outros projetos</div>
-  </div>
-  <div class="work-grid-outros" style="margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-    <a class="work-card wc-bg-fastshop" href="fastshop.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">UX Research · 2026</span>
-          <div class="work-title wt-w">Fast Shop<br>Redesign</div>
-          <div class="work-sub wt-w">UX Research · Benchmarking · UI</div>
+
+<section class="next" aria-labelledby="next-title">
+  <div class="container">
+    <header class="section-head section-head--row">
+      <h2 class="section-title" id="next-title">Outros <span class="dim">projetos.</span></h2>
+      <a class="btn btn--outlined" href="index.html#projetos">Ver todos</a>
+    </header>
+    <div class="work-grid work-grid--3">
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/fastshop-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX Research</span><span class="tag tag--draft">Benchmarking</span><span class="tag tag--draft">UI</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="fastshop.html">Fast Shop Redesign</a></h3>
+          <p class="project__desc">Navegação por categorias do app reestruturada a partir de avaliação heurística e benchmarking com 5 players.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/wavebio-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">Product Design</span><span class="tag tag--draft">Conceito</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="wavebio.html">wave.bio</a></h3>
+          <p class="project__desc">Link in bio pensado para creators de conteúdo adulto, com proteção contra banimento desde o onboarding.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-      </div>
-    </a>
-    <a class="work-card wc-bg-wave" href="wavebio.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.95) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">Product Design · 2026</span>
-          <div class="work-title wt-w">wave.bio</div>
-          <div class="work-sub wt-w">Link in bio · Conceito · Pesquisa</div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/spark-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX/UI</span><span class="tag tag--draft">Chat</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="spark.html">Spark Chat Redesign</a></h3>
+          <p class="project__desc">Chat entre creator e fã alinhado aos padrões mobile, com toolbar compacta e menos fricção no envio.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-      </div>
-    </a>
-    <a class="work-card wc-bg-spark" href="spark.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">Product Design · 2026</span>
-          <div class="work-title wt-w">Spark<br>Chat Redesign</div>
-          <div class="work-sub wt-w">UX/UI · Chat · Creator &amp; Fã</div>
-        </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-      </div>
-    </a>
+      </article>
+    </div>
   </div>
 </section>
 
+</main>
 <footer class="footer">
-  <div class="footer__logo"><img src="assets/logo.svg" alt="opedro." /></div>
-  <div class="footer__links">
-    <a href="index.html">&#8592; Portfólio</a>
-  </div>
-  <div class="footer-dots">
-    <div class="fd" style="background:var(--color-signal)"></div>
-    <div class="fd" style="background:var(--color-lime)"></div>
-    <div class="fd" style="background:var(--color-cyan)"></div>
+  <div class="container footer__inner">
+    <a class="footer__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="99" height="18"></a>
+    <ul class="footer__links">
+      <li><a href="index.html#projetos">Projetos</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+    <span class="footer__copy">© 2026 Pedro Santos · Product Designer</span>
   </div>
 </footer>
-
-<script>
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
-var cursor=document.getElementById('cursor');
-var hasPointer=window.matchMedia('(pointer: fine)').matches;
-if(hasPointer){
-  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
-  document.querySelectorAll('a').forEach(function(el){
-    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
-    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
-  });
-}
-var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
-
-// Lightbox
-var lightbox=document.createElement('div');
-lightbox.id='lightbox';
-lightbox.style.cssText='display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.92);cursor:zoom-out;align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(8px)';
-var lightboxImg=document.createElement('img');
-lightboxImg.style.cssText='max-width:100%;max-height:100%;object-fit:contain;border:0.5px solid rgba(255,255,255,0.1);box-shadow:0 32px 80px rgba(0,0,0,0.6)';
-lightbox.appendChild(lightboxImg);
-document.body.appendChild(lightbox);
-document.querySelectorAll('.img-wrap img').forEach(function(img){
-  img.style.cursor='zoom-in';
-  img.addEventListener('click',function(){lightboxImg.src=this.src;lightboxImg.alt=this.alt;lightbox.style.display='flex';document.body.style.overflow='hidden';});
-});
-lightbox.addEventListener('click',function(){lightbox.style.display='none';document.body.style.overflow='';});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){lightbox.style.display='none';document.body.style.overflow='';}});
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

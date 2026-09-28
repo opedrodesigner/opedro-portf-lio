@@ -1,0 +1,124 @@
+/* ============================================================
+   opedro. — Design System v1 · tokens.css
+   Fonte: "Design System opedro" + "Manual de marca pessoal".
+   Taxonomia M3, valores das rampas OKLCH do manual.
+   Nenhum componente referencia hexadecimal direto — só tokens.
+   ============================================================ */
+
+:root {
+  /* ---------- Rampas (matéria-prima — não use direto em componente) */
+  --brand-50:#F0F6FF;  --brand-100:#DFECFF; --brand-200:#C4DCFF; --brand-300:#9FC5FF;
+  --brand-400:#639DFF; --brand-500:#035DFE; --brand-600:#0447DE; --brand-700:#0936B6;
+  --brand-800:#0B288E; --brand-900:#091B68; --brand-950:#061146;
+
+  --neutral-0:#FFFFFF;   --neutral-50:#F8FAFD;  --neutral-100:#F1F4F8; --neutral-200:#E2E7EC;
+  --neutral-300:#CED3DA; --neutral-400:#B4B9C1; --neutral-500:#989FA8; --neutral-600:#7D848E;
+  --neutral-700:#626A74; --neutral-800:#464E59; --neutral-900:#2C333E; --neutral-950:#171D26;
+  --neutral-1000:#070B11;
+
+  /* Cores de apoio — só uso gráfico, em bloco grande (capa de case, fundo de seção).
+     Nunca em nada clicável. Uma por peça. */
+  --violet-100:#F7DEFF; --violet-200:#F0C0FE; --violet-300:#E29AF9;
+  --violet-500:#A738C5; --violet-700:#701687; --violet-900:#3F014E;
+  --agua-100:#B9F5F5;   --agua-200:#7DE9EA;   --agua-300:#07D4D6;
+  --agua-500:#007F80;   --agua-700:#065656;   --agua-900:#002D2E;
+
+  /* ---------- Tipografia
+     Serif só em display/título ≥ 32px, só peso regular.
+     Sans em todo o resto. Mono só em token/medida/código. */
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans:  "Instrument Sans", Helvetica, Arial, sans-serif;
+  --font-mono:  "IBM Plex Mono", ui-monospace, monospace;
+
+  --type-display-xl: clamp(56px, 8.4vw, 124px); /* hero do portfolio */
+  --type-display-l:  clamp(44px, 5.6vw, 80px);  /* hero de case, contato */
+  --type-display-m:  clamp(36px, 4vw, 56px);    /* título de seção */
+  --type-title-l:    32px;                      /* título de card grande · serif */
+  --type-headline:   24px;                      /* sans 600 */
+  --type-title:      18px;                      /* sans 600 */
+  --type-body-l:     18px;
+  --type-body:       16px;
+  --type-body-s:     14px;
+  --type-label:      14px;                      /* sans 600 */
+  --type-overline:   12px;                      /* sans 600 · caixa alta · +12% */
+
+  --tracking-serif: -0.015em;
+  --tracking-overline: 0.12em;
+
+  /* ---------- Grid base 4px */
+  --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px; --space-32:128px;
+
+  --page-max: 1200px;
+  --page-gutter: clamp(16px, 4vw, 48px);
+  --section-y: clamp(72px, 10vw, 128px);
+
+  /* ---------- Shape — pill em clicável curto, retângulo arredondado em contêiner */
+  --radius-xs:4px; --radius-sm:8px; --radius-md:12px; --radius-card:16px;
+  --radius-lg:20px; --radius-xl:28px; --radius-full:999px;
+
+  /* ---------- Motion */
+  --ease-standard: cubic-bezier(.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(.05, .7, .1, 1);
+  --dur-fast: 150ms; --dur-normal: 250ms; --dur-slow: 500ms; --dur-enter: 700ms;
+}
+
+/* ---------- Tema claro (padrão) */
+:root, [data-theme="light"] {
+  --primary:#035DFE; --on-primary:#FFFFFF; --primary-hover:#0447DE; --primary-press:#0936B6;
+  --primary-container:#DFECFF; --on-primary-container:#0936B6; --primary-text:#0447DE;
+  --secondary:#171D26; --on-secondary:#FFFFFF; --secondary-hover:#2C333E;
+  --surface:#FFFFFF; --surface-low:#F8FAFD; --surface-mid:#F1F4F8; --surface-high:#E2E7EC;
+  --on-surface:#171D26; --on-surface-var:#464E59; --on-surface-dim:#626A74;
+  --outline:#7D848E; --outline-var:#CED3DA; --outline-faint:#E2E7EC;
+  --error:#CF4138; --on-error:#FFFFFF; --error-hover:#AB3128; --error-press:#84241A; --error-container:#FFF2F1; --on-error-container:#AB3128; --error-bd:#FFCAC5;
+  --success:#00924A; --success-container:#F0F8EF; --on-success-container:#005A30; --success-bd:#C1E4C4;
+  --warning:#DC9B2E; --warning-container:#FDF4EA; --on-warning-container:#624500; --warning-bd:#F2D4AF;
+  --scrim:rgba(7,11,17,.45);
+  --hover:rgba(23,29,38,.06); --press:rgba(23,29,38,.12); --disabled-ink:rgba(23,29,38,.38); --disabled-bg:rgba(23,29,38,.10);
+  --e1:0 1px 2px rgba(23,29,38,.06), 0 1px 3px rgba(23,29,38,.10);
+  --e2:0 2px 6px rgba(23,29,38,.06), 0 6px 16px -8px rgba(23,29,38,.20);
+  --e3:0 4px 10px rgba(23,29,38,.07), 0 16px 34px -14px rgba(23,29,38,.26);
+
+  /* Blocos de apoio (capa de case) */
+  --support-agua-bg:#B9F5F5;   --support-agua-ink:#002D2E;
+  --support-violet-bg:#F7DEFF; --support-violet-ink:#3F014E;
+
+  color-scheme: light;
+}
+
+/* ---------- Tema escuro — tokens prontos; o portfolio é desenhado no claro primeiro */
+[data-theme="dark"] {
+  --primary:#639DFF; --on-primary:#061146; --primary-hover:#9FC5FF; --primary-press:#C4DCFF;
+  --primary-container:#0B288E; --on-primary-container:#C4DCFF; --primary-text:#639DFF;
+  --secondary:#F8FAFD; --on-secondary:#070B11; --secondary-hover:#E2E7EC;
+  --surface:#070B11; --surface-low:#0E141C; --surface-mid:#171D26; --surface-high:#2C333E;
+  --on-surface:#F8FAFD; --on-surface-var:#CED3DA; --on-surface-dim:#B4B9C1;
+  --outline:#7D848E; --outline-var:#464E59; --outline-faint:#2C333E;
+  --error:#FEA79F; --on-error:#410F08; --error-hover:#FFCAC5; --error-press:#FFF2F1; --error-container:#410F08; --on-error-container:#FEA79F; --error-bd:#84241A;
+  --success:#99D2A1; --success-container:#002B16; --on-success-container:#99D2A1; --success-bd:#005A30;
+  --warning:#E7B87A; --warning-container:#2E2000; --on-warning-container:#E7B87A; --warning-bd:#624500;
+  --scrim:rgba(0,0,0,.6);
+  --hover:rgba(248,250,253,.08); --press:rgba(248,250,253,.14); --disabled-ink:rgba(248,250,253,.38); --disabled-bg:rgba(248,250,253,.10);
+  --e1:0 1px 2px rgba(0,0,0,.6); --e2:0 6px 16px -8px rgba(0,0,0,.8); --e3:0 16px 34px -14px rgba(0,0,0,.9);
+  --support-agua-bg:#065656;   --support-agua-ink:#B9F5F5;
+  --support-violet-bg:#3F014E; --support-violet-ink:#F7DEFF;
+  color-scheme: dark;
+}
+
+/* ---------- Alto contraste — o claro com texto no preto e sombra virando contorno */
+[data-theme="hc"] {
+  --primary:#0936B6; --on-primary:#FFFFFF; --primary-hover:#061146; --primary-press:#061146;
+  --primary-container:#DFECFF; --on-primary-container:#061146; --primary-text:#0936B6;
+  --secondary:#000000; --on-secondary:#FFFFFF; --secondary-hover:#171D26;
+  --surface:#FFFFFF; --surface-low:#FFFFFF; --surface-mid:#F1F4F8; --surface-high:#E2E7EC;
+  --on-surface:#000000; --on-surface-var:#171D26; --on-surface-dim:#2C333E;
+  --outline:#000000; --outline-var:#171D26; --outline-faint:#626A74;
+  --error:#AB3128; --on-error:#FFFFFF; --error-hover:#7A1F18; --error-press:#410F08; --error-container:#FFF2F1; --on-error-container:#7A1F18; --error-bd:#AB3128;
+  --success:#005A30; --success-container:#F0F8EF; --on-success-container:#00341B; --success-bd:#005A30;
+  --warning:#624500; --warning-container:#FDF4EA; --on-warning-container:#3D2B00; --warning-bd:#624500;
+  --scrim:rgba(0,0,0,.6);
+  --hover:rgba(0,0,0,.10); --press:rgba(0,0,0,.18); --disabled-ink:rgba(0,0,0,.52); --disabled-bg:rgba(0,0,0,.14);
+  --e1:0 0 0 1px #000000; --e2:0 0 0 1px #000000; --e3:0 0 0 2px #000000;
+}

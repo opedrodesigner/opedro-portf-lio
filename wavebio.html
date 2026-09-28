@@ -1,176 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="assets/opedrodesigner.png">
-<title>wave.bio — opedro.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wave.bio · opedro.</title>
+<meta name="description" content="Conceito de produto — uma ferramenta de link-in-bio feita para creators brasileiros, com proteção contra shadowban, personalização real e preço justo em reais.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/ds-bridge.css">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-:root{
-  /* Cor exclusiva desta página — alias de --color-orange */
-  --wave: var(--color-orange);
-}
-
-body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(--font-display);cursor:none;overflow-x:hidden}
-.cursor{position:fixed;width:12px;height:12px;background:var(--wave);border-radius:var(--radius-full);pointer-events:none;z-index:var(--z-cursor);transform:translate(-50%,-50%);transition:width var(--duration-normal) var(--ease-out-expo),height var(--duration-normal) var(--ease-out-expo)}
-.cursor.hover{width:40px;height:40px;mix-blend-mode:difference}
-
-/* NAV — transparente por padrão, ganha bg/blur no scroll */
-.nav{background:transparent!important;border-bottom-color:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transition:background var(--duration-normal) ease,border-color var(--duration-normal) ease,backdrop-filter var(--duration-normal) ease}
-.nav.scrolled{background:rgba(14,14,14,0.85)!important;border-bottom-color:var(--color-border)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
-
-/* HERO */
-.case-hero{padding:180px 48px 100px;position:relative;overflow:hidden;border-bottom:var(--border-default);background-image:url('assets/wavebio-cover.webp');background-size:cover;background-position:center}
-.case-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,14,14,0.75) 0%,rgba(14,14,14,0.88) 100%);pointer-events:none}
-.case-hero-inner{position:relative;z-index:1;max-width:720px}
-
-.hero-eyebrow{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-ash-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
-.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--wave)}
-.hero-title{font-family:var(--font-display);font-size:clamp(44px,6vw,84px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
-.hero-title span{color:var(--wave)}
-.hero-summary{max-width:600px;font-size:var(--text-md);line-height:var(--leading-relaxed);color:var(--color-ash-light);opacity:0;animation:fadeUp .8s .3s forwards}
-.hero-summary strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
-.hero-tags{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-8);opacity:0;animation:fadeUp .8s .4s forwards}
-.hero-tag{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-full);background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);color:var(--color-ash-light)}
-.hero-tag.t-wave{background:rgba(255,107,0,0.1);border-color:rgba(255,107,0,0.3);color:var(--wave)}
-
-.hero-back{position:absolute;top:100px;left:48px;z-index:2;display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--color-ash-light);text-decoration:none;transition:color var(--duration-fast) ease;opacity:0;animation:fadeUp .7s .05s forwards}
-.hero-back:hover{color:var(--color-text-primary)}
-
-/* SEÇÕES */
-.case-section{padding:var(--space-20) 48px}
-.case-section+.case-section{border-top:var(--border-default)}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-eyebrow{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-3)}
-.section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--wave)}
-.section-heading{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.95;margin-bottom:var(--space-8)}
-.section-heading span{color:var(--wave)}
-.section-text{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--color-ash-light);max-width:680px}
-.section-text strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
-.section-text p+p{margin-top:var(--space-4)}
-.screens-label{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-6);display:flex;align-items:center;gap:var(--space-3)}
-.screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--wave)}
-
-/* MÉTRICAS */
-.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:var(--space-10);overflow:hidden;border:var(--border-default)}
-.metric-box{background:var(--color-surface);padding:28px 24px;border-right:var(--border-default)}
-.metric-box:last-child{border-right:none}
-.metric-num{font-family:var(--font-display);font-size:40px;font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:1;color:var(--wave);margin-bottom:var(--space-2)}
-.metric-label{font-family:var(--font-ui);font-size:var(--text-xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--color-text-secondary)}
-.metric-source{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-1)}
-
-/* GRIDS */
-.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-.pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-.gap-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-3);margin-top:var(--space-10)}
-
-/* Callout variante wave/orange (cor exclusiva desta página) */
-.callout--wave{border-left:3px solid var(--wave)}
-
-/* IMAGENS */
-.img-wrap{border-radius:0;overflow:hidden;border:var(--border-default);width:fit-content;margin:0 auto}
-.img-wrap img{width:100%;max-width:1200px;display:block;margin:0 auto}
-
-/* FOOTER DOTS */
-.footer-dots{display:flex;gap:var(--space-2);align-items:center}
-.fd{width:8px;height:8px;border-radius:var(--radius-full);flex-shrink:0;display:block}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s var(--ease-out-expo)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
-.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
-
-@media(max-width:960px){
-  .pain-grid,.pillar-grid,.gap-grid{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  body{cursor:auto}
-  .cursor{display:none}
-  .case-hero{padding:140px 20px 72px}
-  .hero-back{left:20px}
-  .case-section{padding:56px 20px}
-  .metrics-row{grid-template-columns:1fr}
-  .metric-box{border-right:none;border-bottom:var(--border-default)}
-  .metric-box:last-child{border-bottom:none}
-}
-
-/* BG CARDS */
-
-/* CARDS — outros projetos */
-.work-card{min-height:320px;border-radius:0;overflow:hidden;position:relative;display:block;transition:transform var(--duration-normal) var(--ease-out-expo);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--color-surface)}
-.work-card:hover{transform:translateY(-4px)}
-.work-card-inner{padding:28px;height:100%;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
-.work-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-.work-tag{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-3)}
-.wt-white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)}
-.wt-dark{background:var(--color-border);color:var(--color-ash)}
-.work-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);letter-spacing:var(--tracking-tight);line-height:var(--leading-snug);color:var(--color-white)}
-.work-sub{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-top:var(--space-2);opacity:0.5;color:var(--color-white)}
-.work-arrow{width:36px;height:36px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;transition:transform var(--duration-normal) var(--ease-out-expo)}
-.wa-white{background:rgba(255,255,255,0.2)}
-
-
-/* BG CARDS — outros projetos */
-.wc-bg-fastshop{background-image:url('assets/fastshop-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-cury{background-image:url('assets/cury-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-wave{background-image:url('assets/wavebio-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-spark{background-image:url('assets/spark-cover.webp') !important;background-size:cover !important;background-position:center !important}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-
-<!-- NAV — classes do DS -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav__logo">
-    <img src="assets/logo.svg" alt="opedro." />
-  </a>
-  <a href="index.html" class="btn btn--ghost btn--sm">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    Portfólio
-  </a>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="appbar">
+  <div class="container appbar__inner">
+    <a class="appbar__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="121" height="22"></a>
+    <nav class="appbar__links" aria-label="Principal">
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#como-trabalho">Como trabalho</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn--tonal btn--sm appbar__cta" href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener">Vamos conversar</a>
+    <button class="icon-btn appbar__menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span class="icon" aria-hidden="true">menu</span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+  <a href="index.html#projetos">Projetos</a>
+  <a href="index.html#sobre">Sobre</a>
+  <a href="index.html#como-trabalho">Como trabalho</a>
+  <a href="index.html#contato">Contato</a>
 </nav>
 
-<!-- HERO -->
+<main id="main" class="case case--violet">
+
 <section class="case-hero">
-  <a href="index.html" class="hero-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    Voltar
-  </a>
-  <div class="case-hero-inner">
-    <div>
-      <div class="hero-eyebrow">Product Design &#183; Conceito &#183; 2026</div>
-      <h1 class="hero-title">wave.bio</h1>
-      <p class="hero-summary">Conceito de produto — uma ferramenta de link-in-bio feita para <strong>creators brasileiros</strong>, com proteção contra shadowban, personalização real e preço justo em reais.</p>
-      <div class="hero-tags">
-        <span class="hero-tag t-wave">Product Design</span>
-        <span class="hero-tag">Pesquisa de Mercado</span>
-        <span class="hero-tag">Conceito</span>
-        <span class="hero-tag">2026</span>
+  <div class="container">
+    <a class="btn btn--text case-hero__back" href="index.html#projetos"><span class="icon" aria-hidden="true">arrow_back</span>Todos os projetos</a>
+    <div class="case-cover">
+      <div class="case-cover__copy">
+        <p class="overline">Product Design &#183; Conceito &#183; 2026</p>
+        <h1 class="display display--l">wave.bio</h1>
+        <p class="lede">Conceito de produto — uma ferramenta de link-in-bio feita para <strong>creators brasileiros</strong>, com proteção contra shadowban, personalização real e preço justo em reais.</p>
+        <div class="case-cover__tags"><span class="tag">Product Design</span><span class="tag">Pesquisa de Mercado</span><span class="tag">Conceito</span><span class="tag">2026</span></div>
       </div>
+      <div class="case-cover__media"><img src="assets/img/wavebio-cover.webp" alt="" width="1600" height="1200" fetchpriority="high"></div>
     </div>
   </div>
 </section>
 
+
 <!-- CONTEXTO -->
-<section class="case-section" style="padding-top:56px;padding-bottom:56px">
-  <div class="section-inner">
-    <div class="grid-meta">
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Meu papel</div>
-        <div class="card-flat__title card-flat__title--lg">Product Designer</div>
-        <div class="card-flat__body">Pesquisa de mercado, benchmark competitivo, definição de produto e design do app.</div>
+<section class="case-meta" aria-label="Sobre o projeto">
+  <div class="container">
+    <div class="meta-grid">
+      <div class="card">
+        <p class="overline">Meu papel</p>
+        <h3 class="card__title card__title--lg">Product Designer</h3>
+        <p>Pesquisa de mercado, benchmark competitivo, definição de produto e design do app.</p>
       </div>
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Tipo</div>
-        <div class="card-flat__title card-flat__title--lg">Conceito de Produto</div>
-        <div class="card-flat__body">Projeto autoral — pesquisa baseada em fontes públicas reais.</div>
+      <div class="card">
+        <p class="overline">Tipo</p>
+        <h3 class="card__title card__title--lg">Conceito de Produto</h3>
+        <p>Projeto autoral — pesquisa baseada em fontes públicas reais.</p>
       </div>
     </div>
   </div>
@@ -178,33 +77,35 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- PROBLEMA -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Problema</div>
-    <h2 class="section-heading reveal reveal-d1">O link na bio que<br><span>trabalha contra o creator.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">01</span>Problema</p>
+      <h2 class="section-title">O link na bio que<br><span class="dim">trabalha contra o creator.</span></h2>
+      <div class="prose">
       <p>Instagram e TikTok permitem apenas um link clicável na bio. As ferramentas de link-in-bio surgiram para resolver essa limitação — mas falharam com partes importantes do mercado. A pesquisa em 6.993 avaliações no Trustpilot revelou um padrão: os maiores players atendem mal exatamente quem mais precisa da ferramenta.</p>
     </div>
+    </header>
 
-    <div class="metrics-row reveal reveal-d3">
-      <div class="metric-box">
-        <div class="metric-num">40M+</div>
-        <div class="metric-label">Usuários do Linktree</div>
-        <div class="metric-source">Maior player do mercado</div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat__num">40M+</div>
+        <div class="stat__label">Usuários do Linktree</div>
+        <div class="stat__source">Maior player do mercado</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">6.993</div>
-        <div class="metric-label">Avaliações analisadas</div>
-        <div class="metric-source">Trustpilot · pesquisa primária</div>
+      <div class="stat">
+        <div class="stat__num">6.993</div>
+        <div class="stat__label">Avaliações analisadas</div>
+        <div class="stat__source">Trustpilot · pesquisa primária</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">R$150</div>
-        <div class="metric-label">Até por mês</div>
-        <div class="metric-source">Planos pagos em dólar</div>
+      <div class="stat">
+        <div class="stat__num">R$150</div>
+        <div class="stat__label">Até por mês</div>
+        <div class="stat__source">Planos pagos em dólar</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">6</div>
-        <div class="metric-label">Competidores analisados</div>
-        <div class="metric-source">Benchmark direto</div>
+      <div class="stat">
+        <div class="stat__num">6</div>
+        <div class="stat__label">Competidores analisados</div>
+        <div class="stat__source">Benchmark direto</div>
       </div>
     </div>
   </div>
@@ -212,41 +113,43 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- DIAGNÓSTICO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Diagnóstico</div>
-    <h2 class="section-heading reveal reveal-d1">Nenhum player<br><span>resolve tudo.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">02</span>Diagnóstico</p>
+      <h2 class="section-title">Nenhum player<br><span class="dim">resolve tudo.</span></h2>
+      <div class="prose">
       <p>A pesquisa cruzou avaliações do Trustpilot, G2, Capterra, Product Hunt, App Store, Play Store e fóruns no Reddit. O benchmark de 6 competidores revelou lacunas que nenhum produto atende de forma completa.</p>
     </div>
+    </header>
 
-    <div class="pillar-grid">
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Crítico</div>
-        <div class="card-flat__title card-flat__title--lg">Banimento sem aviso</div>
-        <div class="card-flat__body">O Linktree proíbe conteúdo adulto nos ToS mas não comunica isso no onboarding. Creators configuram tudo e descobrem a restrição só quando a conta é banida — sem suporte.</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag tag--error">Crítico</span>
+        <h3 class="card__title card__title--lg">Banimento sem aviso</h3>
+        <p>O Linktree proíbe conteúdo adulto nos ToS mas não comunica isso no onboarding. Creators configuram tudo e descobrem a restrição só quando a conta é banida — sem suporte.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Crítico</div>
-        <div class="card-flat__title card-flat__title--lg">Shadowban e links bloqueados</div>
-        <div class="card-flat__body">Links diretos para OnlyFans ou Linktree podem ser bloqueados pelo Instagram. O in-app browser ainda bloqueia cookies e logins — quebrando o fluxo de conversão mesmo quando o link funciona.</div>
+      <div class="card">
+        <span class="tag tag--error">Crítico</span>
+        <h3 class="card__title card__title--lg">Shadowban e links bloqueados</h3>
+        <p>Links diretos para OnlyFans ou Linktree podem ser bloqueados pelo Instagram. O in-app browser ainda bloqueia cookies e logins — quebrando o fluxo de conversão mesmo quando o link funciona.</p>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">Customização presa em paywall</div>
-        <div class="card-flat__body">Com 40M de usuários, todas as páginas do Linktree parecem idênticas. Remover a marca, usar domínio próprio ou mudar fontes fica atrás de planos caros.</div>
+      <div class="card">
+        <span class="tag tag--warning">Alto</span>
+        <h3 class="card__title card__title--lg">Customização presa em paywall</h3>
+        <p>Com 40M de usuários, todas as páginas do Linktree parecem idênticas. Remover a marca, usar domínio próprio ou mudar fontes fica atrás de planos caros.</p>
       </div>
-      <div class="card-flat card-flat--top-muted">
-        <div class="card-flat__id card-flat__id--ash">Alto</div>
-        <div class="card-flat__title card-flat__title--lg">Mercado brasileiro ignorado</div>
-        <div class="card-flat__body">Todos os players cobram em dólar, nenhum tem suporte em português. O creator brasileiro paga preços desproporcionais — ou fica preso em planos gratuitos limitados.</div>
+      <div class="card">
+        <span class="tag tag--warning">Alto</span>
+        <h3 class="card__title card__title--lg">Mercado brasileiro ignorado</h3>
+        <p>Todos os players cobram em dólar, nenhum tem suporte em português. O creator brasileiro paga preços desproporcionais — ou fica preso em planos gratuitos limitados.</p>
       </div>
     </div>
 
-    <div class="callout callout--cyan reveal reveal-d4" style="margin-top:var(--space-10)">
-      <div class="callout__label">Gaps do benchmark — nenhum player resolve esses três</div>
-      <div class="callout__text">
-        <p style="margin-bottom:8px"><strong>Adult-friendly + customização:</strong> nenhum produto combina ToS permissivo com personalização visual forte numa única plataforma.</p>
-        <p style="margin-bottom:8px"><strong>Shield link nativo:</strong> nenhum player mainstream oferece redirect que força abertura no browser nativo — proteção contra o in-app browser do Instagram.</p>
+    <div class="quote-block reveal">
+      <div class="overline">Gaps do benchmark — nenhum player resolve esses três</div>
+      <div class="quote-block__body">
+        <p><strong>Adult-friendly + customização:</strong> nenhum produto combina ToS permissivo com personalização visual forte numa única plataforma.</p>
+        <p><strong>Shield link nativo:</strong> nenhum player mainstream oferece redirect que força abertura no browser nativo — proteção contra o in-app browser do Instagram.</p>
         <p><strong>Brasil como mercado real:</strong> zero produtos com suporte em português, preço em reais ou construídos para a realidade econômica do creator brasileiro.</p>
       </div>
     </div>
@@ -255,33 +158,35 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- PRODUTO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Produto</div>
-    <h2 class="section-heading reveal reveal-d1">Quatro pilares<br><span>do wave.bio.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">03</span>Produto</p>
+      <h2 class="section-title">Quatro pilares<br><span class="dim">do wave.bio.</span></h2>
+      <div class="prose">
       <p>O wave.bio foi desenhado em torno de quatro diferenciais — cada um resolvendo diretamente uma das falhas identificadas na pesquisa.</p>
     </div>
+    </header>
 
-    <div class="pillar-grid">
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Pilar 1</div>
-        <div class="card-flat__title card-flat__title--lg">Shield link nativo</div>
-        <div class="card-flat__body">Todo link gerado passa por redirect inteligente que força abertura no browser nativo — evitando o in-app browser do Instagram e reduzindo risco de shadowban. Disponível em todos os planos.</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag tag--draft">Pilar 1</span>
+        <h3 class="card__title card__title--lg">Shield link nativo</h3>
+        <p>Todo link gerado passa por redirect inteligente que força abertura no browser nativo — evitando o in-app browser do Instagram e reduzindo risco de shadowban. Disponível em todos os planos.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Pilar 2</div>
-        <div class="card-flat__title card-flat__title--lg">Customização visual real</div>
-        <div class="card-flat__body">Cores, fontes, layout e foto de perfil que refletem a identidade do creator. Customização básica disponível no gratuito — não uma página genérica igual às outras 40 milhões.</div>
+      <div class="card">
+        <span class="tag tag--draft">Pilar 2</span>
+        <h3 class="card__title card__title--lg">Customização visual real</h3>
+        <p>Cores, fontes, layout e foto de perfil que refletem a identidade do creator. Customização básica disponível no gratuito — não uma página genérica igual às outras 40 milhões.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Pilar 3</div>
-        <div class="card-flat__title card-flat__title--lg">Analytics em camadas</div>
-        <div class="card-flat__body">Gratuito: visitas e cliques dos últimos 7 dias. Pro: origem do tráfego, dispositivo, país e horário de pico. Modelo que cria valor percebido claro e incentivo orgânico para upgrade.</div>
+      <div class="card">
+        <span class="tag tag--draft">Pilar 3</span>
+        <h3 class="card__title card__title--lg">Analytics em camadas</h3>
+        <p>Gratuito: visitas e cliques dos últimos 7 dias. Pro: origem do tráfego, dispositivo, país e horário de pico. Modelo que cria valor percebido claro e incentivo orgânico para upgrade.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Pilar 4</div>
-        <div class="card-flat__title card-flat__title--lg">Preço justo em reais</div>
-        <div class="card-flat__body">Primeiro produto de link-in-bio com preços desenvolvidos para a realidade econômica brasileira, suporte em português e ToS explicitamente permissivo para conteúdo adulto.</div>
+      <div class="card">
+        <span class="tag tag--draft">Pilar 4</span>
+        <h3 class="card__title card__title--lg">Preço justo em reais</h3>
+        <p>Primeiro produto de link-in-bio com preços desenvolvidos para a realidade econômica brasileira, suporte em português e ToS explicitamente permissivo para conteúdo adulto.</p>
       </div>
     </div>
   </div>
@@ -289,168 +194,131 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- TELAS -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Design</div>
-    <h2 class="section-heading reveal reveal-d1">As telas<br><span>do produto.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">04</span>Design</p>
+      <h2 class="section-title">As telas<br><span class="dim">do produto.</span></h2>
+      <div class="prose">
       <p>O design do app foi pensado de ponta a ponta — do onboarding ao dashboard, passando pela gestão de links, analytics e página pública do creator.</p>
     </div>
+    </header>
 
-    <div style="margin-top:48px" class="reveal reveal-d3">
-      <div class="screens-label">Login e cadastro</div>
-      <div class="img-wrap">
-        <img src="assets/wave-login-cadastro.webp" alt="Login e cadastro — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Login e cadastro — wave.bio"><img src="assets/img/wave-login-cadastro.webp" alt="Login e cadastro — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">01</span>Login e cadastro</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d3">
-      <div class="screens-label">Onboarding — apresentação dos pilares</div>
-      <div class="img-wrap">
-        <img src="assets/wave-onboarding.webp" alt="Onboarding — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Onboarding — wave.bio"><img src="assets/img/wave-onboarding.webp" alt="Onboarding — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">02</span>Onboarding — apresentação dos pilares</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Definição de perfil — seleção de nicho</div>
-      <div class="img-wrap">
-        <img src="assets/wave-definicao-perfil.webp" alt="Definição de perfil — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Definição de perfil — wave.bio"><img src="assets/img/wave-definicao-perfil.webp" alt="Definição de perfil — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">03</span>Definição de perfil — seleção de nicho</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Dashboard — início</div>
-      <div class="img-wrap">
-        <img src="assets/wave-dashboard-inicio.webp" alt="Dashboard — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Dashboard — wave.bio"><img src="assets/img/wave-dashboard-inicio.webp" alt="Dashboard — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">04</span>Dashboard — início</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Adição e edição de links</div>
-      <div class="img-wrap">
-        <img src="assets/wave-adicao-edicao-links.webp" alt="Adição e edição de links — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Adição e edição de links — wave.bio"><img src="assets/img/wave-adicao-edicao-links.webp" alt="Adição e edição de links — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">05</span>Adição e edição de links</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Seção de links — gestão completa</div>
-      <div class="img-wrap">
-        <img src="assets/wave-secao-links.webp" alt="Seção de links — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Seção de links — wave.bio"><img src="assets/img/wave-secao-links.webp" alt="Seção de links — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">06</span>Seção de links — gestão completa</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Analytics</div>
-      <div class="img-wrap">
-        <img src="assets/wave-analytics.webp" alt="Analytics — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Analytics — wave.bio"><img src="assets/img/wave-analytics.webp" alt="Analytics — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">07</span>Analytics</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Aparência — customização em tempo real</div>
-      <div class="img-wrap">
-        <img src="assets/wave-aparencia.webp" alt="Aparência — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Aparência — wave.bio"><img src="assets/img/wave-aparencia.webp" alt="Aparência — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">08</span>Aparência — customização em tempo real</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Páginas públicas — free e Pro</div>
-      <div class="img-wrap">
-        <img src="assets/wave-paginas-publicas.webp" alt="Páginas públicas — wave.bio" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Páginas públicas — wave.bio"><img src="assets/img/wave-paginas-publicas.webp" alt="Páginas públicas — wave.bio" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">09</span>Páginas públicas — free e Pro</figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- IMPACTO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Posicionamento</div>
-    <h2 class="section-heading reveal reveal-d1">Um nicho real<br><span>mal atendido.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">05</span>Posicionamento</p>
+      <h2 class="section-title">Um nicho real<br><span class="dim">mal atendido.</span></h2>
+      <div class="prose">
       <p>Um produto não precisa inventar uma categoria para ser relevante — precisa encontrar quem está sendo mal atendido dentro de uma categoria já existente. O Linktree tem 40 milhões de usuários e ainda assim deixou um nicho inteiro desprotegido. Essa é a oportunidade.</p>
     </div>
+    </header>
 
-    <div class="callout callout--cyan reveal reveal-d3" style="margin-top:var(--space-10)">
-      <div class="callout__label">Próximo passo</div>
-      <div class="callout__text">A validação do conceito viria de entrevistas com creators brasileiros de conteúdo adulto, mapeando a jornada real de uso de ferramentas de link-in-bio — e testando o onboarding e a proposta de valor do Shield link com usuários reais.</div>
+    <div class="quote-block reveal">
+      <div class="overline">Próximo passo</div>
+      <div class="quote-block__body quote-block__body--single"><p>A validação do conceito viria de entrevistas com creators brasileiros de conteúdo adulto, mapeando a jornada real de uso de ferramentas de link-in-bio — e testando o onboarding e a proposta de valor do Shield link com usuários reais.</p></div>
     </div>
   </div>
 </section>
 
-<!-- OUTROS PROJETOS -->
-<section class="case-section" style="border-top:var(--border-default)">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Outros projetos</div>
-  </div>
-  <div class="work-grid-outros" style="margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-    <a class="work-card wc-bg-fastshop" href="fastshop.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">UX Research · 2026</span>
-          <div class="work-title wt-w">Fast Shop<br>Redesign</div>
-          <div class="work-sub wt-w">UX Research · Benchmarking · UI</div>
+
+<section class="next" aria-labelledby="next-title">
+  <div class="container">
+    <header class="section-head section-head--row">
+      <h2 class="section-title" id="next-title">Outros <span class="dim">projetos.</span></h2>
+      <a class="btn btn--outlined" href="index.html#projetos">Ver todos</a>
+    </header>
+    <div class="work-grid work-grid--3">
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/fastshop-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX Research</span><span class="tag tag--draft">Benchmarking</span><span class="tag tag--draft">UI</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="fastshop.html">Fast Shop Redesign</a></h3>
+          <p class="project__desc">Navegação por categorias do app reestruturada a partir de avaliação heurística e benchmarking com 5 players.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/cury-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX Research</span><span class="tag tag--draft">Redesign</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="cury.html">Cury UX Study</a></h3>
+          <p class="project__desc">Onboarding pós-compra do app Cury Cliente redesenhado a partir de 2.940 reclamações públicas.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-      </div>
-    </a>
-    <a class="work-card wc-bg-cury" href="cury.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.88) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">UX Study · 2026</span>
-          <div class="work-title wt-w">Cury<br>Estudo</div>
-          <div class="work-sub wt-w">Construtora · UX · Redesign</div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/spark-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX/UI</span><span class="tag tag--draft">Chat</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="spark.html">Spark Chat Redesign</a></h3>
+          <p class="project__desc">Chat entre creator e fã alinhado aos padrões mobile, com toolbar compacta e menos fricção no envio.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-      </div>
-    </a>
-    <a class="work-card wc-bg-spark" href="spark.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">Product Design · 2026</span>
-          <div class="work-title wt-w">Spark<br>Chat Redesign</div>
-          <div class="work-sub wt-w">UX/UI · Chat · Creator &amp; Fã</div>
-        </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-      </div>
-    </a>
+      </article>
+    </div>
   </div>
 </section>
 
+</main>
 <footer class="footer">
-  <div class="footer__logo"><img src="assets/logo.svg" alt="opedro." /></div>
-  <div class="footer__links">
-    <a href="index.html">&#8592; Portfólio</a>
-  </div>
-  <div class="footer-dots">
-    <div class="fd" style="background:var(--color-signal)"></div>
-    <div class="fd" style="background:var(--color-lime)"></div>
-    <div class="fd" style="background:var(--color-cyan)"></div>
+  <div class="container footer__inner">
+    <a class="footer__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="99" height="18"></a>
+    <ul class="footer__links">
+      <li><a href="index.html#projetos">Projetos</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+    <span class="footer__copy">© 2026 Pedro Santos · Product Designer</span>
   </div>
 </footer>
-
-<script>
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
-var cursor=document.getElementById('cursor');
-var hasPointer=window.matchMedia('(pointer: fine)').matches;
-if(hasPointer){
-  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
-  document.querySelectorAll('a').forEach(function(el){
-    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
-    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
-  });
-}
-var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

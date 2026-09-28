@@ -1,167 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="assets/opedrodesigner.png">
-<title>Fast Shop — opedro.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fast Shop · opedro.</title>
+<meta name="description" content="O problema não era a aparência do app. Era a distância entre intenção de compra e contato com produto — 4 a 5 toques numa lista textual, num app que compete por posicionamento premium.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,800&family=Syne:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/ds-bridge.css">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-
-body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(--font-display);cursor:none;overflow-x:hidden}
-.cursor{position:fixed;width:12px;height:12px;background:var(--color-orange);border-radius:var(--radius-full);pointer-events:none;z-index:var(--z-cursor);transform:translate(-50%,-50%);transition:width var(--duration-normal) var(--ease-out-expo),height var(--duration-normal) var(--ease-out-expo)}
-.cursor.hover{width:40px;height:40px;background:var(--color-orange);mix-blend-mode:difference}
-
-/* NAV */
-.nav{background:transparent!important;border-bottom-color:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transition:background var(--duration-normal) ease,border-color var(--duration-normal) ease,backdrop-filter var(--duration-normal) ease}
-.nav.scrolled{background:rgba(14,14,14,0.85)!important;border-bottom-color:var(--color-border-default)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
-
-/* HERO */
-.case-hero{padding:180px 48px 100px;position:relative;overflow:hidden;border-bottom:var(--border-default);background-image:url('assets/fastshop-cover.webp');background-size:cover;background-position:center}
-.case-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,14,14,0.75) 0%,rgba(14,14,14,0.88) 100%);pointer-events:none}
-.case-hero-inner{position:relative;z-index:1;max-width:720px}
-
-.hero-eyebrow{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-ash-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .7s .1s forwards}
-.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--color-orange)}
-.hero-title{font-family:var(--font-display);font-size:clamp(44px,6vw,84px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.9;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
-.hero-title span{color:var(--color-orange)}
-.hero-summary{max-width:600px;font-size:var(--text-md);line-height:var(--leading-relaxed);color:var(--color-ash-light);opacity:0;animation:fadeUp .8s .3s forwards}
-.hero-summary strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
-.hero-tags{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-8);opacity:0;animation:fadeUp .8s .4s forwards}
-.hero-tag{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-full);background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);color:var(--color-ash-light)}
-.hero-tag--orange{background:rgba(255,107,0,0.1);border-color:rgba(255,107,0,0.3);color:var(--color-orange)}
-
-.hero-back{position:absolute;top:100px;left:48px;z-index:2;display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--color-ash-light);text-decoration:none;transition:color var(--duration-fast) ease;opacity:0;animation:fadeUp .7s .05s forwards}
-.hero-back:hover{color:var(--color-text-primary)}
-
-/* SEÇÕES */
-.case-section{padding:var(--space-20) 48px}
-.case-section+.case-section{border-top:var(--border-default)}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-eyebrow{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-3)}
-.section-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--color-orange)}
-.section-heading{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:.95;margin-bottom:var(--space-8)}
-.section-heading span{color:var(--color-orange)}
-.section-text{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--color-text-body);max-width:680px}
-.section-text strong{color:var(--color-text-primary);font-weight:var(--weight-regular)}
-.section-text p+p{margin-top:var(--space-4)}
-.screens-label{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-6);display:flex;align-items:center;gap:var(--space-3)}
-.screens-label::before{content:'';display:block;width:16px;height:1px;background:var(--color-orange)}
-
-/* MÉTRICAS */
-.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:var(--space-10);overflow:hidden;border:var(--border-default)}
-.metric-box{background:var(--color-surface);padding:28px 24px;border-right:var(--border-default)}
-.metric-box:last-child{border-right:none}
-.metric-num{font-family:var(--font-display);font-size:40px;font-weight:var(--weight-extrabold);letter-spacing:var(--tracking-tight);line-height:1;color:var(--color-orange);margin-bottom:var(--space-2)}
-.metric-label{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--color-text-secondary)}
-.metric-source{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-1)}
-
-/* IMAGENS */
-.img-wrap{border-radius:0;overflow:hidden;border:var(--border-default);width:fit-content;margin:0 auto}
-.img-wrap img{width:100%;max-width:1200px;display:block;margin:0 auto}
-
-/* FOOTER DOTS */
-.footer-dots{display:flex;gap:var(--space-2);align-items:center}
-.fd{width:8px;height:8px;border-radius:var(--radius-full);flex-shrink:0;display:block}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s var(--ease-out-expo)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
-.reveal-d4{transition-delay:.4s}.reveal-d5{transition-delay:.5s}
-
-@media(max-width:768px){
-  body{cursor:auto}
-  .cursor{display:none}
-  .case-hero{padding:140px 20px 72px}
-  .hero-back{left:20px}
-  .case-section{padding:56px 20px}
-  .metrics-row{grid-template-columns:1fr}
-  .metric-box{border-right:none;border-bottom:var(--border-default)}
-  .metric-box:last-child{border-bottom:none}
-}
-
-/* CARDS — outros projetos */
-.work-card{min-height:320px;border-radius:0;overflow:hidden;position:relative;display:block;transition:transform var(--duration-normal) var(--ease-out-expo);background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--color-surface)}
-.work-card:hover{transform:translateY(-4px)}
-.work-card-inner{padding:28px;height:100%;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
-.work-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-.work-tag{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-3)}
-.wt-white{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)}
-.wt-dark{background:var(--color-border);color:var(--color-ash)}
-.work-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:var(--weight-bold);letter-spacing:var(--tracking-tight);line-height:var(--leading-snug);color:var(--color-white)}
-.work-sub{font-family:var(--font-ui);font-size:var(--text-2xs);font-weight:var(--weight-bold);letter-spacing:var(--tracking-wide);text-transform:uppercase;margin-top:var(--space-2);opacity:0.5;color:var(--color-white)}
-.work-arrow{width:36px;height:36px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;transition:transform var(--duration-normal) var(--ease-out-expo)}
-.wa-white{background:rgba(255,255,255,0.2)}
-
-
-/* BG CARDS — outros projetos */
-.wc-bg-fastshop{background-image:url('assets/fastshop-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-cury{background-image:url('assets/cury-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-wave{background-image:url('assets/wavebio-cover.webp') !important;background-size:cover !important;background-position:center !important}
-.wc-bg-spark{background-image:url('assets/spark-cover.webp') !important;background-size:cover !important;background-position:center !important}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav__logo">
-    <img src="assets/logo.svg" alt="opedro." />
-  </a>
-  <a href="index.html" class="btn btn--ghost btn--sm">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    Portfólio
-  </a>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="appbar">
+  <div class="container appbar__inner">
+    <a class="appbar__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="121" height="22"></a>
+    <nav class="appbar__links" aria-label="Principal">
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#como-trabalho">Como trabalho</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn--tonal btn--sm appbar__cta" href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener">Vamos conversar</a>
+    <button class="icon-btn appbar__menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span class="icon" aria-hidden="true">menu</span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+  <a href="index.html#projetos">Projetos</a>
+  <a href="index.html#sobre">Sobre</a>
+  <a href="index.html#como-trabalho">Como trabalho</a>
+  <a href="index.html#contato">Contato</a>
 </nav>
 
-<!-- HERO -->
+<main id="main" class="case case--agua">
+
 <section class="case-hero">
-  <a href="index.html" class="hero-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9M3 11V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    Voltar
-  </a>
-  <div class="case-hero-inner">
-    <div class="hero-eyebrow">UX Research · Benchmarking · UI Design · 2026</div>
-    <h1 class="hero-title">Fast Shop<br><span>Redesign.</span></h1>
-    <p class="hero-summary">O problema não era a aparência do app. Era a <strong>distância entre intenção de compra e contato com produto</strong> — 4 a 5 toques numa lista textual, num app que compete por posicionamento premium.</p>
-    <div class="hero-tags">
-      <span class="hero-tag hero-tag--orange">UX Research</span>
-      <span class="hero-tag">Arquitetura da Informação</span>
-      <span class="hero-tag">UI Design</span>
-      <span class="hero-tag">2026</span>
+  <div class="container">
+    <a class="btn btn--text case-hero__back" href="index.html#projetos"><span class="icon" aria-hidden="true">arrow_back</span>Todos os projetos</a>
+    <div class="case-cover">
+      <div class="case-cover__copy">
+        <p class="overline">UX Research · Benchmarking · UI Design · 2026</p>
+        <h1 class="display display--l">Fast Shop<br><span>Redesign.</span></h1>
+        <p class="lede">O problema não era a aparência do app. Era a <strong>distância entre intenção de compra e contato com produto</strong> — 4 a 5 toques numa lista textual, num app que compete por posicionamento premium.</p>
+        <div class="case-cover__tags"><span class="tag">UX Research</span><span class="tag">Arquitetura da Informação</span><span class="tag">UI Design</span><span class="tag">2026</span></div>
+      </div>
+      <div class="case-cover__media"><img src="assets/img/fastshop-cover.webp" alt="" width="1600" height="1200" fetchpriority="high"></div>
     </div>
   </div>
 </section>
 
+
 <!-- CONTEXTO -->
-<section class="case-section" style="padding-top:56px;padding-bottom:56px">
-  <div class="section-inner">
-    <div class="grid-meta">
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Meu papel</div>
-        <div class="card-flat__value">UX Designer</div>
-        <div class="card-flat__body">Definição de escopo, pesquisa, avaliação heurística, benchmarking e UI de alta fidelidade.</div>
+<section class="case-meta" aria-label="Sobre o projeto">
+  <div class="container">
+    <div class="meta-grid">
+      <div class="card">
+        <p class="overline">Meu papel</p>
+        <p class="card__value">UX Designer</p>
+        <p>Definição de escopo, pesquisa, avaliação heurística, benchmarking e UI de alta fidelidade.</p>
       </div>
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Tipo</div>
-        <div class="card-flat__value">Estudo de Caso</div>
-        <div class="card-flat__body">Projeto autoral — análise baseada no app público da Fast Shop.</div>
+      <div class="card">
+        <p class="overline">Tipo</p>
+        <p class="card__value">Estudo de Caso</p>
+        <p>Projeto autoral — análise baseada no app público da Fast Shop.</p>
       </div>
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Processo</div>
-        <div class="card-flat__value">4 etapas</div>
-        <div class="card-flat__body">Research + Heurística + Benchmarking + UI.</div>
+      <div class="card">
+        <p class="overline">Processo</p>
+        <p class="card__value">4 etapas</p>
+        <p>Research + Heurística + Benchmarking + UI.</p>
       </div>
-      <div class="card-flat">
-        <div class="card-flat__eyebrow">Escopo</div>
-        <div class="card-flat__value">14 critérios · 5 players</div>
-        <div class="card-flat__body">Avaliação heurística em 4 dimensões + análise comparativa de mercado.</div>
+      <div class="card">
+        <p class="overline">Escopo</p>
+        <p class="card__value">14 critérios · 5 players</p>
+        <p>Avaliação heurística em 4 dimensões + análise comparativa de mercado.</p>
       </div>
     </div>
   </div>
@@ -169,77 +87,77 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- PROBLEMA -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Problema</div>
-    <h2 class="section-heading reveal reveal-d1">A navegação que<br><span>escondia produtos.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">01</span>Problema</p>
+      <h2 class="section-title">A navegação que<br><span class="dim">escondia produtos.</span></h2>
+      <div class="prose">
       <p>A Fast Shop tem uma experiência visualmente refinada e consistente com seu posicionamento premium, mas a tab de categorias criava uma ruptura na jornada de descoberta. Em vez de aproximar o usuário dos produtos, ela funcionava como uma lista textual profunda — sem ícones, sem imagens, sem agrupamentos visuais, com múltiplas camadas de subcategorias antes da listagem.</p>
       <p>O resultado: o usuário precisava interpretar a arquitetura da informação antes de começar a comprar. Num app de varejo, isso transforma uma área que deveria estimular descoberta num ponto de fricção.</p>
     </div>
+    </header>
 
-    <div class="metrics-row reveal reveal-d3">
-      <div class="metric-box">
-        <div class="metric-num">1.5</div>
-        <div class="metric-label">Score heurístico médio</div>
-        <div class="metric-source">Escala 0–5 · avaliação interna</div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat__num">1.5</div>
+        <div class="stat__label">Score heurístico médio</div>
+        <div class="stat__source">Escala 0–5 · avaliação interna</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">4–5</div>
-        <div class="metric-label">Toques até o produto</div>
-        <div class="metric-source">Pior resultado entre os 5 players</div>
+      <div class="stat">
+        <div class="stat__num">4–5</div>
+        <div class="stat__label">Toques até o produto</div>
+        <div class="stat__source">Pior resultado entre os 5 players</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">3</div>
-        <div class="metric-label">Critérios com nota zero</div>
-        <div class="metric-source">Agrupamento, suporte visual, curadoria</div>
+      <div class="stat">
+        <div class="stat__num">3</div>
+        <div class="stat__label">Critérios com nota zero</div>
+        <div class="stat__source">Agrupamento, suporte visual, curadoria</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">36%</div>
-        <div class="metric-label">Critérios heurísticos aprovados</div>
-        <div class="metric-source">5 de 14 · os outros 9 viraram oportunidades</div>
+      <div class="stat">
+        <div class="stat__num">36%</div>
+        <div class="stat__label">Critérios heurísticos aprovados</div>
+        <div class="stat__source">5 de 14 · os outros 9 viraram oportunidades</div>
       </div>
     </div>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Estado atual — fluxo real</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-antes.webp" alt="Telas atuais da Fast Shop — fluxo de categorias" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Telas atuais da Fast Shop — fluxo de categorias"><img src="assets/img/fastshop-antes.webp" alt="Telas atuais da Fast Shop — fluxo de categorias" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">01</span>Estado atual — fluxo real</figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- DIAGNÓSTICO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Diagnóstico</div>
-    <h2 class="section-heading reveal reveal-d1">Todos chegam<br>em 2–3 toques.<br><span>A Fast Shop em 5.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">02</span>Diagnóstico</p>
+      <h2 class="section-title">Todos chegam<br>em 2–3 toques.<br><span class="dim">A Fast Shop em 5.</span></h2>
+      <div class="prose">
       <p>O dado mais direto do estudo: todos os concorrentes chegam ao produto em 2–3 toques. Apple Store com editorial "Today", Magalu com chips horizontais no home, Mercado Livre com grid visual de ícones. Nenhum concorrente brasileiro combina os três — essa é a janela de oportunidade.</p>
     </div>
+    </header>
 
-    <div style="margin-top:40px" class="reveal reveal-d3">
-      <div class="screens-label">Toques até o produto — navegação por categoria</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-toquesporproduto.webp" alt="Comparativo de toques até o produto por player" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Comparativo de toques até o produto por player"><img src="assets/img/fastshop-toquesporproduto.webp" alt="Comparativo de toques até o produto por player" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">02</span>Toques até o produto — navegação por categoria</figcaption>
+    </figure>
 
-    <div class="grid-content reveal reveal-d4" style="margin-top:var(--space-10)">
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Estrutural</div>
-        <div class="card-flat__title card-flat__title--lg">Arquitetura de informação quebrada</div>
-        <div class="card-flat__body">Sobreposições, profundidade inconsistente, subcategorias sem agrupamento. O usuário não consegue prever onde vai chegar dependendo do caminho escolhido.</div>
+    <div class="card-grid reveal">
+      <div class="card">
+        <span class="tag tag--draft">Estrutural</span>
+        <h3 class="card__title card__title--lg">Arquitetura de informação quebrada</h3>
+        <p>Sobreposições, profundidade inconsistente, subcategorias sem agrupamento. O usuário não consegue prever onde vai chegar dependendo do caminho escolhido.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Visual</div>
-        <div class="card-flat__title card-flat__title--lg">Interface sem suporte ao reconhecimento</div>
-        <div class="card-flat__body">Sem ícones, sem imagens, sem hierarquia de peso entre os itens. O usuário é obrigado a ler tudo para identificar qualquer coisa — num app com qualidade visual impecável no restante.</div>
+      <div class="card">
+        <span class="tag tag--draft">Visual</span>
+        <h3 class="card__title card__title--lg">Interface sem suporte ao reconhecimento</h3>
+        <p>Sem ícones, sem imagens, sem hierarquia de peso entre os itens. O usuário é obrigado a ler tudo para identificar qualquer coisa — num app com qualidade visual impecável no restante.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Estratégico</div>
-        <div class="card-flat__title card-flat__title--lg">Sem resposta para o usuário exploratório</div>
-        <div class="card-flat__body">Sem porta de entrada, sem curadoria, sem personalização. Os concorrentes que resolveram isso chegam ao produto mais rápido e com menos esforço cognitivo.</div>
+      <div class="card">
+        <span class="tag tag--draft">Estratégico</span>
+        <h3 class="card__title card__title--lg">Sem resposta para o usuário exploratório</h3>
+        <p>Sem porta de entrada, sem curadoria, sem personalização. Os concorrentes que resolveram isso chegam ao produto mais rápido e com menos esforço cognitivo.</p>
       </div>
     </div>
   </div>
@@ -247,23 +165,25 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- HIPÓTESES -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Hipóteses</div>
-    <h2 class="section-heading reveal reveal-d1">O que o estudo<br>foi <span>testar.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">03</span>Hipóteses</p>
+      <h2 class="section-title">O que o estudo<br>foi <span class="dim">testar.</span></h2>
+      <div class="prose">
       <p>Duas hipóteses guiaram o olhar durante a pesquisa e o benchmarking. Ambas foram reforçadas pelo diagnóstico heurístico, mas ainda dependeriam de teste com usuários ou dados reais de produto para validação conclusiva.</p>
     </div>
+    </header>
 
-    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">H1</div>
-        <div class="card-flat__title">Profundidade reduz descoberta</div>
-        <div class="card-flat__body">Se o usuário precisa atravessar muitas camadas antes de ver produtos, a navegação por categoria deixa de funcionar como exploração e passa a exigir esforço de busca — aumentando abandono e reduzindo exposição ao catálogo.</div>
+    <div class="card-grid reveal">
+      <div class="card">
+        <span class="tag tag--draft">H1</span>
+        <h3 class="card__title">Profundidade reduz descoberta</h3>
+        <p>Se o usuário precisa atravessar muitas camadas antes de ver produtos, a navegação por categoria deixa de funcionar como exploração e passa a exigir esforço de busca — aumentando abandono e reduzindo exposição ao catálogo.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">H2</div>
-        <div class="card-flat__title">Reconhecimento visual acelera decisão</div>
-        <div class="card-flat__body">Se categorias, marcas e ofertas forem apresentadas com suporte visual e hierarquia clara, o usuário tende a entender mais rápido para onde seguir e encontra produtos com menos esforço cognitivo.</div>
+      <div class="card">
+        <span class="tag tag--draft">H2</span>
+        <h3 class="card__title">Reconhecimento visual acelera decisão</h3>
+        <p>Se categorias, marcas e ofertas forem apresentadas com suporte visual e hierarquia clara, o usuário tende a entender mais rápido para onde seguir e encontra produtos com menos esforço cognitivo.</p>
       </div>
     </div>
   </div>
@@ -271,189 +191,147 @@ body{background:var(--color-bg);color:var(--color-text-primary);font-family:var(
 
 <!-- SOLUÇÃO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Solução</div>
-    <h2 class="section-heading reveal reveal-d1">Três camadas<br><span>de decisão.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">04</span>Solução</p>
+      <h2 class="section-title">Três camadas<br><span class="dim">de decisão.</span></h2>
+      <div class="prose">
       <p>O redesign não parte do zero — a base estética e funcional já é sólida. O trabalho foi reorganizar a navegação por categorias em três níveis: entrada, descoberta e refinamento. Em vez de obrigar o usuário a atravessar camadas de subcategoria, a nova estrutura antecipa produtos, marcas e caminhos de compra.</p>
     </div>
+    </header>
 
-    <div class="grid-content reveal reveal-d3" style="margin-top:var(--space-10)">
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Entrada</div>
-        <div class="card-flat__title card-flat__title--lg">Nav bar redesenhada</div>
-        <div class="card-flat__body">O ícone de menu hambúrguer escondia a navegação por categorias. Substituído por um ícone de grid que comunica visualmente o que o usuário vai encontrar.</div>
+    <div class="card-grid reveal">
+      <div class="card">
+        <span class="tag tag--draft">Entrada</span>
+        <h3 class="card__title card__title--lg">Nav bar redesenhada</h3>
+        <p>O ícone de menu hambúrguer escondia a navegação por categorias. Substituído por um ícone de grid que comunica visualmente o que o usuário vai encontrar.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Descoberta</div>
-        <div class="card-flat__title card-flat__title--lg">Tab de categorias reorganizada</div>
-        <div class="card-flat__body">Três zonas: trilho "Em alta agora" e ofertas, grid de 9 categorias com ícone e label, e trilho de marcas. De lista textual para navegação visual e exploratória.</div>
+      <div class="card">
+        <span class="tag tag--draft">Descoberta</span>
+        <h3 class="card__title card__title--lg">Tab de categorias reorganizada</h3>
+        <p>Três zonas: trilho "Em alta agora" e ofertas, grid de 9 categorias com ícone e label, e trilho de marcas. De lista textual para navegação visual e exploratória.</p>
       </div>
-      <div class="card-flat card-flat--top-orange">
-        <div class="card-flat__id card-flat__id--orange">Refinamento</div>
-        <div class="card-flat__title card-flat__title--lg">Listagem com breadcrumb e filtros</div>
-        <div class="card-flat__body">Da tab redesenhada, um toque leva à listagem com breadcrumb de localização e filtros inline visíveis. De 4–5 toques para máximo 2.</div>
+      <div class="card">
+        <span class="tag tag--draft">Refinamento</span>
+        <h3 class="card__title card__title--lg">Listagem com breadcrumb e filtros</h3>
+        <p>Da tab redesenhada, um toque leva à listagem com breadcrumb de localização e filtros inline visíveis. De 4–5 toques para máximo 2.</p>
       </div>
     </div>
 
-    <div style="margin-top:48px" class="reveal reveal-d3">
-      <div class="screens-label">Nav bar — antes e depois</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-navbar.webp" alt="Redesign da nav bar — comparativo antes e depois" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Redesign da nav bar — comparativo antes e depois"><img src="assets/img/fastshop-navbar.webp" alt="Redesign da nav bar — comparativo antes e depois" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">03</span>Nav bar — antes e depois</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d4">
-      <div class="screens-label">Wireframe da proposta</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-wifreframe.webp" alt="Wireframe — tab de categorias redesenhada" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Wireframe — tab de categorias redesenhada"><img src="assets/img/fastshop-wifreframe.webp" alt="Wireframe — tab de categorias redesenhada" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">04</span>Wireframe da proposta</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Alta fidelidade — proposta final</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-telas.webp" alt="Telas em alta fidelidade — Fast Shop redesign" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Telas em alta fidelidade — Fast Shop redesign"><img src="assets/img/fastshop-telas.webp" alt="Telas em alta fidelidade — Fast Shop redesign" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">05</span>Alta fidelidade — proposta final</figcaption>
+    </figure>
 
-    <div style="margin-top:48px" class="reveal reveal-d5">
-      <div class="screens-label">Fluxo novo — breadcrumb e filtros inline</div>
-      <div class="img-wrap">
-        <img src="assets/fastshop-breadcrumb.webp" alt="Fluxo redesenhado — breadcrumb e listagem com filtros" loading="lazy">
-      </div>
-    </div>
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: Fluxo redesenhado — breadcrumb e listagem com filtros"><img src="assets/img/fastshop-breadcrumb.webp" alt="Fluxo redesenhado — breadcrumb e listagem com filtros" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">06</span>Fluxo novo — breadcrumb e filtros inline</figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- IMPACTO -->
 <section class="case-section">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Impacto esperado</div>
-    <h2 class="section-heading reveal reveal-d1">Do diagnóstico<br>aos <span>números.</span></h2>
-    <div class="section-text reveal reveal-d2">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">05</span>Impacto esperado</p>
+      <h2 class="section-title">Do diagnóstico<br>aos <span class="dim">números.</span></h2>
+      <div class="prose">
       <p>Cada métrica está rastreada a um achado específico e a uma decisão de design concreta — não são estimativas genéricas, são consequências diretas das mudanças propostas. A validação real viria de um teste de usabilidade comparando o fluxo atual e o redesenhado.</p>
     </div>
+    </header>
 
-    <div class="metrics-row reveal reveal-d3">
-      <div class="metric-box">
-        <div class="metric-num">2</div>
-        <div class="metric-label">Toques máx. até o produto</div>
-        <div class="metric-source">Antes: 4–5 toques</div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat__num">2</div>
+        <div class="stat__label">Toques máx. até o produto</div>
+        <div class="stat__source">Antes: 4–5 toques</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">100%</div>
-        <div class="metric-label">Suporte visual nas categorias</div>
-        <div class="metric-source">Antes: 0%</div>
+      <div class="stat">
+        <div class="stat__num">100%</div>
+        <div class="stat__label">Suporte visual nas categorias</div>
+        <div class="stat__source">Antes: 0%</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">3</div>
-        <div class="metric-label">Trilhos de curadoria ativos</div>
-        <div class="metric-source">Antes: nenhum</div>
+      <div class="stat">
+        <div class="stat__num">3</div>
+        <div class="stat__label">Trilhos de curadoria ativos</div>
+        <div class="stat__source">Antes: nenhum</div>
       </div>
-      <div class="metric-box">
-        <div class="metric-num">78%</div>
-        <div class="metric-label">Critérios heurísticos aprovados</div>
-        <div class="metric-source">Antes: 36%</div>
+      <div class="stat">
+        <div class="stat__num">78%</div>
+        <div class="stat__label">Critérios heurísticos aprovados</div>
+        <div class="stat__source">Antes: 36%</div>
       </div>
     </div>
 
-    <div class="callout callout--cyan reveal reveal-d4" style="margin-top:var(--space-10)">
-      <div class="callout__label">Próximo passo</div>
-      <div class="callout__text">Validar a proposta com teste de usabilidade comparando os dois fluxos — observando tempo até encontrar produto, taxa de conclusão da tarefa e percepção de clareza. O que o benchmarking mostrou claramente como próxima camada é a <strong>personalização algorítmica</strong>: a Fast Shop tem os dados via Fast Prime, e ativar isso no front-end seria o movimento seguinte depois de resolver a descoberta.</div>
+    <div class="quote-block reveal">
+      <div class="overline">Próximo passo</div>
+      <div class="quote-block__body quote-block__body--single"><p>Validar a proposta com teste de usabilidade comparando os dois fluxos — observando tempo até encontrar produto, taxa de conclusão da tarefa e percepção de clareza. O que o benchmarking mostrou claramente como próxima camada é a <strong>personalização algorítmica</strong>: a Fast Shop tem os dados via Fast Prime, e ativar isso no front-end seria o movimento seguinte depois de resolver a descoberta.</p></div>
     </div>
   </div>
 </section>
 
-<!-- OUTROS PROJETOS -->
-<section class="case-section" style="border-top:var(--border-default)">
-  <div class="section-inner">
-    <div class="section-eyebrow reveal">Outros projetos</div>
-  </div>
-  <div class="work-grid-outros" style="margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-    <a class="work-card wc-bg-cury" href="cury.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.88) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">UX Study · 2026</span>
-          <div class="work-title wt-w">Cury<br>Estudo</div>
-          <div class="work-sub wt-w">Construtora · UX · Redesign</div>
+
+<section class="next" aria-labelledby="next-title">
+  <div class="container">
+    <header class="section-head section-head--row">
+      <h2 class="section-title" id="next-title">Outros <span class="dim">projetos.</span></h2>
+      <a class="btn btn--outlined" href="index.html#projetos">Ver todos</a>
+    </header>
+    <div class="work-grid work-grid--3">
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/cury-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX Research</span><span class="tag tag--draft">Redesign</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="cury.html">Cury UX Study</a></h3>
+          <p class="project__desc">Onboarding pós-compra do app Cury Cliente redesenhado a partir de 2.940 reclamações públicas.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/wavebio-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">Product Design</span><span class="tag tag--draft">Conceito</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="wavebio.html">wave.bio</a></h3>
+          <p class="project__desc">Link in bio pensado para creators de conteúdo adulto, com proteção contra banimento desde o onboarding.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-      </div>
-    </a>
-    <a class="work-card wc-bg-wave" href="wavebio.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.95) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">Product Design · 2026</span>
-          <div class="work-title wt-w">wave.bio</div>
-          <div class="work-sub wt-w">Link in bio · Conceito · Pesquisa</div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/spark-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX/UI</span><span class="tag tag--draft">Chat</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="spark.html">Spark Chat Redesign</a></h3>
+          <p class="project__desc">Chat entre creator e fã alinhado aos padrões mobile, com toolbar compacta e menos fricção no envio.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
         </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-      </div>
-    </a>
-    <a class="work-card wc-bg-spark" href="spark.html" style="text-decoration:none">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.82) 0%,rgba(14,14,14,0.3) 55%,rgba(14,14,14,0.05) 100%)"></div>
-      <div class="work-card-inner">
-        <div style="position:relative;z-index:1">
-          <span class="work-tag wt-white">Product Design · 2026</span>
-          <div class="work-title wt-w">Spark<br>Chat Redesign</div>
-          <div class="work-sub wt-w">UX/UI · Chat · Creator &amp; Fã</div>
-        </div>
-        <div class="work-bottom" style="position:relative;z-index:1">
-          <div class="work-arrow wa-white"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        </div>
-      </div>
-    </a>
+      </article>
+    </div>
   </div>
 </section>
 
+</main>
 <footer class="footer">
-  <div class="footer__logo"><img src="assets/logo.svg" alt="opedro." /></div>
-  <div class="footer__links">
-    <a href="index.html">&#8592; Portfólio</a>
-  </div>
-  <div class="footer-dots">
-    <div class="fd" style="background:var(--color-signal)"></div>
-    <div class="fd" style="background:var(--color-lime)"></div>
-    <div class="fd" style="background:var(--color-cyan)"></div>
+  <div class="container footer__inner">
+    <a class="footer__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="99" height="18"></a>
+    <ul class="footer__links">
+      <li><a href="index.html#projetos">Projetos</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+    <span class="footer__copy">© 2026 Pedro Santos · Product Designer</span>
   </div>
 </footer>
-
-<script>
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
-var cursor=document.getElementById('cursor');
-var hasPointer=window.matchMedia('(pointer: fine)').matches;
-if(hasPointer){
-  document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
-  document.querySelectorAll('a').forEach(function(el){
-    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');});
-    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');});
-  });
-}
-var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
-
-// Lightbox
-var lightbox=document.createElement('div');
-lightbox.id='lightbox';
-lightbox.style.cssText='display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.92);cursor:zoom-out;align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(8px)';
-var lightboxImg=document.createElement('img');
-lightboxImg.style.cssText='max-width:100%;max-height:100%;object-fit:contain;border:0.5px solid rgba(255,255,255,0.1);box-shadow:0 32px 80px rgba(0,0,0,0.6)';
-lightbox.appendChild(lightboxImg);
-document.body.appendChild(lightbox);
-document.querySelectorAll('.img-wrap img').forEach(function(img){
-  img.style.cursor='zoom-in';
-  img.addEventListener('click',function(){lightboxImg.src=this.src;lightboxImg.alt=this.alt;lightbox.style.display='flex';document.body.style.overflow='hidden';});
-});
-lightbox.addEventListener('click',function(){lightbox.style.display='none';document.body.style.overflow='';});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){lightbox.style.display='none';document.body.style.overflow='';}});
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
