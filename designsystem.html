@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System opedro. · opedro.</title>
+<meta name="description" content="Design system autoral construído a partir do manual de marca, com Material Design 3 como referência, heurísticas de usabilidade e boas práticas de sistemas — e IA como apoio no desenvolvimento e desdobramento.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/playground.css">
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="appbar">
+  <div class="container appbar__inner">
+    <a class="appbar__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="121" height="22"></a>
+    <nav class="appbar__links" aria-label="Principal">
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#como-trabalho">Como trabalho</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn--tonal btn--sm appbar__cta" href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener">Vamos conversar</a>
+    <button class="icon-btn appbar__menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span class="icon" aria-hidden="true">menu</span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+  <a href="index.html#projetos">Projetos</a>
+  <a href="index.html#sobre">Sobre</a>
+  <a href="index.html#como-trabalho">Como trabalho</a>
+  <a href="index.html#contato">Contato</a>
+</nav>
+
+<main id="main" class="case">
+
+<section class="case-hero">
+  <div class="container">
+    <a class="btn btn--text case-hero__back" href="index.html#projetos"><span class="icon" aria-hidden="true">arrow_back</span>Todos os projetos</a>
+    <div class="case-cover">
+      <div class="case-cover__copy">
+        <p class="overline">opedro. &#183; Design System &#183; 2026</p>
+        <h1 class="display display--l">Design<br><span>System.</span></h1>
+        <p class="lede">Um sistema construído por mim a partir do meu manual de marca, com <strong>estrutura Material&nbsp;3 e acabamento opedro.</strong> Tokens, fundações e 34 componentes documentados em três temas.</p>
+        <div class="case-cover__tags"><span class="tag">Design System</span><span class="tag">Material 3</span><span class="tag">Acessibilidade</span><span class="tag">2026</span></div>
+      </div>
+      <div class="case-cover__media"><img src="assets/img/designsystem-cover.webp" alt="" width="1600" height="1200" fetchpriority="high"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTEXTO -->
+<section class="case-meta" aria-label="Sobre o projeto">
+  <div class="container">
+    <div class="meta-grid">
+      <div class="card">
+        <p class="overline">Meu papel</p>
+        <h3 class="card__title card__title--lg">Designer do sistema</h3>
+        <p>Da tradução do manual de marca em tokens até a especificação e documentação de cada componente.</p>
+      </div>
+      <div class="card">
+        <p class="overline">Referência</p>
+        <h3 class="card__title card__title--lg">Material Design 3</h3>
+        <p>Taxonomia de tokens, anatomia e comportamento de componentes do M3 como base estrutural.</p>
+      </div>
+      <div class="card">
+        <p class="overline">Apoio</p>
+        <h3 class="card__title card__title--lg">IA no processo</h3>
+        <p>Usada no desenvolvimento e no desdobramento do sistema. As regras, os critérios e a revisão final foram meus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PONTO DE PARTIDA -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">01</span>Ponto de partida</p>
+      <h2 class="section-title">Uma marca pronta,<br><span class="dim">sem camada de interface.</span></h2>
+      <div class="prose">
+      <p>O manual de marca pessoal já definia posicionamento, cor, tipografia e tom de voz. Mas marca não é interface: faltava transformar essas decisões em algo que se aplica a um botão, a um campo de formulário ou a um estado de erro, e que continua coerente no tema escuro e no alto contraste.</p>
+      <p>O objetivo foi construir esse sistema com conhecimento das <strong>heurísticas de usabilidade, das regras e das boas práticas</strong> de desenvolvimento de um design system, tendo o <strong>Material Design</strong> como referência e contando com <strong>apoio de IA</strong> no desenvolvimento e no desdobramento.</p>
+    </div>
+    </header>
+
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat__num">34</div>
+        <div class="stat__label">Componentes</div>
+        <div class="stat__source">Em 8 grupos, com estados e código</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">3</div>
+        <div class="stat__label">Temas</div>
+        <div class="stat__source">Claro, escuro e alto contraste</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">4px</div>
+        <div class="stat__label">Grid base</div>
+        <div class="stat__source">Toda medida é múltipla de 4</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">5,25:1</div>
+        <div class="stat__label">Contraste do azul</div>
+        <div class="stat__source">#035DFE com texto branco · AA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BASE -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">02</span>Base</p>
+      <h2 class="section-title">Heurísticas, regras<br><span class="dim">e uma referência sólida.</span></h2>
+      <div class="prose">
+      <p>Nenhuma decisão do sistema é só estética. Cada regra se apoia em um princípio de usabilidade ou em uma boa prática consolidada de design systems, e o Material Design 3 serviu de esqueleto para não reinventar o que já funciona.</p>
+    </div>
+    </header>
+
+    <div class="card-grid card-grid--3 reveal">
+      <div class="card">
+        <span class="tag tag--draft">Heurísticas</span>
+        <h3 class="card__title card__title--lg">Usabilidade como critério</h3>
+        <p>Consistência e padrões, prevenção de erros, visibilidade do status e reconhecimento em vez de memorização guiam o comportamento de cada componente, do rótulo sempre visível no campo ao verbo repetido no botão do dialog.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Boas práticas</span>
+        <h3 class="card__title card__title--lg">Regras de sistema</h3>
+        <p>Tokens semânticos e nenhum hexadecimal direto em componente, grid de 4&nbsp;px, alvo de toque de 48&nbsp;px, um único estilo de foco e uma única biblioteca de ícones.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Referência</span>
+        <h3 class="card__title card__title--lg">Material Design 3</h3>
+        <p>Nomes de tokens na taxonomia M3, state layers de hover e press, elevação em três níveis e anatomia dos componentes. A estrutura é M3; o acabamento é opedro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DA MARCA AO SISTEMA -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">03</span>Da marca ao sistema</p>
+      <h2 class="section-title">Nomes do M3,<br><span class="dim">valores do manual.</span></h2>
+      <div class="prose">
+      <p>Os tokens de cor usam a nomenclatura do Material 3 (<code>--primary</code>, <code>--surface</code>, <code>--on-surface</code>), mas os valores vêm das rampas do manual de marca. Cada token muda com o tema, e o componente nunca sabe qual hexadecimal está usando.</p>
+    </div>
+    </header>
+
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: da marca à interface"><img src="assets/img/ds-marca-token.webp" alt="Três etapas: o Azul opedro #035DFE do manual de marca vira o token --primary, com valores para claro, escuro e alto contraste, e o token vira o fundo e o anel de foco do botão Publicar" width="2000" height="1125" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">01</span>Manual, token e componente: o caminho de uma cor</figcaption>
+    </figure>
+
+    <div class="demo reveal">
+      <div class="demo__bar">
+        <p class="demo__hint"><span class="icon" aria-hidden="true">touch_app</span>Experimente: troque o tema e veja os tokens mudarem.</p>
+        <div class="seg" id="theme-seg" role="radiogroup" aria-label="Tema da demonstração">
+          <button type="button" role="radio" aria-checked="true" tabindex="0" data-value="light"><span class="icon" aria-hidden="true">check</span>Claro</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-value="dark"><span class="icon" aria-hidden="true">check</span>Escuro</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-value="hc" aria-label="Alto contraste"><span class="icon" aria-hidden="true">check</span>Alto<span class="seg__more">&nbsp;contraste</span></button>
+        </div>
+      </div>
+      <div class="demo__body">
+        <div class="demo__stage" id="theme-stage" data-theme="light">
+          <div class="card mini">
+            <div class="mini__head"><span class="overline">Protótipo</span><span class="tag tag--success">Estável</span></div>
+            <h3 class="mini__title">Publicar protótipo</h3>
+            <p>Revise antes de compartilhar com o time.</p>
+            <div class="field">
+              <label for="t-link">Nome do link</label>
+              <div class="field__control"><input id="t-link" type="text" value="opedro-ds-v1" aria-describedby="t-link-help"></div>
+              <span class="field__help" id="t-link-help">Aparece no endereço público.</span>
+            </div>
+            <div class="mini__row"><span id="t-notify">Avisar quando alguém comentar</span><button class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="t-notify"></button></div>
+            <div class="banner banner--info"><span class="icon" aria-hidden="true">info</span><p>Três pessoas já têm acesso a este link.</p></div>
+            <div class="mini__actions"><button class="btn btn--text" type="button">Cancelar</button><button class="btn btn--filled" type="button" data-publish>Publicar</button></div>
+          </div>
+          <div class="snackbar" role="status" hidden>Protótipo publicado. <button type="button">Desfazer</button></div>
+        </div>
+        <div class="demo__aside">
+          <p class="overline">Tokens em uso</p>
+          <ul class="toks">
+            <li class="tok" data-token="--primary"><span class="tok__sw" aria-hidden="true"></span><span class="tok__name">--primary</span><span class="tok__val"></span></li>
+            <li class="tok" data-token="--primary-container"><span class="tok__sw" aria-hidden="true"></span><span class="tok__name">--primary-container</span><span class="tok__val"></span></li>
+            <li class="tok" data-token="--surface"><span class="tok__sw" aria-hidden="true"></span><span class="tok__name">--surface</span><span class="tok__val"></span></li>
+            <li class="tok" data-token="--on-surface"><span class="tok__sw" aria-hidden="true"></span><span class="tok__name">--on-surface</span><span class="tok__val"></span></li>
+            <li class="tok" data-token="--success-container"><span class="tok__sw" aria-hidden="true"></span><span class="tok__name">--success-container</span><span class="tok__val"></span></li>
+          </ul>
+          <p>Nenhuma linha do componente muda entre os temas. Só o valor de cada token por baixo dele.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGRAS DO AZUL -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">04</span>As regras do azul</p>
+      <h2 class="section-title">Uma cor,<br><span class="dim">três regras.</span></h2>
+      <div class="prose">
+      <p>A disciplina do azul veio direto do manual e governa todo componente do sistema.</p>
+    </div>
+    </header>
+
+    <div class="card-grid card-grid--3 reveal">
+      <div class="card">
+        <span class="tag tag--draft">Regra 1</span>
+        <h3 class="card__title card__title--lg">Azul é clicável</h3>
+        <p>Se está azul, algo acontece quando você toca. Sem título azul, sem ícone azul decorativo. Informação usa o azul da marca; não existe cor semântica separada para info.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Regra 2</span>
+        <h3 class="card__title card__title--lg">O símbolo é a exceção</h3>
+        <p>A marca usa o mesmo azul e não é clicável. Por isso só aparece onde é inequivocamente marca: app bar, drawer, splash, favicon e rodapé.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Regra 3</span>
+        <h3 class="card__title card__title--lg">Uma ação primária por tela</h3>
+        <p>O botão preenchido é único. O segundo caminho é tonal, o terceiro é contorno e o quarto é texto.</p>
+      </div>
+    </div>
+
+    <div class="demo reveal">
+      <div class="demo__bar">
+        <p class="demo__hint"><span class="icon" aria-hidden="true">touch_app</span>Interaja com os botões ou navegue com Tab.</p>
+        <label class="demo__label" id="targets-label">Mostrar alvo de toque <button class="switch" id="targets-switch" type="button" role="switch" aria-checked="false" aria-labelledby="targets-label"></button></label>
+      </div>
+      <div class="demo__body">
+        <div class="demo__stage demo__stage--short">
+          <div class="ranks" id="btn-stage">
+            <div class="rank"><span class="rank__n" aria-hidden="true">1</span><button class="btn btn--filled" type="button" data-variant="filled" data-label="Filled · a ação da tela">Publicar</button><p>Filled. A ação que conclui a tarefa.</p></div>
+            <div class="rank"><span class="rank__n" aria-hidden="true">2</span><button class="btn btn--tonal" type="button" data-variant="tonal" data-label="Tonal · ação recorrente">Duplicar</button><p>Tonal. Recorrente, sem ser a principal.</p></div>
+            <div class="rank"><span class="rank__n" aria-hidden="true">3</span><button class="btn btn--outlined" type="button" data-variant="outlined" data-label="Outlined · caminho alternativo">Pré-visualizar</button><p>Outlined. Um caminho alternativo.</p></div>
+            <div class="rank"><span class="rank__n" aria-hidden="true">4</span><button class="btn btn--text" type="button" data-variant="text" data-label="Text · sair ou cancelar">Cancelar</button><p>Text. Sair, cancelar, voltar.</p></div>
+          </div>
+        </div>
+        <div class="demo__aside">
+          <p class="overline">Estado atual</p>
+          <div class="state">
+            <span class="state__name" id="state-name">enabled</span>
+            <span class="state__variant" id="state-variant">Filled · a ação da tela</span>
+            <span class="state__token" id="state-token">fundo --primary</span>
+          </div>
+          <p>Hover e press são state layers de 6% e 12% sobre o componente. O foco é sempre o mesmo anel, em qualquer variante.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDAÇÕES -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">05</span>Fundações</p>
+      <h2 class="section-title">Poucas decisões,<br><span class="dim">aplicadas em tudo.</span></h2>
+      <div class="prose">
+      <p>As fundações foram mantidas enxutas de propósito. Quanto menos variáveis, mais previsível o sistema fica para quem projeta e para quem desenvolve.</p>
+    </div>
+    </header>
+
+    <div class="card-grid reveal">
+      <div class="card">
+        <span class="tag tag--draft">Tipografia</span>
+        <h3 class="card__title card__title--lg">Três famílias, papéis fixos</h3>
+        <p>Instrument Serif só em display e título de página. Instrument Sans em todo o resto. IBM Plex Mono em token, medida e código, nunca em interface.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Grid</span>
+        <h3 class="card__title card__title--lg">Tudo múltiplo de 4</h3>
+        <p>Altura, padding, gap e raio saem do mesmo grid de 4&nbsp;px. O alvo de toque mínimo é de 48&nbsp;px em qualquer plataforma.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Elevação</span>
+        <h3 class="card__title card__title--lg">Três níveis e state layer</h3>
+        <p>e1 para card, e2 para menu, e3 para dialog. No alto contraste a sombra vira contorno sólido, porque sombra não é sinal acessível.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Foco e ícones</span>
+        <h3 class="card__title card__title--lg">Um estilo só, sempre visível</h3>
+        <p>Contorno de 2&nbsp;px em <code>--primary</code> com 2&nbsp;px de deslocamento, nunca removido. Ícones em Material Symbols Rounded, preenchidos só para indicar estado ativo.</p>
+      </div>
+    </div>
+
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: anatomia do button"><img src="assets/img/ds-anatomia-botao.webp" alt="Botão Publicar ampliado seis vezes com as medidas: altura 40 px, alvo de toque 48 px, padding 24, ícone 18, gap 8 e rótulo 14/600" width="2000" height="1125" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">02</span>Anatomia do button, medida no grid de 4 px</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- COMPONENTES -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">06</span>Componentes</p>
+      <h2 class="section-title">34 componentes,<br><span class="dim">documentados do mesmo jeito.</span></h2>
+      <div class="prose">
+      <p>Cada componente segue o mesmo modelo de documentação: estados, anatomia com medidas, quando usar, quando não usar, tokens, acessibilidade e o código de referência. Os comportamentos também são decisões, como a validação do campo abaixo.</p>
+    </div>
+    </header>
+
+    <div class="card-grid card-grid--3 reveal">
+      <div class="card">
+        <span class="tag tag--draft">Ações · 4</span>
+        <p>Button, icon button, FAB e segmented button, em ordem de ênfase e com variante destrutiva.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Formulário · 6</span>
+        <p>Text field, select, checkbox, radio, switch e slider. Rótulo sempre acima e visível.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Seleção · 2</span>
+        <p>Chips e tabs.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Contêiner · 4</span>
+        <p>Card, list, table e accordion.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Navegação · 5</span>
+        <p>App bar, navigation bar, rail e drawer, breadcrumb e paginação.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Sobreposição · 4</span>
+        <p>Dialog, bottom sheet, menu e tooltip, com foco preso e Esc devolvendo o foco ao gatilho.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Feedback · 5</span>
+        <p>Snackbar, banner, progress, skeleton e empty state.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Dados · 4</span>
+        <p>Badge, avatar, tag e date picker.</p>
+      </div>
+    </div>
+
+    <div class="demo reveal">
+      <div class="demo__bar">
+        <p class="demo__hint"><span class="icon" aria-hidden="true">touch_app</span>Saia do campo ou clique em Enviar. Depois, corrija o e-mail.</p>
+      </div>
+      <div class="demo__body">
+        <div class="demo__stage demo__stage--short">
+          <form class="form-demo" id="email-form" novalidate>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <div class="field__control">
+                <input id="email" type="text" inputmode="email" value="pedro@opedro" autocomplete="off" spellcheck="false" aria-describedby="email-help" aria-invalid="false">
+                <span class="icon field__status" aria-hidden="true" hidden>check</span>
+              </div>
+              <span class="field__help" id="email-help" aria-live="polite">Usamos só para o retorno.</span>
+            </div>
+            <button class="btn btn--filled" type="submit">Enviar</button>
+          </form>
+        </div>
+        <div class="demo__aside">
+          <p class="overline">Os quatro sinais do erro</p>
+          <ul class="signals">
+            <li class="sig"><span class="sig__mark sig__mark--color" aria-hidden="true"><i></i></span><div><strong>Cor</strong><span>--error na borda, no rótulo e na mensagem.</span></div></li>
+            <li class="sig"><span class="sig__mark sig__mark--border" aria-hidden="true"><i></i></span><div><strong>Borda de 2 px</strong><span>A espessura muda, não só a cor.</span></div></li>
+            <li class="sig"><span class="sig__mark" aria-hidden="true"><span class="icon icon--20">error</span></span><div><strong>Ícone</strong><span>Forma que se lê sem enxergar cor.</span></div></li>
+            <li class="sig"><span class="sig__mark sig__mark--text" aria-hidden="true">Aa</span><div><strong>Texto</strong><span>Diz o que falta, ligado por aria-describedby.</span></div></li>
+          </ul>
+          <p>Valida no blur ou no envio, nunca a cada tecla. Depois do erro, o campo reavalia enquanto você corrige.</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="shot reveal">
+      <button class="shot__frame" type="button" aria-label="Ampliar: a documentação do button no guia"><img src="assets/img/ds-acoes.webp" alt="Página de Ações do guia do design system, com a matriz de variantes do botão em cada estado" width="1920" height="1280" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button>
+      <figcaption><span class="n">03</span>O guia: cada componente com estados, anatomia, uso e código</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ACESSIBILIDADE -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">07</span>Acessibilidade e temas</p>
+      <h2 class="section-title">Três temas,<br><span class="dim">nenhum improvisado.</span></h2>
+      <div class="prose">
+      <p>Claro, escuro e alto contraste compartilham os mesmos tokens com valores diferentes, como no <a href="#theme-seg">painel da seção 03</a>. A acessibilidade não é uma camada no fim: está na especificação de cada componente.</p>
+    </div>
+    </header>
+
+    <div class="card-grid reveal">
+      <div class="card">
+        <span class="tag tag--draft">Cor</span>
+        <h3 class="card__title card__title--lg">Cor nunca sozinha</h3>
+        <p>O erro tem quatro sinais. Em banner, tag e snackbar, ícone e texto sempre acompanham a cor. No alto contraste, a sombra vira contorno.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Semântica</span>
+        <h3 class="card__title card__title--lg">ARIA na documentação</h3>
+        <p>Cada componente traz os papéis e atributos esperados: <code>role="status"</code> no snackbar, <code>aria-current</code> na navegação, <code>aria-describedby</code> no campo.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Movimento</span>
+        <h3 class="card__title card__title--lg">Respeito ao reduced motion</h3>
+        <p>Skeleton, progress e spinner desaceleram ou param com <code>prefers-reduced-motion</code>.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Tempo</span>
+        <h3 class="card__title card__title--lg">Tempo para agir</h3>
+        <p>Snackbar com ação nunca some em menos de 8&nbsp;s. Abaixo de 1&nbsp;s de espera, nenhum loading aparece; acima de 10&nbsp;s, ele explica o que está acontecendo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IA -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">08</span>Processo com IA</p>
+      <h2 class="section-title">IA como apoio,<br><span class="dim">critério como autoria.</span></h2>
+      <div class="prose">
+      <p>A IA entrou no desenvolvimento e no desdobramento do sistema. Com as fundações e as regras definidas, ela ajudou a acelerar a parte extensa do trabalho: estender o mesmo padrão para dezenas de componentes, estados e temas.</p>
+    </div>
+    </header>
+
+    <div class="card-grid card-grid--3 reveal">
+      <div class="card">
+        <span class="tag tag--draft">Eu defini</span>
+        <h3 class="card__title card__title--lg">Regras e fundações</h3>
+        <p>Tokens, as três regras do azul, a escala tipográfica, shape, foco e o modelo de documentação de cada componente.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">A IA apoiou</span>
+        <h3 class="card__title card__title--lg">Desenvolvimento e desdobramento</h3>
+        <p>Aplicação do mesmo padrão em 34 componentes, variações de estado e tema, e o código de referência de cada um.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Eu revisei</span>
+        <h3 class="card__title card__title--lg">Consistência e decisão</h3>
+        <p>Cada saída foi conferida contra as regras do sistema, as heurísticas e o M3 antes de entrar na documentação.</p>
+      </div>
+    </div>
+
+    <div class="quote-block reveal">
+      <div class="overline">Aprendizado central</div>
+      <div class="quote-block__body quote-block__body--single"><p>Um design system é um conjunto de decisões escritas, não de telas. Quanto mais claras as regras, mais a IA consegue desdobrar o sistema com consistência, e mais o meu tempo vai para o que exige critério: o que entra, o que fica de fora e por quê. Os componentes vivos desta página não são imagens: são o sistema, com os mesmos tokens e o mesmo CSS que sustentam o portfólio inteiro.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="next" aria-labelledby="next-title">
+  <div class="container">
+    <header class="section-head section-head--row">
+      <h2 class="section-title" id="next-title">Outros <span class="dim">projetos.</span></h2>
+      <a class="btn btn--outlined" href="index.html#projetos">Ver todos</a>
+    </header>
+    <div class="work-grid work-grid--3">
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/fastshop-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX Research</span><span class="tag tag--draft">Benchmarking</span><span class="tag tag--draft">UI</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="fastshop.html">Fast Shop Redesign</a></h3>
+          <p class="project__desc">Navegação por categorias do app reestruturada a partir de avaliação heurística e benchmarking com 5 players.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
+        </div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/wavebio-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">Product Design</span><span class="tag tag--draft">Conceito</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="wavebio.html">wave.bio</a></h3>
+          <p class="project__desc">Link in bio pensado para creators de conteúdo adulto, com proteção contra banimento desde o onboarding.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
+        </div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/spark-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX/UI</span><span class="tag tag--draft">Chat</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="spark.html">Spark Chat Redesign</a></h3>
+          <p class="project__desc">Chat entre creator e fã alinhado aos padrões mobile, com toolbar compacta e menos fricção no envio.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="container footer__inner">
+    <a class="footer__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="99" height="18"></a>
+    <ul class="footer__links">
+      <li><a href="index.html#projetos">Projetos</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+    <span class="footer__copy">© 2026 Pedro Santos · Product Designer</span>
+  </div>
+</footer>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/playground.js"></script>
+</body>
+</html>
