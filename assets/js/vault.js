@@ -92,16 +92,7 @@
       }).then(function (bytes) {
         img.src = URL.createObjectURL(new Blob([bytes], { type: 'image/webp' }));
         return img.decode ? img.decode().catch(function () {}) : null;
-      }).then(function () {
-        img.classList.add('is-loaded');
-        var phone = img.closest('.phone');
-        var ratio = img.naturalHeight / img.naturalWidth;
-        if (phone && ratio > 2.05) {
-          phone.classList.add('phone--scroll');
-          phone.style.setProperty('--dur', Math.round(8 + (ratio / 1.977 - 1) * 8) + 's');
-          watch.observe(phone);
-        }
-      });
+      }).then(function () { Showcase.ready(img); });
     }
 
     var imgs = vault.querySelectorAll('img[data-cb]');
@@ -110,57 +101,8 @@
     }, { rootMargin: '800px 0px' }) : null;
     imgs.forEach(function (img) { near ? near.observe(img) : load(img); });
 
-    /* só anima o celular que está na tela */
-    var watch = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
-      es.forEach(function (en) { en.target.classList.toggle('is-playing', en.isIntersecting); });
-    }, { threshold: 0.35 }) : { observe: function (el) { el.classList.add('is-playing'); } };
-
-    /* setas do carrossel: só aparecem quando a fileira não cabe */
-    vault.querySelectorAll('.phones').forEach(function (row) {
-      var stage = row.closest('.stage');
-      var head = stage.querySelector('.stage__head');
-      if (!head) { head = document.createElement('div'); head.className = 'stage__head'; stage.insertBefore(head, row); }
-      var nav = document.createElement('div');
-      nav.className = 'carousel-nav';
-      nav.innerHTML = '<button class="icon-btn icon-btn--outlined" type="button" aria-label="Telas anteriores"><span class="icon" aria-hidden="true">chevron_left</span></button>' +
-        '<button class="icon-btn icon-btn--outlined" type="button" aria-label="Próximas telas"><span class="icon" aria-hidden="true">chevron_right</span></button>';
-      head.appendChild(nav);
-      var prev = nav.children[0], next = nav.children[1];
-      function step() { return Math.max(row.clientWidth * 0.8, 260); }
-      prev.addEventListener('click', function () { row.scrollBy({ left: -step() }); });
-      next.addEventListener('click', function () { row.scrollBy({ left: step() }); });
-      function sync() {
-        var over = row.scrollWidth > row.clientWidth + 4;
-        nav.hidden = !over;
-        head.hidden = !over && !head.querySelector('.stage__title');
-        prev.disabled = row.scrollLeft < 4;
-        next.disabled = row.scrollLeft + row.clientWidth > row.scrollWidth - 4;
-      }
-      row.addEventListener('scroll', sync, { passive: true });
-      window.addEventListener('resize', sync);
-      sync();
-    });
-
-    /* clicar no celular amplia a tela; tela longa rola dentro do dialog */
-    if (typeof HTMLDialogElement === 'function') {
-      var box = document.createElement('dialog');
-      box.className = 'dialog screen-box';
-      box.setAttribute('aria-label', 'Tela ampliada');
-      box.innerHTML = '<button class="icon-btn icon-btn--inverse screen-box__close" type="button" aria-label="Fechar tela" autofocus><span class="icon" aria-hidden="true">close</span></button><div class="screen-box__frame"><img alt=""></div>';
-      document.body.appendChild(box);
-      var big = box.querySelector('img'), frame = box.querySelector('.screen-box__frame');
-      vault.addEventListener('click', function (e) {
-        var phone = e.target.closest('.phone');
-        if (!phone) return;
-        var img = phone.querySelector('img');
-        if (!img.classList.contains('is-loaded')) return;
-        big.src = img.src; big.alt = img.alt;
-        frame.scrollTop = 0;
-        box.showModal();
-      });
-      box.addEventListener('click', function (e) { if (!frame.contains(e.target)) box.close(); });
-      box.querySelector('.screen-box__close').addEventListener('click', function () { box.close(); });
-    }
+    /* carrossel, rolagem das telas longas e tela ampliada */
+    Showcase.init(vault);
 
     var rev = vault.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {

@@ -102,7 +102,7 @@
 .phone:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
 .stage--dark .phone:focus-visible { outline-color: #9FC5FF; }
 .phone__screen {
-  display: block; position: relative; aspect-ratio: 786 / 1554; border-radius: 13cqw; overflow: hidden;
+  display: block; position: relative; aspect-ratio: var(--screen-ar, 786 / 1554); border-radius: 13cqw; overflow: hidden;
   background: #F8F5F0;
 }
 .phone__screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; opacity: 0; transition: opacity var(--dur-slow) var(--ease-standard); }
@@ -126,11 +126,56 @@
   96%, 100% { object-position: 50% 0; }
 }
 
-/* ---------- Tela ampliada */
-.screen-box { width: min(440px, calc(100vw - 32px)); }
-.screen-box__frame { max-height: calc(100vh - 32px); overflow-y: auto; border-radius: 24px; background: #F8F5F0; box-shadow: var(--e3); overscroll-behavior: contain; }
-.screen-box__frame img { width: 100%; height: auto; }
+/* ---------- Tela ampliada: celular grande no centro, rolagem sem barra à vista */
+.screen-box {
+  --sh: min(calc(100dvh - 150px), 820px);
+  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: transparent; color: #F8FAFD; overflow: hidden;
+}
+.screen-box[open] { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 40px); }
+.screen-box::backdrop { background: rgba(7, 11, 17, .78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.screen-box__stage { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.screen-box__phone {
+  position: relative; padding: 12px; border-radius: 52px;
+  background: linear-gradient(150deg, #3A3F47 0%, #15181D 40%, #0B0D10 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 40px 90px -30px rgba(0, 0, 0, .8);
+}
+.screen-box[open] .screen-box__phone { animation: box-in var(--dur-normal) var(--ease-emphasized); }
+@keyframes box-in { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+.screen-box__screen {
+  width: min(calc(var(--sh) * var(--screen-w, .5058)), calc(100vw - 132px)); aspect-ratio: var(--screen-ar, 786 / 1554);
+  border-radius: 40px; overflow-y: auto; overscroll-behavior: contain; background: #F8F5F0;
+  scrollbar-width: none;
+}
+.screen-box__screen::-webkit-scrollbar { display: none; }
+.screen-box__screen:focus-visible { outline: 2px solid #9FC5FF; outline-offset: 4px; }
+.screen-box__screen img { display: block; width: 100%; height: auto; }
+
+/* indicador de rolagem fora do celular, no lugar da barra do sistema */
+.screen-box__bar { position: absolute; right: -18px; top: 18%; height: 64%; width: 4px; border-radius: 999px; background: rgba(248, 250, 253, .16); }
+.screen-box__bar[hidden] { display: none; }
+.screen-box__bar span { position: absolute; left: 0; width: 100%; border-radius: inherit; background: #F8FAFD; transition: top 60ms linear; }
+
+.screen-box__info { display: flex; align-items: center; gap: 12px; min-height: 32px; font: 500 15px/1.3 var(--font-sans); }
+.screen-box__count { font: 400 12px/1 var(--font-mono); color: #9AA1AB; }
+.screen-box__hint {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px;
+  background: rgba(248, 250, 253, .1); color: #CED3DA; font-size: 13px;
+}
+.screen-box__hint[hidden] { display: none; }
+.screen-box__hint .icon { font-size: 18px; }
+.screen-box__nav { width: 48px; height: 48px; color: #F8FAFD; background: rgba(248, 250, 253, .1); }
+.screen-box__nav:hover { background: rgba(248, 250, 253, .18); }
+.screen-box__nav:disabled { opacity: .25; cursor: default; background: rgba(248, 250, 253, .1); }
 .screen-box__close { position: fixed; top: 16px; right: 16px; }
+@media (max-width: 640px) {
+  .screen-box { --sh: min(calc(100dvh - 170px), 820px); }
+  .screen-box__nav { width: 40px; height: 40px; }
+  .screen-box__phone { padding: 8px; border-radius: 40px; }
+  .screen-box__screen { border-radius: 32px; width: min(calc(var(--sh) * var(--screen-w, .5058)), calc(100vw - 112px)); }
+  .screen-box__bar { right: -12px; }
+  .screen-box__info { flex-wrap: wrap; justify-content: center; max-width: calc(100vw - 32px); text-align: center; }
+}
 
 /* ---------- Documento (PDF exportado) */
 .docs { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); }

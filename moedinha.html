@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moedinha · opedro.</title>
+<meta name="description" content="Moedinha: um app para quem está começando a cuidar do próprio dinheiro. Produto autoral, da ideia à PWA, com marca e design system próprios.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/showcase.css">
+<link rel="stylesheet" href="assets/css/moedinha.css">
+</head>
+<body class="page--moedinha">
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="appbar">
+  <div class="container appbar__inner">
+    <a class="appbar__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="121" height="22"></a>
+    <nav class="appbar__links" aria-label="Principal">
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#como-trabalho">Como trabalho</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <a class="btn btn--tonal btn--sm appbar__cta" href="https://www.linkedin.com/in/opedro-designer" target="_blank" rel="noopener">Vamos conversar</a>
+    <button class="icon-btn appbar__menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span class="icon" aria-hidden="true">menu</span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+  <a href="index.html#projetos">Projetos</a>
+  <a href="index.html#sobre">Sobre</a>
+  <a href="index.html#como-trabalho">Como trabalho</a>
+  <a href="index.html#contato">Contato</a>
+</nav>
+
+<main id="main" class="case case--moedinha">
+
+<section class="case-hero">
+  <div class="container">
+    <a class="btn btn--text case-hero__back" href="index.html#projetos"><span class="icon" aria-hidden="true">arrow_back</span>Todos os projetos</a>
+    <div class="case-cover">
+      <div class="case-cover__copy">
+        <p class="overline">Produto autoral &#183; PWA &#183; 2026</p>
+        <h1 class="display display--l">Moedinha<span>.</span></h1>
+        <p class="lede">Um app para quem está começando a cuidar do próprio dinheiro: <strong>saber quanto sobra, lembrar o que falta pagar e guardar aos poucos</strong>, sem planilha e sem cadastro.</p>
+        <div class="case-cover__tags"><span class="tag">Product Design</span><span class="tag">Marca + Design System</span><span class="tag">PWA</span><span class="tag">2026</span></div>
+      </div>
+      <div class="case-cover__media"><img src="assets/img/moedinha-cover.webp" alt="" width="1600" height="1200" fetchpriority="high"></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-meta" aria-label="Sobre o projeto">
+  <div class="container">
+    <div class="meta-grid">
+      <div class="card">
+        <p class="overline">Meu papel</p>
+        <h3 class="card__title card__title--lg">Da ideia ao produto</h3>
+        <p>Conceito, fluxos, interface, marca, design system e a construção da PWA.</p>
+      </div>
+      <div class="card">
+        <p class="overline">Para quem</p>
+        <h3 class="card__title card__title--lg">Primeira autonomia financeira</h3>
+        <p>Quem está entre a faculdade e o primeiro emprego e acabou de começar a pagar as próprias contas.</p>
+      </div>
+      <div class="card">
+        <p class="overline">Formato</p>
+        <h3 class="card__title card__title--lg">App no celular, sem cadastro</h3>
+        <p>PWA instalável, que funciona offline e guarda tudo só no aparelho, protegido por PIN.</p>
+      </div>
+      <div class="card">
+        <p class="overline">Status</p>
+        <h3 class="card__title card__title--lg">Pré-lançamento</h3>
+        <p>Em uso por uma pessoa. Ainda sem lançamento público e sem resultados para medir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 PROBLEMA -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">01</span>O problema</p>
+      <h2 class="section-title">O primeiro salário chega<br><span class="dim">antes do primeiro controle.</span></h2>
+      <div class="prose">
+      <p>A ideia nasceu de uma situação concreta: uma jovem conciliando faculdade, primeiro emprego e, pela primeira vez, as próprias contas. O dinheiro entra, o aluguel sai, o cartão vira parcela, e no fim do mês fica a sensação de não saber para onde foi.</p>
+      <p>As saídas disponíveis não encaixavam. A planilha dá trabalho para manter. O app do banco mostra o que já aconteceu, não o que vai acontecer. E os apps de finanças pedem conta, conexão com o banco e um mar de gráficos antes de ajudar em qualquer coisa.</p>
+      <p>Organizei o que apareceu nas conversas em três perguntas. O Moedinha existe para responder a elas.</p>
+    </div>
+    </header>
+
+    <div class="questions reveal">
+      <div class="question"><p class="question__q">Quanto <span>sobra</span> este mês?</p><p>Depois das contas, das parcelas e do que costuma variar, quanto do salário ainda está livre.</p></div>
+      <div class="question"><p class="question__q">O que ainda <span>falta pagar</span>?</p><p>Quais contas já foram e quais vencem nos próximos dias, sem precisar lembrar de cabeça.</p></div>
+      <div class="question"><p class="question__q">Quanto já <span>guardei</span>?</p><p>Um objetivo que dá para ver crescendo, mesmo quando o valor guardado é pequeno.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 A IDEIA -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">02</span>A ideia</p>
+      <h2 class="section-title">O mês inteiro<br><span class="dim">num lugar só.</span></h2>
+      <div class="prose">
+      <p>Em vez de um app de finanças completo, cinco ferramentas pequenas, cada uma ligada a uma tarefa real do mês. A navegação mantém todas a um toque de distância, sem transformar a rotina num sistema de planilhas.</p>
+    </div>
+    </header>
+
+    <div class="tools reveal">
+      <div class="tool"><span class="tool__icon"><span class="icon" aria-hidden="true">space_dashboard</span></span><h3>Resumo</h3><p>Quanto sobra do salário depois das contas, e o que vence a seguir.</p><p class="tool__q">→ Quanto sobra?</p></div>
+      <div class="tool"><span class="tool__icon"><span class="icon" aria-hidden="true">calendar_month</span></span><h3>Mês</h3><p>Entradas, contas fixas e a previsão do que varia, como mercado e transporte.</p><p class="tool__q">→ O que falta pagar?</p></div>
+      <div class="tool"><span class="tool__icon"><span class="icon" aria-hidden="true">credit_card</span></span><h3>Dívidas</h3><p>Quanto ainda deve, quanto paga por mês e quando termina.</p><p class="tool__q">→ O que falta pagar?</p></div>
+      <div class="tool"><span class="tool__icon"><span class="icon" aria-hidden="true">savings</span></span><h3>Guardar</h3><p>O desafio dos quadrados: uma meta grande em vários passos pequenos.</p><p class="tool__q">→ Quanto já guardei?</p></div>
+      <div class="tool"><span class="tool__icon"><span class="icon" aria-hidden="true">shopping_cart</span></span><h3>Compras</h3><p>A lista do mercado, marcando o que já foi para o carrinho.</p><p class="tool__q">→ O dia a dia</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PRIMEIRO CONTATO -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">03</span>Primeiro contato</p>
+      <h2 class="section-title">O que é o app,<br><span class="dim">e depois o PIN.</span></h2>
+      <div class="prose">
+      <p>Três telas apresentam o que o app faz e como ele trata os dados: sem conta, sem cadastro, tudo no celular e funcionando sem internet. Em seguida, a pessoa cria um PIN de 4 números.</p>
+    </div>
+    </header>
+
+    <div class="stage stage--ink reveal">
+      <div class="stage__head">
+        <h3 class="stage__title">Apresentação e PIN</h3>
+        <p class="stage__note">Apresentação, criação do PIN e a tela de entrada das próximas vezes.</p>
+      </div>
+      <div class="phones">
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Boas-vindas"><span class="phone__screen"><img src="assets/img/moedinha/intro-1.webp" alt="Tela do Moedinha: Boas-vindas" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">01</span>Boas-vindas</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: As cinco ferramentas"><span class="phone__screen"><img src="assets/img/moedinha/intro-2.webp" alt="Tela do Moedinha: As cinco ferramentas" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">02</span>As cinco ferramentas</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Por que é seguro"><span class="phone__screen"><img src="assets/img/moedinha/intro-3.webp" alt="Tela do Moedinha: Por que é seguro" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">03</span>Por que é seguro</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Antes do PIN"><span class="phone__screen"><img src="assets/img/moedinha/intro-4.webp" alt="Tela do Moedinha: Antes do PIN" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">04</span>Antes do PIN</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Criar PIN"><span class="phone__screen"><img src="assets/img/moedinha/pin-1.webp" alt="Tela do Moedinha: Criar PIN" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">05</span>Criar PIN</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Confirmar PIN"><span class="phone__screen"><img src="assets/img/moedinha/pin-2.webp" alt="Tela do Moedinha: Confirmar PIN" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">06</span>Confirmar PIN</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Entrar nas próximas vezes"><span class="phone__screen"><img src="assets/img/moedinha/unlock.webp" alt="Tela do Moedinha: Entrar nas próximas vezes" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">07</span>Entrar nas próximas vezes</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MONTAGEM GUIADA -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">04</span>Montagem guiada</p>
+      <h2 class="section-title">Nenhum painel vazio<br><span class="dim">no primeiro dia.</span></h2>
+      <div class="prose">
+      <p>Um app de finanças vazio pede esforço justo quando a pessoa ainda não sabe se vale a pena. Por isso a entrada é uma conversa em quatro perguntas, na língua do dia a dia: quanto entra, quando cai, quais contas se repetem e se há parcelas.</p>
+      <p>No fim, ela já vê a primeira previsão do mês e pode seguir um tour rápido que mostra onde fica cada coisa. Quem prefere explorar antes pode começar com valores de exemplo e trocar pelos seus depois.</p>
+    </div>
+    </header>
+
+    <div class="stage stage--lime reveal">
+      <div class="stage__head">
+        <h3 class="stage__title">Do zero ao primeiro uso</h3>
+        <p class="stage__note">Quatro passos de montagem e, em seguida, um tour curto pelas abas.</p>
+      </div>
+      <div class="phones">
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Quanto entra"><span class="phone__screen"><img src="assets/img/moedinha/guide-1.webp" alt="Tela do Moedinha: Quanto entra" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">01</span>Quanto entra</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Contas do mês"><span class="phone__screen"><img src="assets/img/moedinha/guide-2.webp" alt="Tela do Moedinha: Contas do mês" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">02</span>Contas do mês</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Dívidas e parcelas"><span class="phone__screen"><img src="assets/img/moedinha/guide-3.webp" alt="Tela do Moedinha: Dívidas e parcelas" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">03</span>Dívidas e parcelas</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Primeira previsão"><span class="phone__screen"><img src="assets/img/moedinha/guide-4.webp" alt="Tela do Moedinha: Primeira previsão" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">04</span>Primeira previsão</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Tour: a sobra"><span class="phone__screen"><img src="assets/img/moedinha/tour-1.webp" alt="Tela do Moedinha: Tour: a sobra" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">05</span>Tour: a sobra</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Tour: o que pagar"><span class="phone__screen"><img src="assets/img/moedinha/tour-2.webp" alt="Tela do Moedinha: Tour: o que pagar" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">06</span>Tour: o que pagar</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Tour: entradas"><span class="phone__screen"><img src="assets/img/moedinha/tour-3.webp" alt="Tela do Moedinha: Tour: entradas" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">07</span>Tour: entradas</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Ou: valores de exemplo"><span class="phone__screen"><img src="assets/img/moedinha/exemplo.webp" alt="Tela do Moedinha: Ou: valores de exemplo" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">08</span>Ou: valores de exemplo</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 AS CINCO FERRAMENTAS -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">05</span>O produto</p>
+      <h2 class="section-title">Cada tela responde<br><span class="dim">a uma pergunta.</span></h2>
+      <div class="prose">
+      <p>O Resumo abre com a resposta mais importante, a sobra prevista, e mostra para onde vai cada parte do salário numa barra só. Abaixo, o que vence a seguir, as dívidas e o quanto já foi guardado, cada um levando para a sua aba.</p>
+      <p>Em Guardar, o desafio dos quadrados divide uma meta grande em duzentos passos pequenos: a cada valor guardado, a pessoa marca um quadrado.</p>
+    </div>
+    </header>
+
+    <div class="stage stage--paper reveal">
+      <div class="stage__head">
+        <h3 class="stage__title">As cinco abas</h3>
+        <p class="stage__note">Telas longas rolam sozinhas. Toque em qualquer uma para ver de perto.</p>
+      </div>
+      <div class="phones">
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Resumo: quanto sobra"><span class="phone__screen"><img src="assets/img/moedinha/resumo.webp" alt="Tela do Moedinha: Resumo: quanto sobra" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">01</span>Resumo: quanto sobra</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Mês: entradas e contas"><span class="phone__screen"><img src="assets/img/moedinha/mes.webp" alt="Tela do Moedinha: Mês: entradas e contas" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">02</span>Mês: entradas e contas</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Dívidas: até quando"><span class="phone__screen"><img src="assets/img/moedinha/dividas.webp" alt="Tela do Moedinha: Dívidas: até quando" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">03</span>Dívidas: até quando</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Guardar: o desafio"><span class="phone__screen"><img src="assets/img/moedinha/guardar.webp" alt="Tela do Moedinha: Guardar: o desafio" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">04</span>Guardar: o desafio</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Compras: a lista"><span class="phone__screen"><img src="assets/img/moedinha/compras.webp" alt="Tela do Moedinha: Compras: a lista" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">05</span>Compras: a lista</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 APP VIVO -->
+<section class="case-section" id="experimente">
+  <div class="container">
+    <div class="live reveal">
+      <div class="live__device">
+        <div class="live__screen">
+          <iframe title="Demonstração do Moedinha com dados de exemplo" data-src="assets/moedinha-app/index.html" loading="lazy"></iframe>
+          <button class="live__start" type="button"><span class="icon" aria-hidden="true">touch_app</span><b>Abrir a demonstração</b></button>
+        </div>
+      </div>
+      <div class="live__copy">
+        <p class="overline">Experimente</p>
+        <h2>Uma versão para testar,<br><span>com dados de exemplo.</span></h2>
+        <p>Esta demonstração tem as mesmas telas e interações do Moedinha, já preenchida com valores de exemplo. Algumas coisas para tentar:</p>
+        <ul class="tries">
+          <li><span class="icon" aria-hidden="true">savings</span>Em Guardar, toque num quadrado e veja ele virar moeda.</li>
+          <li><span class="icon" aria-hidden="true">task_alt</span>No Resumo, marque uma conta como paga e veja a lista se reorganizar.</li>
+          <li><span class="icon" aria-hidden="true">event</span>Em Mês, abra "Dia do salário" e escolha o 5º dia útil.</li>
+          <li><span class="icon" aria-hidden="true">dark_mode</span>Na engrenagem, ligue o modo escuro ou refaça o tour.</li>
+        </ul>
+        <p class="live__note">Na demonstração não há PIN e nada fica salvo: ao recarregar a página, tudo volta ao início.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 DETALHES -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">07</span>Detalhes</p>
+      <h2 class="section-title">O salário cai<br><span class="dim">no 5º dia útil.</span></h2>
+      <div class="prose">
+      <p>O lembrete do salário entende como o salário cai no Brasil: 5º dia útil da CLT, sábado contando ou não, feriados nacionais, adiantamento no meio do mês e dia fixo que cai no fim de semana. No dia, o app lembra de guardar uma parte antes de começar a gastar.</p>
+      <p>Como os dados ficam só no aparelho, o app também lembra de fazer backup a cada duas semanas.</p>
+    </div>
+    </header>
+
+    <div class="stage stage--ink reveal">
+      <div class="stage__head">
+        <h3 class="stage__title">Dia do salário e ajustes</h3>
+        <p class="stage__note">As regras de pagamento do salário e, nos ajustes, backup, segurança e lembretes.</p>
+      </div>
+      <div class="phones">
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Dia do salário"><span class="phone__screen"><img src="assets/img/moedinha/payday.webp" alt="Tela do Moedinha: Dia do salário" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">01</span>Dia do salário</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Ajustes e backup"><span class="phone__screen"><img src="assets/img/moedinha/ajustes.webp" alt="Tela do Moedinha: Ajustes e backup" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">02</span>Ajustes e backup</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 TEMA ESCURO -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">08</span>Claro e escuro</p>
+      <h2 class="section-title">O mesmo app,<br><span class="dim">à noite.</span></h2>
+      <div class="prose">
+      <p>O tema segue o do celular e também pode ser escolhido nos ajustes.</p>
+    </div>
+    </header>
+
+    <div class="stage stage--ink reveal">
+      <div class="phones">
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Resumo"><span class="phone__screen"><img src="assets/img/moedinha/resumo-dark.webp" alt="Tela do Moedinha: Resumo" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">01</span>Resumo</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Mês"><span class="phone__screen"><img src="assets/img/moedinha/mes-dark.webp" alt="Tela do Moedinha: Mês" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">02</span>Mês</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Guardar"><span class="phone__screen"><img src="assets/img/moedinha/guardar-dark.webp" alt="Tela do Moedinha: Guardar" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">03</span>Guardar</figcaption></figure>
+        <figure class="phone-item"><button class="phone" type="button" aria-label="Ampliar tela: Compras"><span class="phone__screen"><img src="assets/img/moedinha/compras-dark.webp" alt="Tela do Moedinha: Compras" loading="lazy"></span><span class="phone__zoom" aria-hidden="true"><span class="icon">open_in_full</span></span></button><figcaption><span class="n">04</span>Compras</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 DESIGN SYSTEM -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">09</span>Marca e design system</p>
+      <h2 class="section-title">Um sistema que nasceu<br><span class="dim">de outro sistema.</span></h2>
+      <div class="prose">
+      <p>O Moedinha não começou do zero visualmente. Ele parte de um design system anterior, o ZEOM, com estrutura Material 3, e o leva para uma versão 2.1: a marca e a paleta do produto entram como valores dos tokens, e tudo o que o app precisou e o sistema ainda não tinha virou componente documentado.</p>
+      <p>O guia ainda carrega o nome de trabalho do projeto, Cofrinho. Como no sistema original, nenhum componente usa uma cor direto, só tokens, e os dois temas saem dos mesmos componentes.</p>
+    </div>
+    </header>
+
+    <div class="ds-numbers reveal">
+      <div><b>13</b><span>Páginas no guia</span><small>Fundações, marca, iconografia e famílias de componentes</small></div>
+      <div><b>65</b><span>Itens documentados</span><small>Cada um com estados, anatomia, uso e código</small></div>
+      <div><b>7</b><span>Peças novas</span><small>Nascidas das necessidades do app</small></div>
+      <div><b>2</b><span>Temas</span><small>Claro e escuro, pelos mesmos tokens</small></div>
+    </div>
+
+    <div class="spec reveal">
+      <div class="spec__card">
+        <span class="spec__label">Cor · papéis do produto</span>
+        <div class="swatches">
+          <div class="swatch"><i style="background:#C7FF3D"></i><b>Lima</b><span>#C7FF3D · ação e progresso</span></div>
+          <div class="swatch"><i style="background:#0B0B0B"></i><b>Carvão</b><span>#0B0B0B · estrutura e destaque</span></div>
+          <div class="swatch"><i style="background:#F7F7F4"></i><b>Off-white</b><span>#F7F7F4 · superfície</span></div>
+          <div class="swatch"><i style="background:#5B4DFF"></i><b>Violeta</b><span>#5B4DFF · foco e apoio</span></div>
+        </div>
+        <span class="spec__label">Categorias do gráfico do Resumo</span>
+        <div class="swatches swatches--sm">
+          <div class="swatch"><i style="background:#0B0B0B"></i><span>fixas</span></div>
+          <div class="swatch"><i style="background:#5B4DFF"></i><span>variáveis</span></div>
+          <div class="swatch"><i style="background:#A3A39E"></i><span>dívidas</span></div>
+          <div class="swatch"><i style="background:#C7FF3D; box-shadow: inset 0 0 0 1.5px #0B0B0B"></i><span>sobra</span></div>
+          <div class="swatch"><i style="background:#D92D20"></i><span>erro</span></div>
+          <div class="swatch"><i style="background:#1A7F45"></i><span>sucesso</span></div>
+        </div>
+      </div>
+      <div class="spec__card spec__card--ink">
+        <span class="spec__label">Tipografia · cada família com um papel</span>
+        <div class="type-row"><small>Bricolage 800<br>títulos</small><span class="t-display">Seu mês está montado.</span></div>
+        <div class="type-row"><small>Bricolage 800<br>título de tela</small><span class="t-title">Desafio dos quadrados</span></div>
+        <div class="type-row"><small>Manrope 500<br>texto e interface</small><span class="t-body">Dá para ajustar tudo depois na aba Mês.</span></div>
+        <div class="type-row"><small>Manrope 800<br>valor tabular</small><span class="t-value">R$ 1.100,00</span></div>
+        <div class="type-row"><small>Anton<br>só em sticker</small><span class="t-sticker">Bora fazer</span></div>
+      </div>
+    </div>
+
+    <div class="spec spec--single reveal">
+      <div class="spec__card spec__card--ink">
+        <span class="spec__label">Nasceu no projeto · etiqueta "Novo"</span>
+        <div class="born">
+          <span>Campo de valor</span><span>Dropdown de dias</span><span>Cartão de item</span><span>Checklist</span>
+          <span>Tour guiado</span><span>Teclado de PIN</span><span>Montagem guiada</span>
+        </div>
+        <span class="spec__label">Tokens acrescentados</span>
+        <ul class="tokens-list">
+          <li><i style="background:#0B0B0B"></i><code>--hero-bg / --hero-fg</code><span>Card de destaque carvão com valor em lima, na aba Guardar.</span></li>
+          <li><i style="background:#5B4DFF"></i><code>--cat-fixed … --cat-left</code><span>As quatro categorias do gráfico do Resumo.</span></li>
+          <li><i style="background:#C7FF3D"></i><code>--snack-bg / --snack-action</code><span>Snackbar carvão com ação lima no claro; invertido no escuro.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="evo reveal">
+      <div class="evo__head">
+        <h3>Ajustes v2 → v2.1, cada um com o porquê</h3>
+        <p>O sistema não só ganhou peças: as que já existiam foram medidas de novo no celular, e cada mudança ficou registrada com o motivo.</p>
+      </div>
+      <div class="evo__scroll">
+        <table>
+          <thead><tr><th>Componente</th><th>v2</th><th>v2.1</th><th>Por quê</th></tr></thead>
+          <tbody>
+            <tr><td>Button</td><td class="old">44 px</td><td class="new">48 px · 52 no rodapé</td><td>Alvo de toque mínimo de 48 px das fundações.</td></tr>
+            <tr><td>Switch</td><td class="old">48 × 28</td><td class="new">52 × 32</td><td>Proporção mais fácil de acertar no celular.</td></tr>
+            <tr><td>Checkbox e radio</td><td class="old">só o controle</td><td class="new">linha inteira · 56 px</td><td>Opções longas, com descrição.</td></tr>
+            <tr><td>Card</td><td class="old">16 ou 24</td><td class="new">24 seção · 16 item</td><td>Hierarquia entre a seção e o item dentro dela.</td></tr>
+            <tr><td>Snackbar</td><td class="old">canto esquerdo</td><td class="new">centro, acima da navegação</td><td>Alcance do polegar e convivência com a barra de abas.</td></tr>
+            <tr><td>Navigation bar</td><td class="old">rótulo 11 px</td><td class="new">12 px · 700 na ativa</td><td>Legibilidade.</td></tr>
+            <tr><td>Tooltip</td><td class="old">328 px</td><td class="new">até 340 · contagem e 2 ações</td><td>Uso no tour guiado.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="stage stage--paper reveal">
+      <div class="stage__head">
+        <h3 class="stage__title">O guia</h3>
+        <p class="stage__note">Fundações, mudanças da v2.1, componentes e telas de exemplo, cada página com estados, anatomia, uso e código.</p>
+      </div>
+      <div class="phones phones--docs">
+        <figure class="phone-item"><button class="shot__frame" type="button" aria-label="Ampliar: página Mudanças v2.1 do guia"><img src="assets/img/moedinha/ds-changes-light.webp" alt="Página Mudanças v2.1 do guia, com o que nasceu no projeto e a tabela de ajustes" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button><figcaption><span class="n">01</span>Mudanças v2.1</figcaption></figure>
+        <figure class="phone-item"><button class="shot__frame" type="button" aria-label="Ampliar: Fundações no tema escuro"><img src="assets/img/moedinha/ds-found-dark.webp" alt="Página de Fundações no tema escuro, com os tokens de cor" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button><figcaption><span class="n">02</span>Fundações no escuro</figcaption></figure>
+        <figure class="phone-item"><button class="shot__frame" type="button" aria-label="Ampliar: página Formulário"><img src="assets/img/moedinha/ds-forms-light.webp" alt="Página Formulário com os estados do text field" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button><figcaption><span class="n">03</span>Formulário</figcaption></figure>
+        <figure class="phone-item"><button class="shot__frame" type="button" aria-label="Ampliar: página Contêiner"><img src="assets/img/moedinha/ds-containers-light.webp" alt="Página Contêiner com as variantes de card" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button><figcaption><span class="n">04</span>Contêiner</figcaption></figure>
+        <figure class="phone-item"><button class="shot__frame" type="button" aria-label="Ampliar: página Sobreposição"><img src="assets/img/moedinha/ds-overlay-light.webp" alt="Página Sobreposição com dialog e bottom sheet" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button><figcaption><span class="n">05</span>Sobreposição</figcaption></figure>
+        <figure class="phone-item"><button class="shot__frame" type="button" aria-label="Ampliar: telas de exemplo do guia"><img src="assets/img/moedinha/ds-screens-light.webp" alt="Página de telas de exemplo do guia, com o onboarding" loading="lazy"><span class="shot__zoom" aria-hidden="true"><span class="icon icon--20">open_in_full</span></span></button><figcaption><span class="n">06</span>Telas de exemplo</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 DECISÕES -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">10</span>Decisões de produto</p>
+      <h2 class="section-title">Útil antes de<br><span class="dim">pedir qualquer dado.</span></h2>
+    </header>
+
+    <div class="card-grid card-grid--3 reveal">
+      <div class="card">
+        <span class="tag tag--draft">Privacidade</span>
+        <h3 class="card__title card__title--lg">Sem conta, dados no aparelho</h3>
+        <p>Começar leva segundos e nenhuma informação sai do celular. O preço é o backup ser responsabilidade da pessoa, então o app lembra dele.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Acesso</span>
+        <h3 class="card__title card__title--lg">PWA, não loja de apps</h3>
+        <p>Instala na tela inicial, abre offline e se comporta como app. O desktop funciona, mas o desenho é para o celular.</p>
+      </div>
+      <div class="card">
+        <span class="tag tag--draft">Linguagem</span>
+        <h3 class="card__title card__title--lg">Sem jargão, sem promessa</h3>
+        <p>"Bora", "Fechou", "Dá para mudar depois". Nada de termos financeiros nem promessa de enriquecer: é para organizar, não para investir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 PROCESSO -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">11</span>Processo</p>
+      <h2 class="section-title">Do rascunho<br><span class="dim">ao app instalado.</span></h2>
+      <div class="prose">
+      <p>Desenhei a experiência, a marca e o sistema, e usei IA (Claude Code e Codex) para acelerar a construção da PWA. A direção, os critérios de experiência e o refinamento de cada tela ficaram comigo.</p>
+    </div>
+    </header>
+
+    <div class="card-grid card-grid--3 reveal">
+      <div class="card"><span class="tag tag--draft">Entender</span><h3 class="card__title card__title--lg">Conversas e rascunho</h3><p>A lista de funcionalidades desejadas virou três perguntas e cinco ferramentas.</p></div>
+      <div class="card"><span class="tag tag--draft">Sistematizar</span><h3 class="card__title card__title--lg">Marca e DS v2.1</h3><p>Tokens, componentes novos e regras de comportamento de app documentados antes de escalar as telas.</p></div>
+      <div class="card"><span class="tag tag--draft">Construir</span><h3 class="card__title card__title--lg">PWA com IA guiada</h3><p>Implementação acelerada por IA, com cada tela revisada contra o sistema e testada no celular.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 ESTADO ATUAL -->
+<section class="case-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="overline"><span class="num">12</span>Estado atual</p>
+      <h2 class="section-title">O próximo passo é<br><span class="dim">aprender com mais gente.</span></h2>
+      <div class="prose">
+      <p>O Moedinha ainda não foi lançado; hoje é usado por uma pessoa. Não há resultado de adoção ou impacto para mostrar, e este case não finge que há. O que vem a seguir:</p>
+    </div>
+    </header>
+
+    <div class="card-grid reveal">
+      <div class="card"><span class="tag tag--draft">Entrada</span><p>Observar outras pessoas montando o mês pela primeira vez e onde a montagem guiada trava.</p></div>
+      <div class="card"><span class="tag tag--draft">Compreensão</span><p>Validar se a "sobra prevista" é entendida do jeito que foi pensada.</p></div>
+      <div class="card"><span class="tag tag--draft">Hábito</span><p>Entender se o desafio dos quadrados mantém a pessoa voltando depois do primeiro mês.</p></div>
+      <div class="card"><span class="tag tag--draft">Confiança</span><p>Testar se "dados só no celular" tranquiliza ou preocupa, e como fica o backup na prática.</p></div>
+    </div>
+
+    <div class="quote-block reveal">
+      <div class="overline">Aprendizado central</div>
+      <div class="quote-block__body quote-block__body--single"><p>Para quem está começando, organizar dinheiro não pode parecer mais uma obrigação. O trabalho de design aqui foi tirar peso: menos perguntas, menos telas vazias, menos jargão, e um jeito de ver progresso mesmo quando o valor é pequeno.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="next" aria-labelledby="next-title">
+  <div class="container">
+    <header class="section-head section-head--row">
+      <h2 class="section-title" id="next-title">Outros <span class="dim">projetos.</span></h2>
+      <a class="btn btn--outlined" href="index.html#projetos">Ver todos</a>
+    </header>
+    <div class="work-grid work-grid--3">
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/creatorbanking-cover.webp" alt="" loading="lazy" width="1448" height="1086"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">Product Design</span><span class="tag tag--draft">Mobile first</span><span class="tag tag--draft"><span class="icon" aria-hidden="true">lock</span>Protegido</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="creator-banking.html">Creator Banking</a></h3>
+          <p class="project__desc">Experiência financeira para criadoras de conteúdo, do primeiro acesso ao uso diário.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
+        </div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/designsystem-cover.webp" alt="" loading="lazy" width="1600" height="1200"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">Design System</span><span class="tag tag--draft">Material 3</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="designsystem.html">Design System opedro.</a></h3>
+          <p class="project__desc">Sistema autoral com 34 componentes em três temas, construído sobre o manual de marca com Material 3 como referência.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
+        </div>
+      </article>
+      <article class="card card--elevated card--link project reveal">
+        <div class="project__media"><img src="assets/img/fastshop-cover.webp" alt="" loading="lazy" width="1200" height="900"></div>
+        <div class="project__body">
+          <div class="project__tags"><span class="tag tag--draft">UX Research</span><span class="tag tag--draft">Benchmarking</span><span class="tag tag--draft">UI</span><span class="tag tag--ghost">2026</span></div>
+          <h3 class="project__title"><a href="fastshop.html">Fast Shop Redesign</a></h3>
+          <p class="project__desc">Navegação por categorias do app reestruturada a partir de avaliação heurística e benchmarking com 5 players.</p>
+          <span class="project__cta" aria-hidden="true">Ver case <span class="icon">arrow_outward</span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="container footer__inner">
+    <a class="footer__brand" href="index.html" aria-label="opedro. — início"><img src="assets/logo/lockup-ui.svg" alt="opedro." width="99" height="18"></a>
+    <ul class="footer__links">
+      <li><a href="index.html#projetos">Projetos</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+    <span class="footer__copy">© 2026 Pedro Santos · Product Designer</span>
+  </div>
+</footer>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/showcase.js"></script>
+<script src="assets/js/moedinha.js"></script>
+</body>
+</html>

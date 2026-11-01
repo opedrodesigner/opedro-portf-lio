@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Moedinha</title>
+<meta name="description" content="Controle pessoal de renda, gastos, dívidas e dinheiro guardado. Funciona sem internet.">
+<meta name="theme-color" content="#F7F7F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0B0B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Moedinha">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="locked">
+<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
+<symbol id="brand" viewBox="0 0 100 100"><rect x="8" y="63" width="56" height="18" rx="9"/><rect x="22" y="41" width="56" height="18" rx="9"/><rect x="36" y="19" width="56" height="18" rx="9"/></symbol>
+<symbol id="ti-arrow-left" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M5 12l6 6"/><path d="M5 12l6 -6"/></symbol>
+<symbol id="ti-chart-pie" viewBox="0 0 24 24"><path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"/><path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5"/></symbol>
+<symbol id="ti-presentation" viewBox="0 0 24 24"><path d="M3 4l18 0"/><path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-10"/><path d="M12 16l0 4"/><path d="M9 20l6 0"/><path d="M8 12l3 -3l2 2l3 -3"/></symbol>
+<symbol id="ti-shield-lock" viewBox="0 0 24 24"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M12 12l0 2.5"/></symbol>
+<symbol id="ti-bell" viewBox="0 0 24 24"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/></symbol>
+<symbol id="ti-calendar-event" viewBox="0 0 24 24"><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M16 3l0 4"/><path d="M8 3l0 4"/><path d="M4 11l16 0"/><path d="M8 15h2v2h-2z"/></symbol>
+<symbol id="ti-calendar-plus" viewBox="0 0 24 24"><path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M16 19h6"/><path d="M19 16v6"/></symbol>
+<symbol id="ti-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6"/></symbol>
+<symbol id="ti-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/></symbol>
+<symbol id="ti-repeat" viewBox="0 0 24 24"><path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3"/><path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3"/></symbol>
+<symbol id="ti-adjustments-horizontal" viewBox="0 0 24 24"><path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 6l8 0"/><path d="M16 6l4 0"/><path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 12l2 0"/><path d="M10 12l10 0"/><path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 18l11 0"/><path d="M19 18l1 0"/></symbol>
+<symbol id="ti-alert-triangle" viewBox="0 0 24 24"><path d="M12 9v4"/><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"/><path d="M12 16h.01"/></symbol>
+<symbol id="ti-arrow-right" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+<symbol id="ti-backspace" viewBox="0 0 24 24"><path d="M20 6a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-11l-5 -5a1.5 1.5 0 0 1 0 -2l5 -5z"/><path d="M12 10l4 4m0 -4l-4 4"/></symbol>
+<symbol id="ti-bulb" viewBox="0 0 24 24"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"/><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"/><path d="M9.7 17l4.6 0"/></symbol>
+<symbol id="ti-cash" viewBox="0 0 24 24"><path d="M7 9m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"/><path d="M14 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"/></symbol>
+<symbol id="ti-check" viewBox="0 0 24 24"><path d="M5 12l5 5l10 -10"/></symbol>
+<symbol id="ti-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6l6 -6"/></symbol>
+<symbol id="ti-circle-check" viewBox="0 0 24 24"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></symbol>
+<symbol id="ti-credit-card" viewBox="0 0 24 24"><path d="M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z"/><path d="M3 10l18 0"/><path d="M7 15l.01 0"/><path d="M11 15l2 0"/></symbol>
+<symbol id="ti-database-export" viewBox="0 0 24 24"><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3"/><path d="M4 6v6c0 1.657 3.582 3 8 3c1.118 0 2.183 -.086 3.15 -.241"/><path d="M20 12v-6"/><path d="M4 12v6c0 1.657 3.582 3 8 3c.157 0 .312 -.002 .466 -.005"/><path d="M16 19h6"/><path d="M19 16l3 3l-3 3"/></symbol>
+<symbol id="ti-device-mobile-down" viewBox="0 0 24 24"><path d="M12.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v7"/><path d="M11 4h2"/><path d="M12 17v.01"/><path d="M19 16v6"/><path d="M22 19l-3 3l-3 -3"/></symbol>
+<symbol id="ti-download" viewBox="0 0 24 24"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></symbol>
+<symbol id="ti-history" viewBox="0 0 24 24"><path d="M12 8l0 4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></symbol>
+<symbol id="ti-info-circle" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></symbol>
+<symbol id="ti-key" viewBox="0 0 24 24"><path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z"/><path d="M15 9h.01"/></symbol>
+<symbol id="ti-layout-dashboard" viewBox="0 0 24 24"><path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"/><path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"/><path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"/><path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"/></symbol>
+<symbol id="ti-lock" viewBox="0 0 24 24"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/></symbol>
+<symbol id="ti-lock-open" viewBox="0 0 24 24"><path d="M5 11m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"/><path d="M12 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M8 11v-5a4 4 0 0 1 8 0"/></symbol>
+<symbol id="ti-pig-money" viewBox="0 0 24 24"><path d="M15 11v.01"/><path d="M5.173 8.378a3 3 0 1 1 4.656 -1.377"/><path d="M16 4v3.803a6.019 6.019 0 0 1 2.658 3.197h1.341a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-1.342c-.336 .95 -.907 1.8 -1.658 2.473v2.027a1.5 1.5 0 0 1 -3 0v-.583a6.04 6.04 0 0 1 -1 .083h-4a6.04 6.04 0 0 1 -1 -.083v.583a1.5 1.5 0 0 1 -3 0v-2l0 -.027a6 6 0 0 1 4 -10.473h2.5l4.5 -3h0z"/></symbol>
+<symbol id="ti-plus" viewBox="0 0 24 24"><path d="M12 5l0 14"/><path d="M5 12l14 0"/></symbol>
+<symbol id="ti-receipt" viewBox="0 0 24 24"><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2"/></symbol>
+<symbol id="ti-refresh" viewBox="0 0 24 24"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></symbol>
+<symbol id="ti-restore" viewBox="0 0 24 24"><path d="M3.06 13a9 9 0 1 0 .49 -4.087"/><path d="M3 4.001v5h5"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/></symbol>
+<symbol id="ti-settings" viewBox="0 0 24 24"><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></symbol>
+<symbol id="ti-shopping-cart" viewBox="0 0 24 24"><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 17h-11v-14h-2"/><path d="M6 5l14 1l-1 7h-13"/></symbol>
+<symbol id="ti-square-off" viewBox="0 0 24 24"><path d="M8 4h10a2 2 0 0 1 2 2v10m-.584 3.412a2 2 0 0 1 -1.416 .588h-12a2 2 0 0 1 -2 -2v-12c0 -.552 .224 -1.052 .586 -1.414"/><path d="M3 3l18 18"/></symbol>
+<symbol id="ti-trash" viewBox="0 0 24 24"><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></symbol>
+<symbol id="ti-trash-x" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/><path d="M10 12l4 4m0 -4l-4 4"/></symbol>
+<symbol id="ti-trending-down" viewBox="0 0 24 24"><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></symbol>
+<symbol id="ti-upload" viewBox="0 0 24 24"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 9l5 -5l5 5"/><path d="M12 4l0 12"/></symbol>
+<symbol id="ti-wallet" viewBox="0 0 24 24"><path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12"/><path d="M20 12v4h-4a2 2 0 0 1 0 -4h4"/></symbol>
+<symbol id="ti-wifi-off" viewBox="0 0 24 24"><path d="M12 18l.01 0"/><path d="M9.172 15.172a4 4 0 0 1 5.656 0"/><path d="M6.343 12.343a7.963 7.963 0 0 1 3.864 -2.14m4.163 .155a7.965 7.965 0 0 1 3.287 2"/><path d="M3.515 9.515a12 12 0 0 1 3.544 -2.455m3.101 -.92a12 12 0 0 1 10.325 3.374"/><path d="M3 3l18 18"/></symbol>
+<symbol id="ti-x" viewBox="0 0 24 24"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></symbol>
+</svg>
+
+<!-- Onboarding: aparece só na primeira abertura, antes de criar o PIN -->
+<div id="intro" class="intro" role="dialog" aria-modal="true" aria-label="Apresentação da Moedinha" data-step="0" hidden>
+  <div class="intro-bar">
+    <button type="button" class="icon-btn sl" data-action="intro-back" aria-label="Voltar"><svg class="ti" aria-hidden="true"><use href="#ti-arrow-left"/></svg></button>
+    <div class="intro-steps" role="img" aria-label="Etapa 1 de 4" id="introSteps"><i></i><i></i><i></i><i></i></div>
+    <button type="button" class="btn text sl intro-skip" data-action="intro-skip">Pular</button>
+  </div>
+
+  <section class="intro-step" data-i="0" aria-labelledby="introT0">
+    <div class="intro-art"><div class="sticker" style="--tilt:-4deg"><svg viewBox="-24 -24 248 248" class="sticker-svg" aria-hidden="true" focusable="false"><g class="zc-h"><g transform="rotate(-6 100 100)"><path d="M6 30H170L196 56V160H6Z" transform="translate(9 9)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M6 30H170L196 56V160H6Z" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="100" y="94" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="0.5" fill="#0B0B0B" text-anchor="middle" transform="rotate(0 100 94)">BORA</text><text x="100" y="150" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="0.5" fill="#0B0B0B" text-anchor="middle" transform="rotate(0 100 150)">FAZER</text></g><path d="M120 192C150 196 176 186 190 166" fill="none" stroke="#0B0B0B" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M120 192C150 196 176 186 190 166" fill="none" stroke="#FF7A2F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M176 158L204 150L196 178Z" fill="#FF7A2F" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="zc-w"><g transform="rotate(-6 100 100)"><path d="M6 30H170L196 56V160H6Z" transform="translate(9 9)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M6 30H170L196 56V160H6Z" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="100" y="94" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="0.5" fill="#0B0B0B" text-anchor="middle" transform="rotate(0 100 94)">BORA</text><text x="100" y="150" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="0.5" fill="#0B0B0B" text-anchor="middle" transform="rotate(0 100 150)">FAZER</text></g><path d="M120 192C150 196 176 186 190 166" fill="none" stroke="#0B0B0B" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M120 192C150 196 176 186 190 166" fill="none" stroke="#FF7A2F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M176 158L204 150L196 178Z" fill="#FF7A2F" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g><g><g transform="rotate(-6 100 100)"><path d="M6 30H170L196 56V160H6Z" transform="translate(9 9)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M6 30H170L196 56V160H6Z" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="100" y="94" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="0.5" fill="#0B0B0B" text-anchor="middle" transform="rotate(0 100 94)">BORA</text><text x="100" y="150" font-family="Anton,Impact,sans-serif" font-size="62" letter-spacing="0.5" fill="#0B0B0B" text-anchor="middle" transform="rotate(0 100 150)">FAZER</text></g><path d="M120 192C150 196 176 186 190 166" fill="none" stroke="#0B0B0B" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M120 192C150 196 176 186 190 166" fill="none" stroke="#FF7A2F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M176 158L204 150L196 178Z" fill="#FF7A2F" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g></svg></div></div>
+    <div class="intro-copy">
+      <h2 id="introT0" tabindex="-1">Seu dinheiro, organizado do seu jeito.</h2>
+      <p>A Moedinha reúne renda, gastos, dívidas e dinheiro guardado num só lugar. Leva poucos minutos para começar.</p>
+    </div>
+  </section>
+
+  <section class="intro-step" data-i="1" aria-labelledby="introT1" hidden>
+    <div class="intro-head">
+      <h2 id="introT1" tabindex="-1">Tudo do mês num lugar só.</h2>
+      <div class="sticker sm" style="--tilt:5deg"><svg viewBox="-24 -24 248 248" class="sticker-svg" aria-hidden="true" focusable="false"><g class="zc-h"><path d="M64 170C64 206 152 210 168 140" fill="none" stroke="#0B0B0B" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/><g transform="rotate(-8 70 120)"><path d="M8 84H132V166H8Z" transform="translate(7 7)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="8" y="84" width="124" height="82" rx="8" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 86L70 128L130 86Z" fill="#5B4DFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g><path d="M170 46C150 46 140 62 140 76C140 96 170 122 170 122C170 122 200 96 200 76C200 62 190 46 170 46Z" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="170" cy="76" r="10" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="0" y="6" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 6)">DINHEIRO</text><text x="0" y="42" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 42)">TEM DESTINO</text></g><g class="zc-w"><path d="M64 170C64 206 152 210 168 140" fill="none" stroke="#0B0B0B" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/><g transform="rotate(-8 70 120)"><path d="M8 84H132V166H8Z" transform="translate(7 7)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="8" y="84" width="124" height="82" rx="8" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 86L70 128L130 86Z" fill="#5B4DFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g><path d="M170 46C150 46 140 62 140 76C140 96 170 122 170 122C170 122 200 96 200 76C200 62 190 46 170 46Z" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="170" cy="76" r="10" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="0" y="6" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 6)">DINHEIRO</text><text x="0" y="42" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 42)">TEM DESTINO</text></g><g><path d="M64 170C64 206 152 210 168 140" fill="none" stroke="#0B0B0B" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/><g transform="rotate(-8 70 120)"><path d="M8 84H132V166H8Z" transform="translate(7 7)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="8" y="84" width="124" height="82" rx="8" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 86L70 128L130 86Z" fill="#5B4DFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g><path d="M170 46C150 46 140 62 140 76C140 96 170 122 170 122C170 122 200 96 200 76C200 62 190 46 170 46Z" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="170" cy="76" r="10" fill="#FFFFFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="0" y="6" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 6)">DINHEIRO</text><text x="0" y="42" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 42)">TEM DESTINO</text></g></svg></div>
+    </div>
+    <ul class="intro-list">
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-layout-dashboard"/></svg></span><span><b>Resumo</b><small>Quanto sobra do salário depois das contas.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-calendar-event"/></svg></span><span><b>Mês</b><small>Entradas, contas fixas e a previsão do que varia.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-credit-card"/></svg></span><span><b>Dívidas</b><small>Quanto você deve e quanto paga por mês.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-pig-money"/></svg></span><span><b>Guardar</b><small>O desafio dos quadrados para juntar dinheiro.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-shopping-cart"/></svg></span><span><b>Compras</b><small>A lista do mercado, marcando o que já pegou.</small></span></li>
+    </ul>
+  </section>
+
+  <section class="intro-step" data-i="2" aria-labelledby="introT2" hidden>
+    <div class="intro-head">
+      <h2 id="introT2" tabindex="-1">Feito para você guardar mais.</h2>
+      <div class="sticker sm" style="--tilt:-5deg"><svg viewBox="-24 -24 248 248" class="sticker-svg" aria-hidden="true" focusable="false"><g class="zc-h"><path d="M8 140H186V192H8Z" transform="translate(7 7)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="8" y="140" width="58" height="52" fill="#5B4DFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="66" y="104" width="58" height="88" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M124 66H168L186 84V192H124Z" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 124H54V90H112V52H150" fill="none" stroke="#0B0B0B" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 124H54V90H112V52H150" fill="none" stroke="#FF7A2F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M150 34L182 52L150 70Z" fill="#FF7A2F" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="0" y="2" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 2)">UM PASSO</text><text x="0" y="38" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 38)">DE CADA VEZ</text></g><g class="zc-w"><path d="M8 140H186V192H8Z" transform="translate(7 7)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="8" y="140" width="58" height="52" fill="#5B4DFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="66" y="104" width="58" height="88" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M124 66H168L186 84V192H124Z" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 124H54V90H112V52H150" fill="none" stroke="#0B0B0B" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 124H54V90H112V52H150" fill="none" stroke="#FF7A2F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M150 34L182 52L150 70Z" fill="#FF7A2F" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="0" y="2" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 2)">UM PASSO</text><text x="0" y="38" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 38)">DE CADA VEZ</text></g><g><path d="M8 140H186V192H8Z" transform="translate(7 7)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="8" y="140" width="58" height="52" fill="#5B4DFF" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="66" y="104" width="58" height="88" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M124 66H168L186 84V192H124Z" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M18 124H54V90H112V52H150" fill="none" stroke="#0B0B0B" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 124H54V90H112V52H150" fill="none" stroke="#FF7A2F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M150 34L182 52L150 70Z" fill="#FF7A2F" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="0" y="2" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 2)">UM PASSO</text><text x="0" y="38" font-family="Anton,Impact,sans-serif" font-size="32" letter-spacing="0.5" fill="#0B0B0B" text-anchor="start" transform="rotate(0 0 38)">DE CADA VEZ</text></g></svg></div>
+    </div>
+    <ul class="intro-list">
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-chart-pie"/></svg></span><span><b>Saiba para onde vai cada real</b><small>Veja quanto do salário já tem destino antes do mês acabar.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-pig-money"/></svg></span><span><b>Guarde aos poucos</b><small>Uma meta grande vira vários passos pequenos, quadrado por quadrado.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-shield-lock"/></svg></span><span><b>Seus dados são só seus</b><small>Sem conta e sem cadastro. Tudo fica neste celular, protegido por PIN.</small></span></li>
+      <li><span class="intro-ic"><svg class="ti" aria-hidden="true"><use href="#ti-wifi-off"/></svg></span><span><b>Funciona sem internet</b><small>Abre em qualquer lugar, mesmo sem sinal.</small></span></li>
+    </ul>
+  </section>
+
+  <section class="intro-step intro-final" data-i="3" aria-labelledby="introT3" hidden>
+    <div class="intro-art"><div class="sticker" style="--tilt:6deg"><svg viewBox="-24 -24 248 248" class="sticker-svg" aria-hidden="true" focusable="false"><g class="zc-h"><path d="M100 4A96 96 0 1 1 99.9 4Z" transform="translate(6 6)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="100" r="96" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="100" r="58" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M72 102L92 122L130 80" fill="none" stroke="#0B0B0B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></g><g class="zc-w"><path d="M100 4A96 96 0 1 1 99.9 4Z" transform="translate(6 6)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="100" r="96" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="100" r="58" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M72 102L92 122L130 80" fill="none" stroke="#0B0B0B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></g><g><path d="M100 4A96 96 0 1 1 99.9 4Z" transform="translate(6 6)" fill="#0B0B0B" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="100" r="96" fill="#FF78C8" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="100" r="58" fill="#C7FF3D" stroke="#0B0B0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><path d="M72 102L92 122L130 80" fill="none" stroke="#0B0B0B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div></div>
+    <div class="intro-copy">
+      <h2 id="introT3" tabindex="-1">Falta só uma coisa: criar seu PIN.</h2>
+      <p id="introFinalText">São 4 números para proteger seus dados. Você vai usar esse PIN sempre que abrir o app.</p>
+    </div>
+  </section>
+
+  <div class="intro-foot">
+    <button type="button" class="btn primary intro-next" data-action="intro-next" id="introNext">Começar</button>
+  </div>
+</div>
+
+<!-- Montagem guiada: logo depois de criar o PIN, a pessoa preenche renda, contas e dívidas -->
+<div id="guide" class="intro guide" role="dialog" aria-modal="true" aria-label="Vamos montar seu mês" data-g="0" hidden>
+  <div class="intro-bar">
+    <button type="button" class="icon-btn sl" data-action="g-back" aria-label="Voltar"><svg class="ti" aria-hidden="true"><use href="#ti-arrow-left"/></svg></button>
+    <div class="intro-steps" role="img" aria-label="Etapa 1 de 4" id="gSteps"><i></i><i></i><i></i><i></i></div>
+    <button type="button" class="btn text sl intro-skip" data-action="g-skip" id="gSkip">Pular</button>
+  </div>
+
+  <section class="intro-step g-step" data-i="0" aria-labelledby="gT0">
+    <div class="intro-copy">
+      <p class="g-kicker">Vamos montar seu mês</p>
+      <h2 id="gT0" tabindex="-1">Quanto entra por mês?</h2>
+      <p>Comece pelo salário líquido, o valor que cai na sua conta. Freelas e extras você lança depois, no mês em que entrarem.</p>
+    </div>
+    <div class="g-form">
+      <div class="field">
+        <label class="lab" for="gSalary">Salário líquido</label>
+        <div class="money"><span>R$</span><input id="gSalary" type="text" inputmode="decimal" placeholder="0,00" autocomplete="off"></div>
+      </div>
+      <div class="field">
+        <span class="lab" id="gPayL">Quando ele cai?</span>
+        <div class="chips" role="group" aria-labelledby="gPayL">
+          <button type="button" class="chip" data-action="g-pay" data-v="business" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>5º dia útil</button>
+          <button type="button" class="chip" data-action="g-pay" data-v="fixed" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Dia fixo</button>
+          <button type="button" class="chip" data-action="g-pay" data-v="lastBusiness" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Último dia útil</button>
+          <button type="button" class="chip" data-action="g-pay" data-v="none" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Não sei agora</button>
+        </div>
+        <label class="g-day" id="gPayFixed" hidden><span class="lab">Qual dia?</span>
+          <select id="gPayDay" class="sel" data-layout="days" aria-label="Dia do salário"></select>
+        </label>
+        <p class="hint">Com o dia, a Moedinha lembra você de guardar uma parte quando o salário cair.</p>
+      </div>
+      <div class="field">
+        <span class="lab">Outras rendas que caem todo mês</span>
+        <div class="g-rows" id="gExtras"></div>
+        <button type="button" class="btn add sl" data-action="g-add-extra"><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Adicionar outra renda</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-step g-step" data-i="1" aria-labelledby="gT1" hidden>
+    <div class="intro-copy">
+      <p class="g-kicker">Vamos montar seu mês</p>
+      <h2 id="gT1" tabindex="-1">Quais contas você paga todo mês?</h2>
+      <p>Toque nas que você tem e coloque o valor. Dá para ajustar tudo depois na aba Mês.</p>
+    </div>
+    <div class="g-form">
+      <div class="chips" role="group" aria-label="Sugestões de contas" id="gBillChips"></div>
+      <div class="g-rows" id="gBills"></div>
+    </div>
+  </section>
+
+  <section class="intro-step g-step" data-i="2" aria-labelledby="gT2" hidden>
+    <div class="intro-copy">
+      <p class="g-kicker">Vamos montar seu mês</p>
+      <h2 id="gT2" tabindex="-1">Você tem dívidas ou parcelamentos?</h2>
+      <p>Cartão parcelado, empréstimo, financiamento… Saber quanto falta ajuda a planejar o mês.</p>
+    </div>
+    <div class="g-form">
+      <div class="chips" role="group" aria-label="Tem dívidas?">
+        <button type="button" class="chip" data-action="g-debt" data-v="0" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Não tenho</button>
+        <button type="button" class="chip" data-action="g-debt" data-v="1" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Sim, tenho</button>
+      </div>
+      <div class="g-rows" id="gDebts"></div>
+      <button type="button" class="btn add sl" data-action="g-add-debt" id="gAddDebt" hidden><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Adicionar outra dívida</button>
+    </div>
+  </section>
+
+  <section class="intro-step g-step" data-i="3" aria-labelledby="gT3" hidden>
+    <div class="intro-copy">
+      <p class="g-kicker">Tudo certo</p>
+      <h2 id="gT3" tabindex="-1">Seu mês está montado.</h2>
+      <p>Esta é a primeira previsão. Ela vai ficando mais certa conforme você usa o app.</p>
+    </div>
+    <div id="gResult"></div>
+  </section>
+
+  <div class="intro-foot g-foot">
+    <button type="button" class="btn primary intro-next" data-action="g-next" id="gNext">Continuar</button>
+    <button type="button" class="btn text sl" data-action="g-done" id="gDone" hidden>Ir direto para o app</button>
+  </div>
+</div>
+
+<!-- Tela de PIN -->
+<div id="lock" class="lock" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockSub">
+  <div class="lock-in">
+    <!-- Só na criação do PIN: passo, selo e dica -->
+    <div class="lock-steps" id="lockSteps"><span id="lockStep"></span><span class="lock-bars" aria-hidden="true"><i></i><i></i></span></div>
+    <span class="lock-badge" aria-hidden="true"><svg class="ti"><use href="#ti-shield-lock"/></svg></span>
+    <span class="lock-logo"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#brand"/></svg></span>
+    <div>
+      <h1 id="lockTitle">moedinha</h1>
+      <p id="lockSub" class="muted small">Abrindo…</p>
+    </div>
+    <p class="lock-hint" id="lockHint"><svg class="ti" aria-hidden="true"><use href="#ti-bulb"/></svg><span id="lockHintT"></span></p>
+    <div id="pinDots" class="pin-dots" aria-hidden="true" hidden><i></i><i></i><i></i><i></i></div>
+    <p id="pinMsg" class="pin-msg" role="alert"></p>
+    <div id="keypad" class="keypad" role="group" aria-label="Teclado do PIN" hidden>
+      <button type="button" class="key sl" data-key="1">1</button>
+      <button type="button" class="key sl" data-key="2">2</button>
+      <button type="button" class="key sl" data-key="3">3</button>
+      <button type="button" class="key sl" data-key="4">4</button>
+      <button type="button" class="key sl" data-key="5">5</button>
+      <button type="button" class="key sl" data-key="6">6</button>
+      <button type="button" class="key sl" data-key="7">7</button>
+      <button type="button" class="key sl" data-key="8">8</button>
+      <button type="button" class="key sl" data-key="9">9</button>
+      <span></span>
+      <button type="button" class="key sl" data-key="0">0</button>
+      <button type="button" class="key ghost sl" data-key="back" aria-label="Apagar"><svg class="ti" aria-hidden="true"><use href="#ti-backspace"/></svg></button>
+    </div>
+    <div class="lock-foot"><button type="button" id="lockAlt" class="btn text sl" hidden></button></div>
+  </div>
+</div>
+
+<div id="cover" class="cover" hidden><span class="lock-logo"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#brand"/></svg></span></div>
+
+<div class="app">
+  <header class="top">
+    <div class="brand"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#brand"/></svg><h1>moedinha</h1></div>
+    <div class="top-act">
+      <span id="status" class="status" role="status" aria-live="polite"></span>
+      <button type="button" class="icon-btn sl" data-action="history" aria-label="Histórico" title="Histórico"><svg class="ti" aria-hidden="true"><use href="#ti-history"/></svg></button>
+      <button type="button" class="icon-btn sl" data-action="settings" aria-label="Ajustes" title="Ajustes"><svg class="ti" aria-hidden="true"><use href="#ti-settings"/></svg></button>
+    </div>
+  </header>
+  <div id="banner"></div>
+
+  <main>
+    <section id="tab-resumo" role="tabpanel" aria-label="Resumo">
+      <div id="summary" class="stack"></div>
+    </section>
+
+    <section id="tab-gastos" role="tabpanel" aria-label="Mês" hidden>
+      <div class="stack">
+        <div class="panel">
+          <div class="sec-head">
+            <div><h2>Entradas</h2><p class="muted small">Salário, freelas e tudo o que entra.</p></div>
+            <p class="total" id="incTotal"></p>
+          </div>
+          <ul class="list" id="incomesList"></ul>
+          <div class="add-duo">
+            <button type="button" class="btn add sl" data-action="add" data-kind="incomes" data-every="1"><svg class="ti" aria-hidden="true"><use href="#ti-repeat"/></svg>Todo mês</button>
+            <button type="button" class="btn add sl" data-action="add" data-kind="incomes" data-every="0"><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Extra do mês</button>
+          </div>
+          <button type="button" class="pay-row sl" data-action="payday"><svg class="ti" aria-hidden="true"><use href="#ti-calendar-event"/></svg><span><span class="t">Dia do salário</span><span class="s pay-sum">Escolha o dia e receba um lembrete para guardar</span></span><svg class="ti chev" aria-hidden="true"><use href="#ti-chevron-right"/></svg></button>
+        </div>
+        <div class="panel">
+          <div class="sec-head">
+            <div><h2>Contas fixas</h2><p class="muted small">Contas que se repetem todo mês. Marque quando pagar.</p></div>
+            <p class="total" id="fixedTotal"></p>
+          </div>
+          <p class="sec-status" id="fixedStatus"></p>
+          <ul class="list" id="fixedList"></ul>
+          <button type="button" class="btn add sl" data-action="add" data-kind="fixed"><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Adicionar conta fixa</button>
+        </div>
+        <div class="panel">
+          <div class="sec-head">
+            <div><h2>Previsão de gastos variáveis</h2><p class="muted small">Quanto você espera gastar com o que muda todo mês.</p></div>
+            <p class="total" id="varTotal"></p>
+          </div>
+          <ul class="list" id="variableList"></ul>
+          <button type="button" class="btn add sl" data-action="add" data-kind="variable"><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Adicionar previsão</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-dividas" role="tabpanel" aria-label="Dívidas" hidden>
+      <div class="stack">
+        <div class="panel">
+          <div><h2>Dívidas</h2><p class="muted small">Quanto você deve e quanto paga por mês. Marque a parcela quando pagar.</p></div>
+          <div class="duo">
+            <div><p class="eyebrow">Saldo devedor</p><p class="mid" id="debtBal"></p></div>
+            <div><p class="eyebrow">Parcelas por mês</p><p class="mid" id="debtPay"></p></div>
+          </div>
+          <p class="sec-status" id="debtStatus"></p>
+          <ul class="list" id="debtsList"></ul>
+          <button type="button" class="btn add sl" data-action="add" data-kind="debts"><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Adicionar dívida</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-cofrinho" role="tabpanel" aria-label="Guardar" hidden>
+      <div class="stack">
+        <div class="page-head">
+          <h2>Desafio dos quadrados</h2>
+          <p class="muted small">Guardou o valor de um quadrado? Toque nele e ele vira uma moeda.</p>
+        </div>
+        <div id="goalStats" class="hero"></div>
+        <details class="panel">
+          <summary class="sl"><span class="sum-l"><svg class="ti" aria-hidden="true"><use href="#ti-adjustments-horizontal"/></svg>Ajustar o desafio</span><svg class="ti exp" aria-hidden="true"><use href="#ti-chevron-down"/></svg></summary>
+          <div class="field">
+            <label for="goalCount" class="lab">Quantidade de quadrados</label>
+            <input id="goalCount" type="number" min="1" max="500" step="1" inputmode="numeric">
+          </div>
+          <div class="field">
+            <span class="lab" id="modeLab">Quanto vale cada quadrado</span>
+            <div class="seg" role="group" aria-labelledby="modeLab">
+              <button type="button" class="sl" data-action="mode" data-mode="num" aria-pressed="true"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Valor = número</button>
+              <button type="button" class="sl" data-action="mode" data-mode="fixed" aria-pressed="false"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Valor fixo</button>
+            </div>
+          </div>
+          <div class="field">
+            <label id="baseLabel" for="goalBase" class="lab"></label>
+            <input id="goalBase" type="text" inputmode="decimal" autocomplete="off">
+          </div>
+          <p class="hint" id="goalHint"></p>
+        </details>
+        <div id="grid" class="grid" role="group" aria-label="Quadrados de economia"></div>
+        <div id="resetBox"></div>
+      </div>
+    </section>
+
+    <section id="tab-compras" role="tabpanel" aria-label="Lista de compras" hidden>
+      <div class="stack">
+        <div class="page-head">
+          <h2>Lista de compras</h2>
+          <p class="muted small">Toque na caixinha ao lado do item quando comprar. Ela fica verde com um ✓.</p>
+        </div>
+        <div id="shopStats"></div>
+        <form id="shopForm" class="shop-add" autocomplete="off">
+          <input id="shopNew" type="text" maxlength="80" placeholder="Ex.: Arroz" aria-label="Novo item da lista">
+          <button type="submit" class="btn primary sl"><svg class="ti" aria-hidden="true"><use href="#ti-plus"/></svg>Adicionar</button>
+        </form>
+        <ul class="list" id="shopList"></ul>
+        <div id="shopActions" class="banner-actions"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<nav class="tabs" aria-label="Seções">
+  <div class="tabs-in" role="tablist">
+    <button type="button" class="tab-btn" role="tab" data-action="tab" data-tab="resumo" aria-selected="true"><span class="ind sl"><svg class="ti" aria-hidden="true"><use href="#ti-layout-dashboard"/></svg></span><span class="tl">Resumo</span></button>
+    <button type="button" class="tab-btn" role="tab" data-action="tab" data-tab="gastos" aria-selected="false"><span class="ind sl"><svg class="ti" aria-hidden="true"><use href="#ti-calendar-event"/></svg></span><span class="tl">Mês</span></button>
+    <button type="button" class="tab-btn" role="tab" data-action="tab" data-tab="dividas" aria-selected="false"><span class="ind sl"><svg class="ti" aria-hidden="true"><use href="#ti-credit-card"/></svg></span><span class="tl">Dívidas</span></button>
+    <button type="button" class="tab-btn" role="tab" data-action="tab" data-tab="cofrinho" aria-selected="false"><span class="ind sl"><svg class="ti" aria-hidden="true"><use href="#ti-pig-money"/></svg></span><span class="tl">Guardar</span></button>
+    <button type="button" class="tab-btn" role="tab" data-action="tab" data-tab="compras" aria-selected="false"><span class="ind sl"><svg class="ti" aria-hidden="true"><use href="#ti-shopping-cart"/></svg></span><span class="tl">Compras</span></button>
+  </div>
+</nav>
+
+<!-- Histórico -->
+<dialog id="historyDlg" class="full" aria-labelledby="historyTitle">
+  <header class="dlg-bar">
+    <button type="button" class="icon-btn sl" data-action="close-dlg" aria-label="Fechar"><svg class="ti" aria-hidden="true"><use href="#ti-x"/></svg></button>
+    <h2 id="historyTitle">Histórico</h2>
+  </header>
+  <div class="dlg-body">
+    <h3 class="sec-t">Mês a mês</h3>
+    <div id="monthsList" class="stack"></div>
+    <h3 class="sec-t">Todas as atividades</h3>
+    <ul id="logList" class="log"></ul>
+    <button type="button" id="logMore" class="btn sl" data-action="log-more" hidden>Carregar mais</button>
+  </div>
+</dialog>
+
+<!-- Ajustes -->
+<dialog id="settingsDlg" class="full" aria-labelledby="settingsTitle">
+  <header class="dlg-bar">
+    <button type="button" class="icon-btn sl" data-action="close-dlg" aria-label="Fechar"><svg class="ti" aria-hidden="true"><use href="#ti-x"/></svg></button>
+    <h2 id="settingsTitle">Ajustes</h2>
+  </header>
+  <div class="dlg-body">
+    <section class="panel list-card">
+      <h3 class="sec-t">Backup</h3>
+      <p class="li-note" id="backupInfo"></p>
+      <button type="button" class="li sl" data-action="export"><svg class="ti" aria-hidden="true"><use href="#ti-download"/></svg><span><span class="t">Exportar backup</span><span class="s">Salva um arquivo com todos os seus dados</span></span></button>
+      <button type="button" class="li sl" data-action="import"><svg class="ti" aria-hidden="true"><use href="#ti-upload"/></svg><span><span class="t">Importar backup</span><span class="s">Troca os dados deste aparelho pelos de um arquivo</span></span></button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </section>
+
+    <section class="panel list-card">
+      <h3 class="sec-t">Segurança</h3>
+      <button type="button" class="li sl" data-action="change-pin"><svg class="ti" aria-hidden="true"><use href="#ti-key"/></svg><span class="t">Trocar PIN</span></button>
+      <button type="button" class="li sl" data-action="lock-now"><svg class="ti" aria-hidden="true"><use href="#ti-lock"/></svg><span class="t">Bloquear agora</span></button>
+      <p class="li-note">O app também bloqueia sozinho quando fica mais de 1 minuto em segundo plano.</p>
+    </section>
+
+    <section class="panel list-card">
+      <h3 class="sec-t">Lembretes</h3>
+      <button type="button" class="li sl" data-action="payday"><svg class="ti" aria-hidden="true"><use href="#ti-bell"/></svg><span><span class="t">Dia do salário</span><span class="s pay-sum">Escolha o dia e receba um lembrete para guardar</span></span></button>
+    </section>
+
+    <section class="panel list-card">
+      <h3 class="sec-t">Aparência</h3>
+      <div class="li static li-sw">
+        <svg class="ti" aria-hidden="true"><use href="#ti-moon"/></svg>
+        <span><span class="t" id="themeL">Modo escuro</span><span class="s" id="themeS"></span></span>
+        <button type="button" class="switch" role="switch" id="themeSw" data-action="theme-toggle" aria-labelledby="themeL" aria-describedby="themeS" aria-checked="false"></button>
+      </div>
+      <button type="button" class="li sl li-sub" id="themeAuto" data-action="theme-auto" hidden><span></span><span class="t">Voltar a seguir o tema do celular</span></button>
+    </section>
+
+    <section class="panel list-card">
+      <h3 class="sec-t">Sobre</h3>
+      <button type="button" class="li sl" data-action="tour-replay"><svg class="ti" aria-hidden="true"><use href="#ti-info-circle"/></svg><span><span class="t">Fazer o tour de novo</span><span class="s">Mostra onde fica cada coisa no app</span></span></button>
+      <button type="button" class="li sl" data-action="intro-replay"><svg class="ti" aria-hidden="true"><use href="#ti-presentation"/></svg><span><span class="t">Ver a apresentação</span><span class="s">O que o app faz e como ele ajuda</span></span></button>
+      <button type="button" class="li sl" id="installItem" data-action="install" hidden><svg class="ti" aria-hidden="true"><use href="#ti-device-mobile-down"/></svg><span><span class="t">Instalar no celular</span><span class="s">Coloca a Moedinha na tela inicial, como um app</span></span></button>
+      <div class="li static"><svg class="ti" aria-hidden="true"><use href="#ti-wifi-off"/></svg><span><span class="t">Funciona sem internet</span><span class="s">Seus dados ficam guardados só neste aparelho.</span></span></div>
+      <div class="li static"><svg class="ti" aria-hidden="true"><use href="#ti-info-circle"/></svg><span><span class="t">Versão</span><span class="s" id="appVersion"></span></span></div>
+    </section>
+
+    <section class="panel list-card">
+      <button type="button" class="li danger sl" data-action="wipe"><svg class="ti" aria-hidden="true"><use href="#ti-trash-x"/></svg><span class="t">Apagar todos os dados</span></button>
+    </section>
+  </div>
+</dialog>
+
+<!-- Dia do salário -->
+<dialog id="paydayDlg" class="full" aria-labelledby="paydayTitle">
+  <header class="dlg-bar">
+    <button type="button" class="icon-btn sl" data-action="close-dlg" aria-label="Fechar"><svg class="ti" aria-hidden="true"><use href="#ti-x"/></svg></button>
+    <h2 id="paydayTitle">Dia do salário</h2>
+  </header>
+  <div class="dlg-body">
+    <p class="muted small pay-intro">Escolha quando o dinheiro cai na sua conta. No dia, a Moedinha lembra você de guardar uma parte antes de começar a gastar.</p>
+
+    <section class="panel">
+      <h3 class="sec-t" id="payTypeLab">Quando cai o salário</h3>
+      <div class="opts" role="radiogroup" aria-labelledby="payTypeLab">
+        <label class="opt">
+          <input type="radio" name="payType" value="business">
+          <span class="opt-t"><b>Dia útil do mês</b><small>Na CLT, o prazo é o 5º dia útil.</small></span>
+          <select id="payN" class="sel" aria-label="Qual dia útil">
+            <option value="1">1º</option><option value="2">2º</option><option value="3">3º</option><option value="4">4º</option><option value="5">5º</option>
+            <option value="6">6º</option><option value="7">7º</option><option value="8">8º</option><option value="9">9º</option><option value="10">10º</option>
+          </select>
+        </label>
+        <label class="opt">
+          <input type="radio" name="payType" value="fixed">
+          <span class="opt-t"><b>Dia fixo</b><small>Todo dia 10, 15, 30…</small></span>
+          <select id="payDay" class="sel" data-layout="days" aria-label="Qual dia do mês"></select>
+        </label>
+        <label class="opt">
+          <input type="radio" name="payType" value="lastBusiness">
+          <span class="opt-t"><b>Último dia útil do mês</b></span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="payType" value="last">
+          <span class="opt-t"><b>Último dia do mês</b><small>Dia 30 ou 31, conforme o mês.</small></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3 class="sec-t">Adiantamento</h3>
+      <label class="opt">
+        <input type="checkbox" id="payAdv">
+        <span class="opt-t"><b>Também recebo um vale</b><small>Parte do salário paga no meio do mês.</small></span>
+        <select id="payAdvDay" class="sel" data-layout="days" aria-label="Dia do adiantamento"></select>
+      </label>
+    </section>
+
+    <section class="panel">
+      <h3 class="sec-t">Regras da sua empresa</h3>
+      <div class="sw-row">
+        <span><span class="t" id="paySatL">Sábado conta como dia útil</span><span class="s">É a regra do Ministério do Trabalho para o 5º dia útil. Desligue se a sua empresa não conta.</span></span>
+        <button type="button" class="switch" role="switch" id="paySat" aria-labelledby="paySatL" aria-checked="true"></button>
+      </div>
+      <div class="sw-row">
+        <span><span class="t" id="payEarlyL">Adiantar quando cair em folga</span><span class="s">Dia fixo em fim de semana ou feriado é pago no dia útil anterior.</span></span>
+        <button type="button" class="switch" role="switch" id="payEarly" aria-labelledby="payEarlyL" aria-checked="true"></button>
+      </div>
+      <p class="hint">Feriados nacionais já entram na conta. Feriados da sua cidade ou estado, não.</p>
+    </section>
+
+    <section class="panel" id="payNextBox">
+      <h3 class="sec-t">Próximas datas</h3>
+      <ul class="pay-next" id="payNext"></ul>
+    </section>
+
+    <section class="panel" id="payRemind">
+      <h3 class="sec-t">Lembrete</h3>
+      <div class="sw-row">
+        <span><span class="t" id="payNotifyL">Avisar no celular</span><span class="s" id="payNotifyHint"></span></span>
+        <button type="button" class="switch" role="switch" id="payNotify" aria-labelledby="payNotifyL" aria-checked="false"></button>
+      </div>
+      <button type="button" class="btn add sl" data-action="pay-ics"><svg class="ti" aria-hidden="true"><use href="#ti-calendar-plus"/></svg>Adicionar ao calendário</button>
+      <p class="hint">Funciona em qualquer celular, inclusive iPhone: cria lembretes às 9h nos próximos 24 pagamentos. Se mudar o dia do salário, adicione de novo.</p>
+    </section>
+
+    <button type="button" class="btn text sl pay-clear" data-action="pay-clear" id="payClear" hidden>Não usar dia do salário</button>
+  </div>
+</dialog>
+
+<!-- Confirmação -->
+<dialog id="confirmDlg" class="dlg" aria-labelledby="cfTitle">
+  <form method="dialog">
+    <svg class="ti dlg-ic" aria-hidden="true"><use id="cfIcon" href="#ti-info-circle"/></svg>
+    <h3 id="cfTitle"></h3>
+    <p id="cfText"></p>
+    <div class="dlg-actions">
+      <button type="submit" value="no" class="btn text sl" id="cfNo">Cancelar</button>
+      <button type="submit" value="yes" class="btn primary sl" id="cfOk">OK</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="snack" class="snack" role="status" aria-live="polite" hidden>
+  <span id="snackText"></span>
+  <button type="button" id="snackAct" class="btn text sl" hidden></button>
+</div>
+
+<script src="dropdown.js"></script>
+<script src="payday.js"></script>
+<script src="app.js"></script>
+<script>window.addEventListener('load',function(){var q=new URLSearchParams(location.search),t=q.get('tab'),theme=q.get('theme');if(theme==='light'||theme==='dark'){document.documentElement.setAttribute('data-theme',theme);document.querySelectorAll('meta[name=theme-color]').forEach(function(m){m.content=theme==='dark'?'#0B0B0B':'#F7F7F4';});}if(q.get('clean')==='1'){var keep=document.querySelector('[data-action="keep-example"]');if(keep)keep.click();}if(t){var b=document.querySelector('[data-tab="'+t+'"]');if(b)b.click();}});</script>
+</body>
+</html>
