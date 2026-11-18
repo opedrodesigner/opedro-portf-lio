@@ -3,9 +3,29 @@
   var root = document.documentElement;
   root.classList.add('js');
 
+  /* Voltar ao topo: só nos cases, aparece depois de rolar uma tela */
+  var toTop = null;
+  if (document.querySelector('main.case')) {
+    toTop = document.createElement('button');
+    toTop.type = 'button';
+    toTop.className = 'btn to-top';
+    toTop.setAttribute('aria-label', 'Voltar ao topo');
+    toTop.innerHTML = '<span class="icon" aria-hidden="true">arrow_upward</span><span class="to-top__label">Voltar ao topo</span>';
+    toTop.addEventListener('click', function () {
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+      var brand = document.querySelector('.appbar__brand');
+      if (brand) brand.focus({ preventScroll: true });
+    });
+    document.body.appendChild(toTop);
+  }
+
   /* App bar ganha borda ao rolar */
   var bar = document.querySelector('.appbar');
-  function onScroll() { if (bar) bar.classList.toggle('is-scrolled', window.scrollY > 8); }
+  function onScroll() {
+    if (bar) bar.classList.toggle('is-scrolled', window.scrollY > 8);
+    if (toTop) toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+  }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
