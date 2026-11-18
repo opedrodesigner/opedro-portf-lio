@@ -83,6 +83,9 @@
 }
 .phones::-webkit-scrollbar { display: none; }
 .phones--lg { --pw: 320px; }
+/* Conta de Creator: telas mais baixas (786×1554) que as do Moedinha; aparelho mais largo para chegar à mesma altura */
+.case--conta .phones { --pw: 328px; }
+.case--conta .phones--lg { --pw: 350px; }
 .phone-item { margin: 0; display: flex; flex-direction: column; gap: 14px; flex: none; width: var(--pw); container-type: inline-size; scroll-snap-align: start; }
 .phone-item:first-child { margin-left: auto; }
 .phone-item:last-child { margin-right: auto; }
@@ -201,10 +204,29 @@
 }
 @media (max-width: 640px) {
   .phones, .phones--lg { --pw: 252px; }
+  .case--conta .phones, .case--conta .phones--lg { --pw: 276px; }
   .phone__zoom { opacity: 1; width: 34px; height: 34px; }
   .gate__row { flex-direction: column; align-items: stretch; }
   .gate__row .btn { margin-top: 0; }
   .docs { flex-direction: column; align-items: center; }
   .doc { width: 80%; }
   .doc:last-child { transform: rotate(2deg); }
+}
+
+/* lançamento: só o vídeo do reel, recortado do embed do Instagram, dentro de um celular.
+   O embed põe um cabeçalho de 54px e o vídeo 9:16 no centro de uma caixa 4:5 (largura do iframe × 1,25).
+   Para a caixa ter a altura do vídeo: iframe = tela × 16/9 ÷ 1,25 de largura, centralizado, subindo 54px. */
+.launch { display: grid; grid-template-columns: auto minmax(0, 520px); justify-content: center; gap: clamp(48px, 8vw, 112px); align-items: center; }
+.launch__video { --v: min(380px, calc((100dvh - 150px) * 9 / 16)); margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.launch__phone { padding: 9px; border-radius: 46px; background: #101217; box-shadow: inset 0 0 0 1.5px #2b2f38; }
+.launch__screen { position: relative; width: var(--v); aspect-ratio: 9 / 16; border-radius: 37px; overflow: hidden; background: #000; }
+.launch__screen iframe { position: absolute; top: -54px; left: 50%; transform: translateX(-50%); width: calc(var(--v) * 1.4222); height: calc(var(--v) * 1.7778 + 54px); border: 0; }
+.launch__video figcaption { font-size: 13px; color: var(--on-surface-var, inherit); }
+.launch__video figcaption a { color: inherit; }
+.launch__copy .section-title { margin: 14px 0 16px; }
+.launch__copy .overline { display: flex; gap: 10px; }
+.launch__copy > p:not(.overline) { margin: 0 0 var(--space-6); max-width: 46ch; font-size: var(--type-body); line-height: 1.6; color: var(--on-surface-var, inherit); }
+@media (max-width: 860px) {
+  .launch { grid-template-columns: 1fr; gap: var(--space-10, 64px); }
+  .launch__video { --v: min(320px, calc(100vw - 72px)); order: 2; }
 }
